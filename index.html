@@ -54,6 +54,13 @@
   .case h3{margin:0 0 8px;font-size:18px}
   .case p{margin:6px 0;font-size:15px}
   .case p b{color:var(--accent)}
+  .intro{font-size:16.5px;max-width:840px;margin:16px 0 4px}
+  .intro .ctx{color:var(--muted)}
+  .shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0 4px}
+  .demonote{color:var(--muted);font-size:13.5px;margin:6px 0 0}
+  .diagram{margin:14px 0 6px}
+  .diagram svg{width:100%;height:auto;display:block}
+  pre.snippet{background:#0b0e13;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;overflow-x:auto;margin:10px 0;color:var(--text)}
   table.archive{width:100%;border-collapse:collapse;background:var(--panel);
     border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   table.archive th,table.archive td{padding:11px 14px;text-align:left;font-size:14.5px;
@@ -69,9 +76,11 @@
   <header class="top">
     <div class="kicker">Sai Arun Labs</div>
     <h1>Guardrails for the agent era.</h1>
-    <p class="who">Sai Arun Gunuganti — Lead Software Engineer. I design and build agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
+    <p class="who">Sai Arun Gunuganti — Lead Software Engineer: frontend platforms, micro-frontends, and production ownership at Lowe's — and a builder of agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
     <p class="thesis">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
+    <p class="intro">At Lowe's I lead a team of five engineers (official title: Senior Software Engineer) and own the checkout-critical Customer Lookup micro-frontend, consumed by 20+ Lowe's teams across the showroom POS platform. <span class="ctx">Company context: Lowe's serves ~16M customer transactions a week across 1,700+ stores — that is the scale of the platform my team ships into, stated as context, not as a personal metric.</span> The lab below applies the same discipline — rules in code, approval before consequences, receipts for everything — to agentic systems.</p>
     <div class="links">
+      <a href="resume.pdf"><b>Download résumé (PDF)</b></a>
       <a href="https://www.linkedin.com/in/saig-lead-frontend-dev">LinkedIn</a>
       <a href="https://github.com/saiarung27">GitHub</a>
       <a href="https://sealgraf.com">Sealgraf — live product</a>
@@ -86,16 +95,19 @@
     <div class="card wide">
       <h3>Sealgraf</h3>
       <p class="sector">Spend authorization for AI agents</p>
-      <p class="prob">The problem: AI agents can spend money, but nothing checks the owner's limits before the spend — or proves afterwards what was approved, by whom, and why.</p>
+      <p class="prob">The problem: an agent holding connected payment tools can spend first and explain later. No pre-spend check runs against limits the owner set, any approval happens on a surface the agent itself controls, and afterwards nothing proves what was approved, by whom, and why.</p>
       <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction.</p>
-      <p>I designed and built the authorization layer and the integration packages for six agent frameworks — Dify, CrewAI, LangChain, n8n, Composio, and the Vercel AI SDK — each live-tested end-to-end with server-verified approval loops.</p>
+      <p>My focus here: authorization design, approval enforcement, and failure handling. I designed and built the authorization layer and the integration packages for six agent frameworks — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), Composio (23) — each live-tested end-to-end with server-verified approval loops.</p>
       <div class="chips">
         <span class="chip live">● Live product</span>
         <span class="chip">6 framework integrations</span>
         <span class="chip">Technical paper published</span>
       </div>
+      <img class="shot" src="img/sealgraf.png" alt="Sealgraf live product — Your agents spend. You set the limits.">
+      <p class="demonote">What you'll see in the product: set limits for an agent, watch a proposed purchase get checked against them, approve or deny it from your own surface, and open the sealed receipt. This is the live product, not a synthetic demo.</p>
       <div class="proof">
         <a href="https://sealgraf.com">Live product →</a>
+        <a href="https://sealgraf.com/paper">Technical paper →</a>
         <a href="#case-sealgraf">Case study</a>
       </div>
     </div>
@@ -105,8 +117,10 @@
       <p class="sector">Workplace mental health · EAP access</p>
       <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
       <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger.</p>
-      <p>I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
+      <p>The emphasis here is workflow orchestration, product experience, and privacy boundaries enforced as rules. I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
       <div class="chips"><span class="chip live">● Live demo</span><span class="chip">44/44 tests</span><span class="chip">Provisional name</span></div>
+      <img class="shot" src="img/doorway.png" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view">
+      <p class="demonote">What you'll do in the demo: sign in as a synthetic member, check eligibility, read a benefit answer with its citation, get matched with the reasoning shown, and approve a booking — then see the employer view, which shows aggregates only. Runs on synthetic data: no real members, benefits, or bookings.</p>
       <div class="proof">
         <a href="https://doorway-live.onrender.com">Live demo →</a>
         <a href="#case-doorway">Case study</a>
@@ -116,9 +130,11 @@
     <div class="card">
       <h3>Reify</h3>
       <p class="sector">Memory engine for AI agents · Open source</p>
-      <p>A local-first memory engine: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
-      <p>I built it local-first and model-portable: any AI model plugs in via MCP, REST, or CLI, and the memory layer maintains its own inferences as new evidence arrives.</p>
+      <p>A local-first memory engine built around its data model: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / OpenAI-compatible proxy / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
+      <p>The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer maintains its own inferences as new evidence arrives. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
       <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span><span class="chip">Open source</span></div>
+      <img class="shot" src="img/reify.png" alt="Reify on GitHub — local-first memory engine for AI agents">
+      <p class="demonote">No live demo — Reify is source-only. What to try: clone the repo and run <b>make demo</b>; it replays the promotion example from the case study end-to-end, with no LLM key. Open source, pre-alpha.</p>
       <div class="proof">
         <a href="https://github.com/saiarung27/reify">Source · 442 tests →</a>
         <a href="#case-reify">Case study</a>
@@ -130,8 +146,10 @@
       <p class="sector">Real-estate portals &amp; rentals</p>
       <p class="prob">Search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
       <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
-      <p>I built the verification pipeline, the fee ledger with its budget gate, and the correction tracker that closes only on independent re-verification. Working prototype on synthetic data — 58/58 tests.</p>
+      <p>The emphasis here is evidence handling, verification logic, uncertainty presentation, and approval invalidation: I built the verification pipeline, the fee ledger with its budget gate — any fee change invalidates the approval — and the correction tracker that closes only on independent re-verification. Live demo on synthetic data — 58/58 tests.</p>
       <div class="chips"><span class="chip live">● Live demo</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
+      <img class="shot" src="img/listproof.png" alt="ListProof live demo — verify a listing before you pay anything">
+      <p class="demonote">What you'll do in the demo: pick a listing and watch it get verified — ownership, photo provenance, price vs market — with the evidence shown and a VERIFIED / UNVERIFIABLE / RED FLAGS verdict. It never prints "safe." Runs on synthetic listings.</p>
       <div class="proof">
         <a href="https://listproof-live.onrender.com">Live demo →</a>
         <a href="#case-listproof">Case study</a>
@@ -151,6 +169,7 @@
       <span class="step">Execute</span><span class="arr">→</span>
       <span class="step">Sealed receipt</span>
     </div>
+    <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt. It is explained here once; the case studies focus on what differs in each product.</p>
     <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 378 tests across the eight sector products, all passing.</p>
   </div>
 
@@ -159,10 +178,37 @@
 
   <div class="case" id="case-sealgraf">
     <h3>Sealgraf — case study</h3>
-    <p><b>Problem</b> — AI agents can spend money, but nothing checks the owner's limits before the spend, or proves afterwards what was approved, by whom, and why.</p>
+    <p><b>Problem</b> — an agent holding connected payment tools can spend first and explain later: no pre-spend check runs against limits the owner set, any approval happens on a surface the agent controls, and afterwards nothing proves what was approved, by whom, and why.</p>
     <p><b>My role</b> — I designed and built the authorization layer and the integration packages for six agent frameworks.</p>
     <p><b>Hardest decision</b> — Approval has to happen on a surface the agent cannot fake: the owner approves out-of-band, and the agent only ever learns the outcome.</p>
-    <p><b>Result</b> — Live in production at sealgraf.com. All six integrations (Dify, CrewAI, LangChain, n8n, Composio, Vercel AI SDK) live-tested end-to-end with server-verified approval loops; technical paper published.</p>
+    <p><b>Architecture</b> — five pieces, one direction of trust: the agent proposes, Sealgraf checks, the owner decides on their own surface, execution happens on any payment rail, and the receipt store seals the evidence.</p>
+    <div class="diagram"><svg viewBox="0 0 960 96" role="img" aria-label="Sealgraf flow: an AI agent proposes a spend, Sealgraf checks it against the mandate and limits, the owner approves on their own surface, execution happens on any payment rail, and the receipt is sealed">
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#f5c542"/></marker></defs>
+<rect x="0" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<text x="88" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">AI agent</text>
+<text x="88" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">proposes a spend</text>
+<line x1="178" y1="48" x2="192" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="196" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<text x="284" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Sealgraf check</text>
+<text x="284" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">mandate · limits · decide</text>
+<line x1="374" y1="48" x2="388" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="392" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<text x="480" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Owner approval</text>
+<text x="480" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">owner's own surface</text>
+<line x1="570" y1="48" x2="584" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="588" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<text x="676" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Execution</text>
+<text x="676" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">any payment rail</text>
+<line x1="766" y1="48" x2="780" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="784" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<text x="872" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Sealed receipts</text>
+<text x="872" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">hash-chained evidence</text>
+</svg></div>
+    <p><b>Walkthrough</b> — the owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an ask line above which a human must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the ask line, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the ask line, the owner gets a doorbell (email or push carrying the facts and a link, never controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
+    <p><b>When things change</b> — the approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. A pause, revoke, or tightening of the mandate that lands between approval and spending stops the spend, because completion re-checks the mandate as it stands now. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
+    <p><b>What I built in the integrations</b> — I personally designed and implemented the six framework packages — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), and Composio (23) — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
+    <p><b>Paper</b> — the design is written up in <a href="https://sealgraf.com/paper">&ldquo;Approval You Can Verify: Owner-Approved Agent Spending with Sealed Evidence&rdquo; (v1.1)</a> — full text and PDF at sealgraf.com/paper.</p>
+    <p><b>Result</b> — live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p>
   </div>
 
   <div class="case" id="case-doorway">
@@ -175,10 +221,20 @@
 
   <div class="case" id="case-reify">
     <h3>Reify — case study</h3>
-    <p><b>Problem</b> — Agent memory systems hand the model top-k clues and make it re-synthesize on every query — and none can answer "what changed?", because changes are not stored as data.</p>
+    <p><b>Problem</b> — agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p>
     <p><b>My role</b> — I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p>
     <p><b>Hardest decision</b> — Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p>
-    <p><b>Result</b> — Open source, 442 tests. Its wedge demo — recalling that a title changed, across sessions — runs end-to-end with no LLM key.</p>
+    <p><b>Why SQLite</b> — plain SQL is truth: the whole store is one local SQLite file that any user can open and read directly (<i>sqlite3 ~/.reify/store.db</i>), with sqlite-vec holding embeddings in the same file. No server to run; a Postgres adapter is a v1 roadmap item, not a hidden dependency.</p>
+    <p><b>Why a bitemporal graph</b> — facts carry bitemporal validity, and every change is stored as a Transition event: the change itself is data, not just the before and after states. New facts supersede old ones without erasing them — which is what makes "what changed?" a first-class query instead of another synthesis job handed to the model.</p>
+    <p><b>Retrieval</b> — a hybrid pipeline: semantic, BM25, graph, temporal, and causal signals run in parallel, RRF-fused and cross-encoder reranked, token-budget-aware. Recall is metadata-first — tag → time → entity → BM25 → embeddings — and must work with embeddings disabled entirely.</p>
+    <p><b>The wedge example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
+    <p><b>Reproducible evaluation</b> — <i>make demo</i> is the v0.1 acceptance bar: the first three steps of the wedge run end-to-end on a real MCP host with no LLM key, against a temp SQLite store with the deterministic extractor only — no API keys, no network. The repo's own stated limits: hosts other than the smoke-tested one are expected to work but have not been individually verified, and the project is pre-alpha and single-maintainer. An open evaluation harness also runs in CI against public memory benchmarks (LongMemEval, LoCoMo, BEAM); its numbers, and the matching caveats the repo attaches to them, are published in the README's Status section rather than quoted here.</p>
+    <pre class="snippet">git clone https://github.com/saiarung27/reify.git
+cd reify
+make install   # creates .venv, installs reify + dev extras
+make demo      # runs the wedge end-to-end, no LLM key</pre>
+    <p><b>Roadmap, not shipped</b> — the Day-60 step, derived claims materialized across sessions ("What do I usually emphasize in promotion writeups?"), is a v0.4 item that requires the LLM-backed reconsolidator and sleep phase. The repo labels it roadmap; it is not claimed as working here.</p>
+    <p><b>Result</b> — open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the wedge — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p>
   </div>
 
   <div class="case" id="case-listproof">
@@ -186,7 +242,7 @@
     <p><b>Problem</b> — Rental search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p>
     <p><b>My role</b> — I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p>
     <p><b>Hardest decision</b> — Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p>
-    <p><b>Result</b> — Working prototype, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p>
+    <p><b>Result</b> — live demo on synthetic data, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p>
   </div>
 
   <h2 id="archive">Project archive</h2>
