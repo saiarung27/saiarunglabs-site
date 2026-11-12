@@ -5,293 +5,913 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sai Arun Labs — Guardrails for the Agent Era</title>
 <meta name="description" content="Sai Arun Gunuganti's product lab. Working agentic products built on one spine: rules in code, human approval at consequential steps, sealed receipts for everything.">
+<meta name="theme-color" content="#0b0e13">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saiarunglabs.com/">
+<meta property="og:title" content="Sai Arun Labs — Guardrails for the Agent Era">
+<meta property="og:description" content="Lead Software Engineer (frontend platforms, micro-frontends) and builder of agentic products: rules in code, human approval at consequential steps, sealed receipts for everything.">
+<meta property="og:image" content="https://saiarunglabs.com/img/sealgraf.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://saiarunglabs.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0e13'/%3E%3Cpath d='M32 10 50 18v14c0 11-8 19-18 22-10-3-18-11-18-22V18z' fill='none' stroke='%23f5c542' stroke-width='4'/%3E%3Cpath d='m24 32 6 6 11-12' fill='none' stroke='%235eead4' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
-    --bg:#0b0e13; --panel:#12161f; --panel2:#171c28; --line:#232b3a;
-    --text:#e8ecf3; --muted:#9aa7ba; --accent:#f5c542; --accent2:#5eead4;
-    --chip:#1d2534; --radius:14px;
+    --bg:#0b0e13; --bg2:#0e121a; --panel:#12161f; --panel2:#171c28; --line:#232b3a; --line2:#2e384b;
+    --text:#e8ecf3; --muted:#9aa7ba; --dim:#6b778a; --accent:#f5c542; --accent2:#5eead4;
+    --ok:#7ee2b8; --warn:#f5c542; --bad:#ff8a8a;
+    --chip:#1d2534; --radius:16px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.55;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   a{color:var(--accent2);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
-  header.top{padding:38px 0 8px}
-  .kicker{color:var(--accent);font-weight:700;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
-  h1{font-size:40px;line-height:1.12;margin:10px 0 6px}
-  .who{color:var(--muted);font-size:17px;margin:0 0 14px}
-  .thesis{font-size:20px;line-height:1.5;max-width:760px;margin:14px 0 18px}
-  .thesis b{color:var(--accent)}
-  .links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
-  .links a{background:var(--chip);border:1px solid var(--line);color:var(--text);
-    padding:8px 14px;border-radius:999px;font-size:14px}
-  .links a:hover{border-color:var(--accent2);text-decoration:none}
-  h2{font-size:22px;margin:42px 0 6px}
-  .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media (max-width:720px){.grid{grid-template-columns:1fr} h1{font-size:32px}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-  .card.wide{grid-column:1/-1;background:var(--panel2)}
-  .card h3{margin:0 0 2px;font-size:19px}
-  .sector{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}
-  .card p{margin:8px 0;font-size:15px}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:6px}
+  ::selection{background:rgba(245,197,66,.3)}
+  img{max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#111;padding:8px 12px;border-radius:8px;z-index:100}
+  .skip:focus{left:8px}
+
+  /* backdrop */
+  .bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(600px 400px at var(--gx,70%) var(--gy,10%),rgba(94,234,212,.08),transparent 70%),
+      radial-gradient(700px 500px at 10% 0%,rgba(245,197,66,.07),transparent 70%),
+      radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 0) 0 0/28px 28px,
+      var(--bg)}
+  .bgfx::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0,var(--bg) 900px)}
+
+  /* progress + nav */
+  .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 0;transform:scaleX(0);
+    background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:60}
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
+    background:rgba(11,14,19,.72);border-bottom:1px solid transparent;transition:border-color .3s}
+  nav.top.scrolled{border-bottom-color:var(--line)}
+  nav.top .wrap{display:flex;align-items:center;gap:20px;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;letter-spacing:-.01em}
+  .brand:hover{text-decoration:none}
+  .brand svg{width:28px;height:28px}
+  .navlinks{display:flex;gap:4px;margin-left:auto}
+  .navlinks a{color:var(--muted);font-size:14px;padding:8px 12px;border-radius:8px}
+  .navlinks a:hover,.navlinks a.active{color:var(--text);background:var(--chip);text-decoration:none}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:10px 16px;border-radius:10px;
+    border:1px solid var(--line2);background:var(--chip);color:var(--text);cursor:pointer;font-family:inherit;
+    transition:transform .15s,border-color .2s,background .2s,box-shadow .2s}
+  .btn:hover{text-decoration:none;border-color:var(--accent2);transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#14110a;box-shadow:0 6px 24px -8px rgba(245,197,66,.6)}
+  .btn.primary:hover{background:#ffd45e;border-color:#ffd45e}
+  .btn.ghost{background:transparent}
+  .btn svg{width:16px;height:16px;flex:none}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+  @media (max-width:860px){.navlinks{display:none} nav.top .btn{margin-left:auto}}
+
+  /* hero */
+  .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  @media (max-width:980px){.hero{grid-template-columns:1fr;padding-top:44px;gap:36px}}
+  .avail{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);
+    border:1px solid var(--line);background:rgba(18,22,31,.7);padding:6px 12px 6px 10px;border-radius:999px}
+  .pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(126,226,184,.6);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(126,226,184,0)}100%{box-shadow:0 0 0 0 rgba(126,226,184,0)}}
+  @media (max-width:480px){.avail .loc{display:none}}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase;margin:22px 0 0}
+  h1{font-size:clamp(40px,6.2vw,72px);line-height:1.02;letter-spacing:-.035em;margin:12px 0 18px;font-weight:800}
+  h1 .grad{background:linear-gradient(100deg,var(--accent) 0%,#ffe08a 35%,var(--accent2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .who{color:var(--muted);font-size:17.5px;margin:0 0 16px;max-width:620px}
+  .who b{color:var(--text);font-weight:600}
+  .thesis{font-size:18px;line-height:1.6;max-width:620px;margin:0 0 26px}
+  .thesis b{color:var(--accent);font-weight:600}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px}
+  .socials{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;font-size:14px}
+  .socials a{color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+  .socials a:hover{color:var(--text)}
+  .socials svg{width:16px;height:16px}
+
+  /* terminal */
+  .term{background:linear-gradient(180deg,#121722,#0d1119);border:1px solid var(--line2);border-radius:var(--radius);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02) inset;overflow:hidden;position:relative}
+  .term::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+    background:linear-gradient(140deg,rgba(245,197,66,.5),transparent 35%,transparent 65%,rgba(94,234,212,.5));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  .termbar{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
+  .termbar i{width:11px;height:11px;border-radius:50%;background:#2b3343;display:block}
+  .termbar span{margin-left:8px;font-family:var(--mono)}
+  .termbar em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .termbody{font-family:var(--mono);font-size:12.8px;line-height:1.75;padding:16px 18px 20px;height:360px;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end}
+  .termbody .ln{white-space:pre-wrap;overflow-wrap:anywhere;animation:lnin .35s ease both}
+  @keyframes lnin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .c-dim{color:var(--dim)} .c-ok{color:var(--ok)} .c-warn{color:var(--warn)} .c-bad{color:var(--bad)} .c-acc{color:var(--accent2)} .c-txt{color:var(--text)}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--accent2);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);
+    background:rgba(18,22,31,.75);overflow:hidden;margin:20px 0 0}
+  .stat{padding:22px 22px 20px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .n{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+  .stat .n small{font-size:22px;color:var(--accent)}
+  .stat .l{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.4}
+  @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+  /* sections */
+  section{padding:88px 0 0}
+  .eyebrow{font-family:var(--mono);color:var(--accent2);font-size:12.5px;letter-spacing:.06em;margin:0 0 10px}
+  h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.025em;line-height:1.15;margin:0 0 12px;font-weight:800}
+  .sub{color:var(--muted);margin:0 0 30px;font-size:16px;max-width:760px}
+
+  /* day job */
+  .dayjob{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;padding:30px;border-radius:var(--radius);
+    border:1px solid var(--line);background:linear-gradient(135deg,rgba(23,28,40,.95),rgba(18,22,31,.9))}
+  .dayjob .badge{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;background:var(--chip);border:1px solid var(--line2)}
+  .dayjob .badge svg{width:30px;height:30px}
+  .dayjob h3{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
+  .dayjob p{margin:0 0 10px;font-size:16px;max-width:860px}
+  .dayjob .ctx{color:var(--muted);font-size:14.5px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  @media (max-width:640px){.dayjob{grid-template-columns:1fr;padding:22px}}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media (max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{--mx:50%;--my:50%;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;overflow:hidden;transition:border-color .25s,transform .25s}
+  .card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+    background:radial-gradient(420px circle at var(--mx) var(--my),rgba(94,234,212,.09),transparent 45%)}
+  .card:hover{border-color:var(--line2)}
+  .card:hover::before{opacity:1}
+  .card.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:start;background:var(--panel2)}
+  .card.wide .media{order:2}
+  .card.wide.flip .media{order:0}
+  @media (max-width:860px){.card.wide{grid-template-columns:1fr;gap:4px}.card.wide .media,.card.wide.flip .media{order:0}}
+  .cardhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .card h3{margin:0;font-size:24px;letter-spacing:-.02em}
+  .sector{color:var(--accent2);font-family:var(--mono);font-size:12px;letter-spacing:.04em;margin:4px 0 12px}
+  .card p{margin:10px 0;font-size:15px}
   .prob{color:var(--muted)}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;
-    padding:4px 10px;font-size:12.5px;color:var(--text)}
-  .chip.live{border-color:#2f7d5c;color:#7ee2b8}
-  .chip.proto{border-color:#6b5a1e;color:var(--accent)}
-  .card a.cta{display:inline-block;margin-top:12px;font-weight:600}
-  .proof{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px}
-  .proof a{font-weight:600}
-  .spine{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14.5px;margin:10px 0}
-  .flow .step{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
-  .flow .arr{color:var(--accent)}
-  .case{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 16px}
-  .case h3{margin:0 0 8px;font-size:18px}
-  .case p{margin:6px 0;font-size:15px}
-  .case p b{color:var(--accent)}
-  .intro{font-size:16.5px;max-width:840px;margin:16px 0 4px}
-  .intro .ctx{color:var(--muted)}
-  .shot{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0 4px}
-  .demonote{color:var(--muted);font-size:13.5px;margin:6px 0 0}
-  .diagram{margin:14px 0 6px}
-  .diagram svg{width:100%;height:auto;display:block}
-  pre.snippet{background:#0b0e13;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;overflow-x:auto;margin:10px 0;color:var(--text)}
-  table.archive{width:100%;border-collapse:collapse;background:var(--panel);
-    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-  table.archive th,table.archive td{padding:11px 14px;text-align:left;font-size:14.5px;
-    border-bottom:1px solid var(--line);vertical-align:top}
-  table.archive th{color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.08em}
-  table.archive tr:last-child td{border-bottom:none}
-  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:14px}
+  .focus{border-left:2px solid var(--accent);padding-left:12px;color:#cfd6e2}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12.5px;color:var(--text);white-space:nowrap}
+  .chip.live{border-color:#2f7d5c;color:var(--ok);background:rgba(47,125,92,.12)}
+  .chip.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--ok);margin-right:7px;vertical-align:1px;box-shadow:0 0 8px var(--ok)}
+  .chip.t{font-family:var(--mono);font-size:12px}
+  .browser{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#0d1119;margin:16px 0 4px;box-shadow:0 20px 50px -25px rgba(0,0,0,.9)}
+  .browser .bar{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--dim)}
+  .browser .bar i{width:8px;height:8px;border-radius:50%;background:#2b3343;display:block}
+  .browser .bar span{margin-left:8px;background:var(--chip);border-radius:6px;padding:2px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .browser .imgwrap{overflow:hidden;aspect-ratio:16/10}
+  .browser img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .browser img{transform:scale(1.035)}
+  .card.wide .browser{margin-top:0}
+  .demonote{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+  .proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .proof .btn{font-size:13.5px;padding:8px 14px}
+  .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  /* playground */
+  .play{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px}
+  @media (max-width:940px){.play{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .panel h3{margin:0 0 4px;font-size:17px}
+  .panel .hint{color:var(--muted);font-size:13.5px;margin:0 0 16px}
+  .mandate{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+  .mandate div{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .mandate b{display:block;font-family:var(--mono);font-size:16px}
+  .mandate span{color:var(--muted);font-size:12px}
+  .field{margin:0 0 14px}
+  .field label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-bottom:8px}
+  .field label output{font-family:var(--mono);color:var(--text);font-size:15px;font-weight:700}
+  input[type=range]{width:100%;accent-color:var(--accent);height:24px}
+  select{width:100%;background:var(--bg2);color:var(--text);border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font:inherit;font-size:14.5px}
+  .meter{height:8px;background:var(--bg2);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:6px 0 4px;position:relative}
+  .meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .5s}
+  .meterlbl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--mono)}
+  .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin:4px 0 18px}
+  .pipe::before{content:"";position:absolute;left:10%;right:10%;top:21px;height:2px;background:var(--line)}
+  .pipe .fill{position:absolute;left:10%;top:21px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s}
+  .node{position:relative;text-align:center;font-size:12px;color:var(--muted);padding:0 2px}
+  .node .dot{width:44px;height:44px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;background:var(--bg2);
+    border:2px solid var(--line2);font-family:var(--mono);font-size:13px;font-weight:700;color:var(--dim);transition:all .3s;position:relative;z-index:1}
+  .node.on .dot{border-color:var(--accent2);color:var(--accent2);box-shadow:0 0 0 6px rgba(94,234,212,.08)}
+  .node.wait .dot{border-color:var(--warn);color:var(--warn);animation:ring 1.4s infinite}
+  .node.fail .dot{border-color:var(--bad);color:var(--bad)}
+  .node.on,.node.wait,.node.fail{color:var(--text)}
+  @keyframes ring{50%{box-shadow:0 0 0 8px rgba(245,197,66,.1)}}
+  .status{font-family:var(--mono);font-size:13px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:66px}
+  .status .h{font-weight:700}
+  .approval{display:none;margin-top:12px;border:1px dashed var(--warn);border-radius:12px;padding:14px;background:rgba(245,197,66,.05)}
+  .approval.show{display:block;animation:lnin .3s both}
+  .approval p{margin:0 0 10px;font-size:13.5px}
+  .ledger{margin-top:14px;display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto}
+  .rcpt{font-family:var(--mono);font-size:12px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--ok);border-radius:8px;padding:10px 12px;animation:lnin .35s both}
+  .rcpt.deny{border-left-color:var(--bad)}
+  .rcpt .top{display:flex;justify-content:space-between;gap:8px;color:var(--text);font-weight:700;margin-bottom:4px}
+  .rcpt .k{color:var(--dim)}
+  .rcpt .v{word-break:break-all}
+  .empty{color:var(--dim);font-size:13px;font-family:var(--mono)}
+  .disclaim{color:var(--dim);font-size:12.5px;margin-top:14px}
+  .spinecopy{margin-top:20px}
+  .spinecopy p{font-size:15px;color:#cfd6e2;max-width:900px}
+
+  /* case studies */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .tab{background:none;border:none;color:var(--muted);font:inherit;font-weight:600;font-size:15px;padding:12px 16px;cursor:pointer;
+    border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+  .tab:hover{color:var(--text)}
+  .tab[aria-selected=true]{color:var(--text);border-bottom-color:var(--accent)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;margin:0 0 20px}
+  .js .case[hidden]{display:none}
+  .case h3{margin:0 0 18px;font-size:24px;letter-spacing:-.02em}
+  .case p{margin:0 0 14px;font-size:15.5px}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px}
+  @media (max-width:760px){.facts{grid-template-columns:1fr}}
+  .fact{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .fact p{margin:0;font-size:15px}
+  .fact.result{border-color:#2f7d5c;background:rgba(47,125,92,.08)}
+  .fact.result .lbl{color:var(--ok)}
+  .deep{border-top:1px solid var(--line);padding-top:6px}
+  .deep p b,.case > p b{color:var(--accent)}
+  details.more{border:1px solid var(--line);border-radius:12px;background:var(--bg2);margin:12px 0}
+  details.more summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:15px;list-style:none;display:flex;align-items:center;gap:10px}
+  details.more summary::-webkit-details-marker{display:none}
+  details.more summary::before{content:"+";font-family:var(--mono);color:var(--accent);width:16px;transition:transform .2s}
+  details.more[open] summary::before{content:"−"}
+  details.more .in{padding:0 18px 6px}
+  .diagram{margin:6px 0 18px;overflow-x:auto}
+  .diagram svg{width:100%;min-width:640px;height:auto;display:block}
+  pre.snippet{background:#080a0f;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:13px;overflow-x:auto;margin:10px 0 16px;color:var(--text)}
+  pre.snippet .c{color:var(--dim)}
+
+  /* archive */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:-10px 0 22px}
+  .arch{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:980px){.arch{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:640px){.arch{grid-template-columns:1fr}}
+  .arch .card{display:flex;flex-direction:column;padding:20px}
+  .arch .card h3{font-size:19px}
+  .arch .card p{font-size:14px;color:#cfd6e2;flex:1}
+  .arch .card p.sector{flex:none;color:var(--accent2);font-size:12px}
+  .arch .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:14px}
+  .arch .foot a{font-weight:600}
+  .arch .foot .na{color:var(--muted)}
+
+  /* contact */
+  .contact{margin-top:96px;text-align:center;padding:56px 24px;border-radius:24px;border:1px solid var(--line);position:relative;overflow:hidden;
+    background:radial-gradient(600px 240px at 50% 0%,rgba(245,197,66,.12),transparent 70%),radial-gradient(500px 240px at 50% 100%,rgba(94,234,212,.1),transparent 70%),var(--panel)}
+  .contact h2{margin-bottom:10px}
+  .contact p{color:var(--muted);max-width:560px;margin:0 auto 26px}
+  .contact .ctas{justify-content:center}
+  .copied{font-family:var(--mono);font-size:12.5px;color:var(--ok);height:18px;margin-top:12px}
+  footer{margin-top:56px;border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:14px}
+  footer p{margin:0 0 6px}
+
+  /* reveal */
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .js .reveal{opacity:1;transform:none}
+  }
+  @media print{.bgfx,nav.top,.progress,.term,.play,.contact{display:none}.js .reveal{opacity:1;transform:none}.js .case[hidden]{display:block}body{background:#fff;color:#000}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#main">Skip to content</a>
+<div class="bgfx" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
 
-  <header class="top">
-    <div class="kicker">Sai Arun Labs</div>
-    <h1>Guardrails for the agent era.</h1>
-    <p class="who">Sai Arun Gunuganti — Lead Software Engineer: frontend platforms, micro-frontends, and production ownership at Lowe's — and a builder of agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
-    <p class="thesis">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
-    <p class="intro">At Lowe's I lead a team of five engineers (official title: Senior Software Engineer) and own the checkout-critical Customer Lookup micro-frontend, integrated by 20+ Lowe's teams into their own applications. <span class="ctx">Company context: Lowe's serves ~16M customer transactions a week across 1,700+ stores — that is the scale of the platform my team ships into, stated as context, not as a personal metric.</span> The lab below applies the same discipline — rules in code, approval before consequences, receipts for everything — to agentic systems.</p>
-    <div class="links">
-      <a href="resume.pdf"><b>Download résumé (PDF)</b></a>
-      <a href="https://www.linkedin.com/in/saig-lead-frontend-dev">LinkedIn</a>
-      <a href="https://github.com/saiarung27">GitHub</a>
-      <a href="https://sealgraf.com">Sealgraf — live product</a>
-      <a href="mailto:saiarung27@gmail.com">saiarung27@gmail.com</a>
+<nav class="top" aria-label="Primary">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Sai Arun Labs — home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8 52 17v15c0 12-9 21-20 24-11-3-20-12-20-24V17z" fill="none" stroke="#f5c542" stroke-width="4"/><path d="m23 32 6.5 6.5L42 26" fill="none" stroke="#5eead4" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Sai Arun Labs
+    </a>
+    <div class="navlinks">
+      <a href="#lowes">Lowe's</a>
+      <a href="#work">Work</a>
+      <a href="#spine">The spine</a>
+      <a href="#cases">Case studies</a>
+      <a href="#archive">Archive</a>
+    </div>
+    <a class="btn primary" href="resume.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Résumé
+    </a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="wrap" id="top">
+
+  <header class="hero">
+    <div>
+      <div class="avail"><span class="pulse" aria-hidden="true"></span>Lead Software Engineer · Lowe's<span class="loc"> · Harrisburg, NC</span></div>
+      <p class="kicker">Sai Arun Labs</p>
+      <h1>Guardrails for the <span class="grad">agent era.</span></h1>
+      <p class="who"><b>Sai Arun Gunuganti</b> — Lead Software Engineer: frontend platforms, micro-frontends, and production ownership at Lowe's — and a builder of agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
+      <p class="thesis">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
+      <div class="ctas">
+        <a class="btn primary" href="resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download résumé (PDF)</a>
+        <a class="btn" href="#work">See the work <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="socials">
+        <a href="https://sealgraf.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 20 6.5v6c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9v-6z"/></svg>Sealgraf — live product</a>
+        <a href="https://www.linkedin.com/in/saig-lead-frontend-dev"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.4V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21H9z"/></svg>LinkedIn</a>
+        <a href="https://github.com/saiarung27"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+        <a href="mailto:saiarung27@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>saiarung27@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="term" role="img" aria-label="Animated illustration of the spine: an agent proposes a purchase, rules in code check it, a human approves when it crosses the ask line, it executes, and a hash-chained receipt is sealed.">
+      <div class="termbar"><i></i><i></i><i></i><span>spine — ledger</span><em>illustrative · runs in your browser</em></div>
+      <div class="termbody" id="termbody" aria-hidden="true"></div>
     </div>
   </header>
 
-  <h2>Featured work</h2>
-  <p class="sub">Four featured projects — a live product, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
-  <div class="grid">
-
-    <div class="card wide">
-      <h3>Sealgraf</h3>
-      <p class="sector">Spend authorization for AI agents</p>
-      <p class="prob">The problem: an agent holding connected payment tools can spend first and explain later. No pre-spend check runs against limits the owner set, any approval happens on a surface the agent itself controls, and afterwards nothing proves what was approved, by whom, and why.</p>
-      <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction.</p>
-      <p>My focus here: authorization design, approval enforcement, and failure handling. I designed and built the authorization layer and the integration packages for six agent frameworks — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), Composio (23) — each live-tested end-to-end with server-verified approval loops.</p>
-      <div class="chips">
-        <span class="chip live">● Live product</span>
-        <span class="chip">6 framework integrations</span>
-        <span class="chip">Technical paper published</span>
-      </div>
-      <img class="shot" src="img/sealgraf.png" alt="Sealgraf live product — Your agents spend. You set the limits.">
-      <p class="demonote">What you'll see in the product: set limits for an agent, watch a proposed purchase get checked against them, approve or deny it from your own surface, and open the sealed receipt. This is the live product, not a synthetic demo.</p>
-      <div class="proof">
-        <a href="https://sealgraf.com">Live product →</a>
-        <a href="https://sealgraf.com/paper">Technical paper →</a>
-        <a href="#case-sealgraf">Case study</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Doorway</h3>
-      <p class="sector">Workplace mental health · EAP access</p>
-      <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
-      <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger.</p>
-      <p>The emphasis here is workflow orchestration, product experience, and privacy boundaries enforced as rules. I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
-      <div class="chips"><span class="chip live">● Live demo</span><span class="chip">44/44 tests</span><span class="chip">Provisional name</span></div>
-      <img class="shot" src="img/doorway.png" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view">
-      <p class="demonote">What you'll do in the demo: sign in as a synthetic member, check eligibility, read a benefit answer with its citation, get matched with the reasoning shown, and approve a booking — then see the employer view, which shows aggregates only. Runs on synthetic data: no real members, benefits, or bookings.</p>
-      <div class="proof">
-        <a href="https://doorway-live.onrender.com">Live demo →</a>
-        <a href="#case-doorway">Case study</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Reify</h3>
-      <p class="sector">Memory engine for AI agents · Open source</p>
-      <p>A local-first memory engine built around its data model: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / OpenAI-compatible proxy / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
-      <p>The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer keeps its facts current as new evidence arrives — a changed fact is stored as a transition, never overwritten. Deriving new claims across sessions is a roadmap item, labelled as such in the case study. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
-      <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span><span class="chip">Open source</span></div>
-      <img class="shot" src="img/reify.png" alt="Reify on GitHub — local-first memory engine for AI agents">
-      <p class="demonote">No live demo — Reify is source-only. What to try: clone the repo and run <b>make demo</b>; it replays the promotion example from the case study end-to-end, with no LLM key. Open source, pre-alpha.</p>
-      <div class="proof">
-        <a href="https://github.com/saiarung27/reify">Source · 442 tests →</a>
-        <a href="#case-reify">Case study</a>
-      </div>
-    </div>
-
-    <div class="card wide">
-      <h3>ListProof</h3>
-      <p class="sector">Real-estate portals &amp; rentals</p>
-      <p class="prob">The search is the easy part; what follows is where renters get hurt — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
-      <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
-      <p>The emphasis here is evidence handling, verification logic, uncertainty presentation, and approval invalidation: I built the verification pipeline, the fee ledger with its budget gate — any fee change invalidates the approval — and the correction tracker that closes only on independent re-verification. Live demo on synthetic data — 58/58 tests.</p>
-      <div class="chips"><span class="chip live">● Live demo</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
-      <img class="shot" src="img/listproof.png" alt="ListProof live demo — verify a listing before you pay anything">
-      <p class="demonote">What you'll do in the demo: pick a listing and watch it get verified — ownership, photo provenance, price vs market — with the evidence shown and a VERIFIED / UNVERIFIABLE / RED FLAGS verdict. It never prints "safe." Runs on synthetic listings.</p>
-      <div class="proof">
-        <a href="https://listproof-live.onrender.com">Live demo →</a>
-        <a href="#case-listproof">Case study</a>
-      </div>
-    </div>
-
-  </div>
-  <p><a href="#archive">View full project archive ↓</a></p>
-
-  <h2>The shared spine</h2>
-  <p class="sub">One platform, every product above.</p>
-  <div class="spine">
-    <div class="flow">
-      <span class="step">Goal held over time</span><span class="arr">→</span>
-      <span class="step">Rules in code</span><span class="arr">→</span>
-      <span class="step">Approval gate</span><span class="arr">→</span>
-      <span class="step">Execute</span><span class="arr">→</span>
-      <span class="step">Sealed receipt</span>
-    </div>
-    <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt.</p>
-    <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 378 tests across the eight sector products, all passing.</p>
+  <div class="stats reveal" aria-label="At a glance">
+    <div class="stat"><div class="n" data-count="20" data-suffix="+">20+</div><div class="l">Lowe's teams integrate the Customer Lookup MFE I own</div></div>
+    <div class="stat"><div class="n" data-count="378">378</div><div class="l">tests across eight sector products, all passing</div></div>
+    <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
+    <div class="stat"><div class="n"><span data-count="1">1</span><small> + </small><span data-count="8">8</span></div><div class="l">live product + live public demos</div></div>
   </div>
 
-  <h2>Case studies</h2>
-  <p class="sub">Problem, my role, the hardest decision, and the result — for each featured project.</p>
+  <section id="lowes" class="reveal">
+    <p class="eyebrow">// day job</p>
+    <div class="dayjob">
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+      <div>
+        <h3>Frontend platforms &amp; micro-frontends at Lowe's</h3>
+        <p>At Lowe's I lead a team of five engineers (official title: Senior Software Engineer) and own the checkout-critical Customer Lookup micro-frontend, integrated by 20+ Lowe's teams into their own applications.</p>
+        <p class="ctx">Company context: Lowe's serves ~16M customer transactions a week across 1,700+ stores — that is the scale of the platform my team ships into, stated as context, not as a personal metric.</p>
+        <p>The lab below applies the same discipline — rules in code, approval before consequences, receipts for everything — to agentic systems.</p>
+        <div class="tags"><span class="chip">Team lead · 5 engineers</span><span class="chip">Micro-frontends</span><span class="chip">Checkout-critical</span><span class="chip">Production ownership</span></div>
+      </div>
+    </div>
+  </section>
 
-  <div class="case" id="case-sealgraf">
-    <h3>Sealgraf — case study</h3>
-    <p><b>Problem</b> — an agent holding connected payment tools can spend first and explain later: no pre-spend check runs against limits the owner set, any approval happens on a surface the agent controls, and afterwards nothing proves what was approved, by whom, and why.</p>
-    <p><b>My role</b> — I designed and built the authorization layer and the integration packages for six agent frameworks.</p>
-    <p><b>Hardest decision</b> — Approval has to happen on a surface the agent cannot fake: the owner approves out-of-band, and the agent only ever learns the outcome.</p>
-    <p><b>Architecture</b> — five pieces, one direction of trust: the agent proposes, Sealgraf checks, the owner decides on their own surface, execution happens on any payment rail, and the receipt store seals the evidence.</p>
-    <div class="diagram"><svg viewBox="0 0 960 96" role="img" aria-label="Sealgraf flow: an AI agent proposes a spend, Sealgraf checks it against the mandate and limits, the owner approves on their own surface, execution happens on any payment rail, and the receipt is sealed">
+  <section id="work">
+    <p class="eyebrow reveal">// featured work</p>
+    <h2 class="reveal">Four products. One spine.</h2>
+    <p class="sub reveal">Four featured projects — a live product, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
+    <div class="grid">
+
+      <article class="card wide reveal">
+        <div class="media">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>sealgraf.com</span></div>
+            <div class="imgwrap"><img src="img/sealgraf.png" width="1280" height="800" alt="Sealgraf live product — Your agents spend. You set the limits."></div></div>
+          <p class="demonote">What you'll see in the product: set limits for an agent, watch a proposed purchase get checked against them, approve or deny it from your own surface, and open the sealed receipt. This is the live product, not a synthetic demo.</p>
+        </div>
+        <div>
+          <div class="cardhead"><h3>Sealgraf</h3><span class="chip live">Live product</span></div>
+          <p class="sector">Spend authorization for AI agents</p>
+          <p class="prob">The problem: an agent holding connected payment tools can spend first and explain later. No pre-spend check runs against limits the owner set, any approval happens on a surface the agent itself controls, and afterwards nothing proves what was approved, by whom, and why.</p>
+          <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction.</p>
+          <p class="focus">My focus here: authorization design, approval enforcement, and failure handling. I designed and built the authorization layer and the integration packages for six agent frameworks — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), Composio (23) — each live-tested end-to-end with server-verified approval loops.</p>
+          <div class="chips">
+            <span class="chip t">Dify · 77</span><span class="chip t">CrewAI · 64</span><span class="chip t">LangChain · 55</span><span class="chip t">Vercel AI SDK · 49</span><span class="chip t">n8n · 34</span><span class="chip t">Composio · 23</span>
+            <span class="chip">Technical paper published</span>
+          </div>
+          <div class="proof">
+            <a class="btn primary" href="https://sealgraf.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn" href="https://sealgraf.com/paper">Technical paper</a>
+            <a class="btn ghost" href="#case-sealgraf" data-case="sealgraf">Case study</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="cardhead"><h3>Doorway</h3><span class="chip live">Live demo</span></div>
+        <p class="sector">Workplace mental health · EAP access</p>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>doorway-live.onrender.com</span></div>
+          <div class="imgwrap"><img src="img/doorway.png" width="1280" height="800" loading="lazy" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view"></div></div>
+        <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
+        <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger.</p>
+        <p class="focus">The emphasis here is workflow orchestration, product experience, and privacy boundaries enforced as rules. I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
+        <div class="chips"><span class="chip t">44/44 tests</span><span class="chip">Provisional name</span></div>
+        <p class="demonote">What you'll do in the demo: sign in as a synthetic member, check eligibility, read a benefit answer with its citation, get matched with the reasoning shown, and approve a booking — then see the employer view, which shows aggregates only. Runs on synthetic data: no real members, benefits, or bookings.</p>
+        <div class="proof">
+          <a class="btn primary" href="https://doorway-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#case-doorway" data-case="doorway">Case study</a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="cardhead"><h3>Reify</h3><span class="chip">Open source</span></div>
+        <p class="sector">Memory engine for AI agents · Open source</p>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>github.com/saiarung27/reify</span></div>
+          <div class="imgwrap"><img src="img/reify.png" width="1280" height="800" loading="lazy" alt="Reify on GitHub — local-first memory engine for AI agents"></div></div>
+        <p>A local-first memory engine built around its data model: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / OpenAI-compatible proxy / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
+        <p class="focus">The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer keeps its facts current as new evidence arrives — a changed fact is stored as a transition, never overwritten. Deriving new claims across sessions is a roadmap item, labelled as such in the case study. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
+        <div class="chips"><span class="chip t">442 tests</span><span class="chip">Python</span><span class="chip">Pre-alpha</span></div>
+        <p class="demonote">No live demo — Reify is source-only. What to try: clone the repo and run <b>make demo</b>; it replays the promotion example from the case study end-to-end, with no LLM key. Open source, pre-alpha.</p>
+        <div class="proof">
+          <a class="btn primary" href="https://github.com/saiarung27/reify">Source · 442 tests <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#case-reify" data-case="reify">Case study</a>
+        </div>
+      </article>
+
+      <article class="card wide flip reveal">
+        <div class="media">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>listproof-live.onrender.com</span></div>
+            <div class="imgwrap"><img src="img/listproof.png" width="1280" height="800" loading="lazy" alt="ListProof live demo — verify a listing before you pay anything"></div></div>
+          <p class="demonote">What you'll do in the demo: pick a listing and watch it get verified — ownership, photo provenance, price vs market — with the evidence shown and a VERIFIED / UNVERIFIABLE / RED FLAGS verdict. It never prints "safe." Runs on synthetic listings.</p>
+        </div>
+        <div>
+          <div class="cardhead"><h3>ListProof</h3><span class="chip live">Live demo</span></div>
+          <p class="sector">Real-estate portals &amp; rentals</p>
+          <p class="prob">The search is the easy part; what follows is where renters get hurt — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
+          <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
+          <p class="focus">The emphasis here is evidence handling, verification logic, uncertainty presentation, and approval invalidation: I built the verification pipeline, the fee ledger with its budget gate — any fee change invalidates the approval — and the correction tracker that closes only on independent re-verification. Live demo on synthetic data — 58/58 tests.</p>
+          <div class="chips"><span class="chip t">58/58 tests</span><span class="chip">Working label</span></div>
+          <div class="proof">
+            <a class="btn primary" href="https://listproof-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn ghost" href="#case-listproof" data-case="listproof">Case study</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="spine">
+    <p class="eyebrow reveal">// the shared spine</p>
+    <h2 class="reveal">Try the loop yourself.</h2>
+    <p class="sub reveal">One platform, every product above. Propose a purchase below and watch it go through rules in code, an approval gate, execution, and a hash-chained receipt. Then try changing the amount after approval.</p>
+
+    <div class="play reveal">
+      <div class="panel">
+        <h3>1 · The owner's mandate</h3>
+        <p class="hint">Set in advance by the human, enforced in code: never decided by a model.</p>
+        <div class="mandate">
+          <div><b>$100</b><span>ask line</span></div>
+          <div><b>$500</b><span>per-purchase cap</span></div>
+          <div><b>$1,000</b><span>period cap</span></div>
+        </div>
+        <div class="meterlbl"><span>period spend</span><span id="pspend">$0 / $1,000</span></div>
+        <div class="meter"><i id="pmeter"></i></div>
+
+        <h3 style="margin-top:20px">2 · The agent proposes</h3>
+        <p class="hint">Pick what the agent wants to buy.</p>
+        <div class="field">
+          <label for="item">Item</label>
+          <select id="item">
+            <option>API credits</option><option>Cloud GPU hours</option><option>Conference ticket</option><option>Office chair</option><option>Annual software license</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="amt">Amount <output id="amtOut" for="amt">$60</output></label>
+          <input type="range" id="amt" min="5" max="800" step="5" value="60">
+        </div>
+        <div class="row">
+          <button class="btn primary" id="propose">Propose purchase <span class="arrow" aria-hidden="true">→</span></button>
+          <button class="btn ghost" id="reset">Reset</button>
+        </div>
+        <p class="disclaim">An interactive illustration of the pattern, running entirely in your browser with real SHA-256 hashing. It is not the Sealgraf product. For that, see <a href="https://sealgraf.com">sealgraf.com</a>.</p>
+      </div>
+
+      <div class="panel" aria-live="polite">
+        <h3>3 · The spine</h3>
+        <p class="hint">propose → approve → execute → sealed receipt</p>
+        <div class="pipe" id="pipe">
+          <div class="fill" id="pfill"></div>
+          <div class="node" data-n="0"><div class="dot">01</div>Propose</div>
+          <div class="node" data-n="1"><div class="dot">02</div>Rules in code</div>
+          <div class="node" data-n="2"><div class="dot">03</div>Approval gate</div>
+          <div class="node" data-n="3"><div class="dot">04</div>Execute</div>
+          <div class="node" data-n="4"><div class="dot">05</div>Sealed receipt</div>
+        </div>
+        <div class="status" id="status"><span class="c-dim">Waiting for the agent to propose a purchase…</span></div>
+        <div class="approval" id="approval">
+          <p><b class="c-warn">Owner approval required.</b> This is over the ask line. In the real pattern, the owner approves on their own authenticated surface, and the agent only learns the outcome.</p>
+          <div class="row" style="margin-top:0">
+            <button class="btn primary" id="approve">Approve</button>
+            <button class="btn" id="deny">Deny</button>
+            <button class="btn ghost" id="tamper" title="Change the amount after approval">Agent changes amount ↯</button>
+          </div>
+        </div>
+        <div class="ledger" id="ledger"><div class="empty">ledger is empty: no receipts sealed yet</div></div>
+      </div>
+    </div>
+
+    <div class="spinecopy reveal">
+      <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt.</p>
+      <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 378 tests across the eight sector products, all passing.</p>
+    </div>
+  </section>
+
+  <section id="cases">
+    <p class="eyebrow reveal">// case studies</p>
+    <h2 class="reveal">How the hard parts got decided.</h2>
+    <p class="sub reveal">Problem, my role, the hardest decision, and the result — for each featured project.</p>
+
+    <div class="tabs reveal" role="tablist" aria-label="Case studies">
+      <button class="tab" role="tab" id="tab-sealgraf" aria-controls="case-sealgraf" aria-selected="true">Sealgraf</button>
+      <button class="tab" role="tab" id="tab-doorway" aria-controls="case-doorway" aria-selected="false" tabindex="-1">Doorway</button>
+      <button class="tab" role="tab" id="tab-reify" aria-controls="case-reify" aria-selected="false" tabindex="-1">Reify</button>
+      <button class="tab" role="tab" id="tab-listproof" aria-controls="case-listproof" aria-selected="false" tabindex="-1">ListProof</button>
+    </div>
+
+    <div class="case" id="case-sealgraf" role="tabpanel" aria-labelledby="tab-sealgraf">
+      <h3>Sealgraf — case study</h3>
+      <div class="facts">
+        <div class="fact"><div class="lbl">Problem</div><p>An agent holding connected payment tools can spend first and explain later: no pre-spend check runs against limits the owner set, any approval happens on a surface the agent controls, and afterwards nothing proves what was approved, by whom, and why.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I designed and built the authorization layer and the integration packages for six agent frameworks.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Approval has to happen on a surface the agent cannot fake: the owner approves out-of-band, and the agent only ever learns the outcome.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p></div>
+      </div>
+      <p><b>Architecture</b> — five pieces, one direction of trust: the agent proposes, Sealgraf checks, the owner decides on their own surface, execution happens on any payment rail, and the receipt store seals the evidence.</p>
+      <div class="diagram"><svg viewBox="0 0 960 96" role="img" aria-label="Sealgraf flow: an AI agent proposes a spend, Sealgraf checks it against the mandate and limits, the owner approves on their own surface, execution happens on any payment rail, and the receipt is sealed">
 <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#f5c542"/></marker></defs>
-<rect x="0" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<g font-family="Inter,system-ui,sans-serif">
+<rect x="0" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#2e384b"/>
 <text x="88" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">AI agent</text>
-<text x="88" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">proposes a spend</text>
+<text x="88" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">proposes a spend</text>
 <line x1="178" y1="48" x2="192" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="196" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<rect x="196" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#2e384b"/>
 <text x="284" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Sealgraf check</text>
-<text x="284" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">mandate · limits · decide</text>
+<text x="284" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">mandate · limits · decide</text>
 <line x1="374" y1="48" x2="388" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="392" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<rect x="392" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#f5c542" stroke-opacity=".55"/>
 <text x="480" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Owner approval</text>
-<text x="480" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">owner's own surface</text>
+<text x="480" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">owner's own surface</text>
 <line x1="570" y1="48" x2="584" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="588" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<rect x="588" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#2e384b"/>
 <text x="676" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Execution</text>
-<text x="676" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">any payment rail</text>
+<text x="676" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">any payment rail</text>
 <line x1="766" y1="48" x2="780" y2="48" stroke="#f5c542" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="784" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#232b3a"/>
+<rect x="784" y="16" width="176" height="64" rx="10" fill="#1d2534" stroke="#5eead4" stroke-opacity=".55"/>
 <text x="872" y="45" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Sealed receipts</text>
-<text x="872" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">hash-chained evidence</text>
-</svg></div>
-    <p><b>Walkthrough</b> — the owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an ask line above which a human must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the ask line, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the ask line, the owner gets a doorbell (email or push carrying the facts and a link, never controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
-    <p><b>When things change</b> — the approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. Enforcement sits before the money moves: the decision is sealed to the ledger before any token exists — if the seal fails, no token is issued and nothing can be spent against the check — and approval re-validates the current mandate version and reservation before anything is minted. Completion is re-validated under the same lock, so a pause, revoke, or tightening that lands between approval and spending means the spend cannot complete as authorized. Nor can the record be laundered: a completion is sealed even when it reports a charge above the authorized amount, and every read of that receipt derives the overcharge flag from the sealed bytes — a non-conforming spend becomes proof, not a quiet pass. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
-    <p><b>What I built in the integrations</b> — I personally designed and implemented the six framework packages — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), and Composio (23) — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
-    <p><b>Paper</b> — the design is written up in <a href="https://sealgraf.com/paper">&ldquo;Approval You Can Verify: Owner-Approved Agent Spending with Sealed Evidence&rdquo; (v1.1)</a> — full text and PDF at sealgraf.com/paper.</p>
-    <p><b>Result</b> — live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p>
-  </div>
+<text x="872" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">hash-chained evidence</text>
+</g></svg></div>
+      <details class="more"><summary>Walkthrough: from mandate to sealed receipt</summary><div class="in">
+        <p>The owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an ask line above which a human must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the ask line, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the ask line, the owner gets a doorbell (email or push carrying the facts and a link, never controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
+      </div></details>
+      <details class="more"><summary>When things change: tampering, expiry, revocation</summary><div class="in">
+        <p>The approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. Enforcement sits before the money moves: the decision is sealed to the ledger before any token exists — if the seal fails, no token is issued and nothing can be spent against the check — and approval re-validates the current mandate version and reservation before anything is minted. Completion is re-validated under the same lock, so a pause, revoke, or tightening that lands between approval and spending means the spend cannot complete as authorized. Nor can the record be laundered: a completion is sealed even when it reports a charge above the authorized amount, and every read of that receipt derives the overcharge flag from the sealed bytes — a non-conforming spend becomes proof, not a quiet pass. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
+      </div></details>
+      <details class="more"><summary>What I built in the integrations</summary><div class="in">
+        <p>I personally designed and implemented the six framework packages — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), and Composio (23) — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
+      </div></details>
+      <p style="margin-top:16px"><b>Paper</b> — the design is written up in <a href="https://sealgraf.com/paper">&ldquo;Approval You Can Verify: Owner-Approved Agent Spending with Sealed Evidence&rdquo; (v1.1)</a> — full text and PDF at sealgraf.com/paper.</p>
+    </div>
 
-  <div class="case" id="case-doorway">
-    <h3>Doorway — case study</h3>
-    <p><b>Problem</b> — EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
-    <p><b>My role</b> — I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p>
-    <p><b>Hardest decision</b> — No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p>
-    <p><b>Result</b> — Live demo running the full journey end-to-end; 44/44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p>
-  </div>
+    <div class="case" id="case-doorway" role="tabpanel" aria-labelledby="tab-doorway">
+      <h3>Doorway — case study</h3>
+      <div class="facts">
+        <div class="fact"><div class="lbl">Problem</div><p>EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end; 44/44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
+      </div>
+      <a class="btn" href="https://doorway-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
 
-  <div class="case" id="case-reify">
-    <h3>Reify — case study</h3>
-    <p><b>Problem</b> — agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p>
-    <p><b>My role</b> — I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p>
-    <p><b>Hardest decision</b> — Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p>
-    <p><b>Why SQLite</b> — plain SQL is truth: the whole store is one local SQLite file that any user can open and read directly (<i>sqlite3 ~/.reify/store.db</i>), with sqlite-vec holding embeddings in the same file. No server to run; a Postgres adapter is a v1 roadmap item, not a hidden dependency.</p>
-    <p><b>Why a bitemporal graph</b> — facts carry bitemporal validity, and every change is stored as a Transition event: the change itself is data, not just the before and after states. New facts supersede old ones without erasing them — which is what makes "what changed?" a first-class query instead of another synthesis job handed to the model.</p>
-    <p><b>Retrieval</b> — a hybrid pipeline: semantic, BM25, graph, temporal, and causal signals run in parallel, RRF-fused and cross-encoder reranked, token-budget-aware. Recall is metadata-first — tag → time → entity → BM25 → embeddings — and must work with embeddings disabled entirely.</p>
-    <p><b>The wedge example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
-    <p><b>Reproducible evaluation</b> — <i>make demo</i> is the v0.1 acceptance bar: the first three steps of the wedge run end-to-end on a real MCP host with no LLM key, against a temp SQLite store with the deterministic extractor only — no API keys, no network. The repo's own stated limits: hosts other than the smoke-tested one are expected to work but have not been individually verified, and the project is pre-alpha and single-maintainer. An open evaluation harness also runs in CI against public memory benchmarks (LongMemEval, LoCoMo, BEAM); its numbers, and the matching caveats the repo attaches to them, are published in the README's Status section rather than quoted here.</p>
-    <pre class="snippet">git clone https://github.com/saiarung27/reify.git
+    <div class="case" id="case-reify" role="tabpanel" aria-labelledby="tab-reify">
+      <h3>Reify — case study</h3>
+      <div class="facts">
+        <div class="fact"><div class="lbl">Problem</div><p>Agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the wedge — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
+      </div>
+      <p><b>The wedge example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
+      <pre class="snippet">git clone https://github.com/saiarung27/reify.git
 cd reify
-make install   # creates .venv, installs reify + dev extras
-make demo      # runs the wedge end-to-end, no LLM key</pre>
-    <p><b>Roadmap, not shipped</b> — the Day-60 step, derived claims materialized across sessions ("What do I usually emphasize in promotion writeups?"), is a v0.4 item that requires the LLM-backed reconsolidator and sleep phase. The repo labels it roadmap; it is not claimed as working here.</p>
-    <p><b>Result</b> — open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the wedge — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p>
-  </div>
+make install   <span class="c"># creates .venv, installs reify + dev extras</span>
+make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></pre>
+      <details class="more"><summary>Why SQLite · why a bitemporal graph · retrieval</summary><div class="in">
+        <p><b>Why SQLite</b> — plain SQL is truth: the whole store is one local SQLite file that any user can open and read directly (<i>sqlite3 ~/.reify/store.db</i>), with sqlite-vec holding embeddings in the same file. No server to run; a Postgres adapter is a v1 roadmap item, not a hidden dependency.</p>
+        <p><b>Why a bitemporal graph</b> — facts carry bitemporal validity, and every change is stored as a Transition event: the change itself is data, not just the before and after states. New facts supersede old ones without erasing them — which is what makes "what changed?" a first-class query instead of another synthesis job handed to the model.</p>
+        <p><b>Retrieval</b> — a hybrid pipeline: semantic, BM25, graph, temporal, and causal signals run in parallel, RRF-fused and cross-encoder reranked, token-budget-aware. Recall is metadata-first — tag → time → entity → BM25 → embeddings — and must work with embeddings disabled entirely.</p>
+      </div></details>
+      <details class="more"><summary>Reproducible evaluation &amp; what is roadmap, not shipped</summary><div class="in">
+        <p><b>Reproducible evaluation</b> — <i>make demo</i> is the v0.1 acceptance bar: the first three steps of the wedge run end-to-end on a real MCP host with no LLM key, against a temp SQLite store with the deterministic extractor only — no API keys, no network. The repo's own stated limits: hosts other than the smoke-tested one are expected to work but have not been individually verified, and the project is pre-alpha and single-maintainer. An open evaluation harness also runs in CI against public memory benchmarks (LongMemEval, LoCoMo, BEAM); its numbers, and the matching caveats the repo attaches to them, are published in the README's Status section rather than quoted here.</p>
+        <p><b>Roadmap, not shipped</b> — the Day-60 step, derived claims materialized across sessions ("What do I usually emphasize in promotion writeups?"), is a v0.4 item that requires the LLM-backed reconsolidator and sleep phase. The repo labels it roadmap; it is not claimed as working here.</p>
+      </div></details>
+    </div>
 
-  <div class="case" id="case-listproof">
-    <h3>ListProof — case study</h3>
-    <p><b>Problem</b> — Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p>
-    <p><b>My role</b> — I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p>
-    <p><b>Hardest decision</b> — Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p>
-    <p><b>Result</b> — live demo on synthetic data, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p>
-  </div>
+    <div class="case" id="case-listproof" role="tabpanel" aria-labelledby="tab-listproof">
+      <h3>ListProof — case study</h3>
+      <div class="facts">
+        <div class="fact"><div class="lbl">Problem</div><p>Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo on synthetic data, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p></div>
+      </div>
+      <a class="btn" href="https://listproof-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
 
-  <h2 id="archive">Project archive</h2>
-  <p class="sub">The rest of the lab — working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
-  <table class="archive">
-    <tr><th>Name</th><th>What it is</th><th>Tests</th></tr>
-    <tr>
-      <td><b>Dossier</b><br><a href="https://dossier-live.onrender.com">Live demo →</a></td>
-      <td>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</td>
-      <td>33/33</td>
-    </tr>
-    <tr>
-      <td><b>JobProof</b><br><a href="https://jobproof-live.onrender.com">Live demo →</a></td>
-      <td>Two-sided evidence layer for local-services marketplaces: pros get every lead charge audited against the platform's own rules, with filings made only on approval and counted as filed only with a confirmation artifact; consumers get a signed scope record before work begins.</td>
-      <td>47/47</td>
-    </tr>
-    <tr>
-      <td><b>Reclaim</b><br><a href="https://reclaim-live.onrender.com">Live demo →</a></td>
-      <td>Member-side recovery agent for consumer banking &amp; shopping rewards: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code. No bank-credential vault exists anywhere in its data model.</td>
-      <td>60/60</td>
-    </tr>
-    <tr>
-      <td><b>Refile</b><br><a href="https://refile-live.onrender.com">Live demo →</a></td>
-      <td>Member-side claim-denial explainer &amp; appeal-packet agent for health plans (provisional name): every denial carries a rule-cited reason — or is honestly marked <i>reason unknown</i> — appeal deadlines (internal appeal, external review, No Surprises Act) computed in code, and appeals filed only behind the member's recorded approval, tracked to outcome under a sealed receipt.</td>
-      <td>60/60</td>
-    </tr>
-    <tr>
-      <td><b>Destorm</b><br><a href="https://destorm-live.onrender.com">Live demo →</a></td>
-      <td>Alert-triage agent for observability &amp; on-call teams (provisional name): groups an alert storm into one incident with deterministic correlation rules in code, proposes runbook steps that each cite their runbook — no citation, no step — executes remediation only on the on-call human's recorded approval, and seals the incident timeline as a tamper-evident receipt.</td>
-      <td>48/48</td>
-    </tr>
-    <tr>
-      <td><b>ModSeal</b><br><a href="https://modseal-live.onrender.com">Live demo →</a></td>
-      <td>Moderation-queue agent for online communities (provisional name): every proposed action cites the exact community rule behind it — or honestly flags that no rule covers the item and a human must decide — executes only behind a moderator's recorded approval, and seals an audit trail the affected author can appeal against.</td>
-      <td>28/28</td>
-    </tr>
-    <tr>
-      <td><b>AgentFoundry</b></td>
-      <td>Assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</td>
-      <td>~195</td>
-    </tr>
-  </table>
+  <section id="archive">
+    <p class="eyebrow reveal">// project archive</p>
+    <h2 class="reveal">The rest of the lab.</h2>
+    <p class="sub reveal">The rest of the lab — working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
+    <div class="arch">
+      <article class="card reveal">
+        <h3>Dossier</h3><p class="sector">Short-term rentals &amp; travel</p>
+        <p>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
+        <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a><span class="chip t">33/33</span></div>
+      </article>
+      <article class="card reveal">
+        <h3>JobProof</h3><p class="sector">Local-services marketplaces</p>
+        <p>Two-sided evidence layer for local-services marketplaces: pros get every lead charge audited against the platform's own rules, with filings made only on approval and counted as filed only with a confirmation artifact; consumers get a signed scope record before work begins.</p>
+        <div class="foot"><a href="https://jobproof-live.onrender.com">Live demo →</a><span class="chip t">47/47</span></div>
+      </article>
+      <article class="card reveal">
+        <h3>Reclaim</h3><p class="sector">Consumer banking &amp; rewards</p>
+        <p>Member-side recovery agent for consumer banking &amp; shopping rewards: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code. No bank-credential vault exists anywhere in its data model.</p>
+        <div class="foot"><a href="https://reclaim-live.onrender.com">Live demo →</a><span class="chip t">60/60</span></div>
+      </article>
+      <article class="card reveal">
+        <h3>Refile</h3><p class="sector">Health plans</p>
+        <p>Member-side claim-denial explainer &amp; appeal-packet agent for health plans (provisional name): every denial carries a rule-cited reason — or is honestly marked <i>reason unknown</i> — appeal deadlines (internal appeal, external review, No Surprises Act) computed in code, and appeals filed only behind the member's recorded approval, tracked to outcome under a sealed receipt.</p>
+        <div class="foot"><a href="https://refile-live.onrender.com">Live demo →</a><span class="chip t">60/60</span></div>
+      </article>
+      <article class="card reveal">
+        <h3>Destorm</h3><p class="sector">Observability &amp; on-call</p>
+        <p>Alert-triage agent for observability &amp; on-call teams (provisional name): groups an alert storm into one incident with deterministic correlation rules in code, proposes runbook steps that each cite their runbook — no citation, no step — executes remediation only on the on-call human's recorded approval, and seals the incident timeline as a tamper-evident receipt.</p>
+        <div class="foot"><a href="https://destorm-live.onrender.com">Live demo →</a><span class="chip t">48/48</span></div>
+      </article>
+      <article class="card reveal">
+        <h3>ModSeal</h3><p class="sector">Online communities</p>
+        <p>Moderation-queue agent for online communities (provisional name): every proposed action cites the exact community rule behind it — or honestly flags that no rule covers the item and a human must decide — executes only behind a moderator's recorded approval, and seals an audit trail the affected author can appeal against.</p>
+        <div class="foot"><a href="https://modseal-live.onrender.com">Live demo →</a><span class="chip t">28/28</span></div>
+      </article>
+      <article class="card reveal" style="grid-column:1/-1">
+        <h3>AgentFoundry</h3><p class="sector">Assurance for AI agents</p>
+        <p>Assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</p>
+        <div class="foot"><span class="na">Walkthrough on request</span><span class="chip t">~195 tests</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="contact reveal">
+    <p class="eyebrow">// get in touch</p>
+    <h2>Let's talk.</h2>
+    <p>Frontend platforms, micro-frontends, and agentic systems where mistakes cost money, care, or trust.</p>
+    <div class="ctas">
+      <a class="btn primary" href="mailto:saiarung27@gmail.com">Email me</a>
+      <button class="btn" id="copyEmail" type="button">Copy email</button>
+      <a class="btn" href="resume.pdf" download>Résumé (PDF)</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/saig-lead-frontend-dev">LinkedIn</a>
+    </div>
+    <div class="copied" id="copied" aria-live="polite"></div>
+  </div>
 
   <footer>
-    Sai Arun Labs is the product lab of Sai Arun Gunuganti — Lead Software Engineer (Lowe's Companies), Harrisburg, NC.
-    Prototypes run on synthetic data; names marked as working labels are provisional.
-    Doorway, Dossier, ListProof, JobProof, Reclaim, Refile, Destorm and ModSeal all run as live public demos; AgentFoundry is available as a walkthrough on request.
+    <p>Sai Arun Labs is the product lab of Sai Arun Gunuganti — Lead Software Engineer (Lowe's Companies), Harrisburg, NC.</p>
+    <p>Prototypes run on synthetic data; names marked as working labels are provisional.</p>
+    <p>Doorway, Dossier, ListProof, JobProof, Reclaim, Refile, Destorm and ModSeal all run as live public demos; AgentFoundry is available as a walkthrough on request.</p>
   </footer>
 
 </div>
+</main>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+  /* ---------- hashing (real SHA-256, with fallback) ---------- */
+  async function sha256(str){
+    try{
+      if (crypto && crypto.subtle){
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+        return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+      }
+    }catch(e){}
+    let h1=0x811c9dc5, out=''; // fallback, non-cryptographic
+    for(let r=0;r<8;r++){ for(let i=0;i<str.length;i++){h1^=str.charCodeAt(i)+r;h1=Math.imul(h1,16777619)>>>0} out+=h1.toString(16).padStart(8,'0') }
+    return out;
+  }
+  const short = h => h.slice(0,10)+'…'+h.slice(-6);
+  const canon = o => JSON.stringify(Object.keys(o).sort().reduce((a,k)=>(a[k]=o[k],a),{}));
+  const money = n => '$'+n.toLocaleString('en-US');
+
+  /* ---------- nav, progress, backdrop ---------- */
+  const nav = $('nav.top'), prog = $('.progress'), bg = $('.bgfx');
+  const onScroll = () => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('scrolled', y > 8);
+    prog.style.transform = `scaleX(${h>0 ? y/h : 0})`;
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  if(!reduce) addEventListener('pointermove', e => {
+    bg.style.setProperty('--gx', (e.clientX/innerWidth*100)+'%');
+    bg.style.setProperty('--gy', (e.clientY/innerHeight*100)+'%');
+  }, {passive:true});
+  $$('.card').forEach(c => c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX-r.left)+'px'); c.style.setProperty('--my', (e.clientY-r.top)+'px');
+  }));
+
+  // active nav link
+  const links = $$('.navlinks a');
+  const secObs = new IntersectionObserver(es => es.forEach(en => {
+    if(en.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+en.target.id));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  ['lowes','work','spine','cases','archive'].forEach(id => secObs.observe(document.getElementById(id)));
+
+  /* ---------- reveal + counters ---------- */
+  const countUp = el => {
+    const end = +el.dataset.count, suf = el.dataset.suffix || '';
+    if(reduce){ el.textContent = end+suf; return; }
+    const t0 = performance.now(), d = 1300;
+    const step = t => { const p = Math.min(1,(t-t0)/d), e = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(end*e)+suf; if(p<1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if(!en.isIntersecting) return;
+    en.target.classList.add('in');
+    en.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(en.target);
+  }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  $$('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- hero terminal ---------- */
+  const tb = $('#termbody');
+  const sleep = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+  let prevHash = '0'.repeat(64);
+  const add = html => {
+    const d = document.createElement('div'); d.className='ln'; d.innerHTML = html; tb.appendChild(d);
+    while(tb.children.length > 15) tb.removeChild(tb.firstChild);
+  };
+  const scenarios = [
+    {agent:'procure-bot', item:'API credits', amt:42},
+    {agent:'travel-agent', item:'Conference ticket', amt:640},
+    {agent:'ops-agent', item:'Cloud GPU hours', amt:85},
+    {agent:'office-agent', item:'Office chair', amt:240, deny:true},
+  ];
+  async function runTerm(){
+    let warm = true; const realSleep = sleep;
+    for(let i=0;;i++){
+      if(i===1) warm = false;
+      const sleep = ms => warm ? Promise.resolve() : realSleep(ms);
+      const s = scenarios[i % scenarios.length];
+      const action = {agent:s.agent, item:s.item, amount_usd:s.amt, n:i};
+      const ah = await sha256(canon(action));
+      add(`<span class="c-acc">$</span> <span class="c-txt">agent.propose</span>(<span class="c-warn">"${s.item}"</span>, <span class="c-warn">${money(s.amt)}</span>)`); await sleep(700);
+      add(`<span class="c-dim">  action_hash  sha256:${short(ah)}</span>`); await sleep(600);
+      add(`<span class="c-ok">  ✓ rules</span> <span class="c-dim">identity · mandate · scope · caps</span>`); await sleep(700);
+      let decision = 'allow';
+      if(s.amt > 100){
+        add(`<span class="c-warn">  ⏸ over ask line → owner notified out-of-band</span>`); await sleep(1300);
+        if(s.deny){ add(`<span class="c-bad">  ✗ owner denied · no token minted</span>`); decision='deny'; }
+        else add(`<span class="c-ok">  ✓ owner approved on own surface</span>`);
+        await sleep(600);
+      }
+      if(decision==='allow'){
+        add(`<span class="c-ok">  ✓ token minted</span> <span class="c-dim">single-use · 900s · hash-bound</span>`); await sleep(700);
+        add(`<span class="c-ok">  ✓ executed</span> <span class="c-dim">on rail · completion re-validated</span>`); await sleep(600);
+      }
+      const rh = await sha256(prevHash + ah + decision);
+      add(`<span class="c-acc">  ■ receipt sealed</span> <span class="c-dim">prev ${prevHash.slice(0,6)} → ${short(rh)}</span>`);
+      prevHash = rh;
+      add(' '); await sleep(reduce ? 0 : 1800);
+      if(reduce && i>=1) break;
+    }
+  }
+  runTerm();
+
+  /* ---------- interactive spine ---------- */
+  const ASK=100, CAP=500, PERIOD=1000;
+  const amt=$('#amt'), amtOut=$('#amtOut'), item=$('#item'), statusEl=$('#status'), ledger=$('#ledger'),
+        approval=$('#approval'), proposeBtn=$('#propose'), nodes=$$('#pipe .node'), fill=$('#pfill');
+  let spent=0, chain='0'.repeat(64), pending=null, busy=false, seq=0;
+  amt.addEventListener('input', () => amtOut.textContent = money(+amt.value));
+  const setMeter = () => { $('#pspend').textContent = `${money(spent)} / ${money(PERIOD)}`; $('#pmeter').style.width = Math.min(100,spent/PERIOD*100)+'%'; };
+  const setNodes = (upto, state) => {
+    nodes.forEach((n,i) => { n.classList.remove('on','wait','fail'); if(i<upto) n.classList.add('on'); if(i===upto && state) n.classList.add(state); });
+    fill.style.width = (Math.min(upto, 4)/4*80)+'%';
+  };
+  const say = html => statusEl.innerHTML = html;
+  async function seal(action, ah, decision, note){
+    const rh = await sha256(chain + ah + decision);
+    const prev = chain; chain = rh; seq++;
+    if(ledger.querySelector('.empty')) ledger.innerHTML='';
+    const d = document.createElement('div'); d.className = 'rcpt' + (decision==='allow'?'':' deny');
+    d.innerHTML = `<div class="top"><span>#${seq} ${action.item} · ${money(action.amount_usd)}</span><span class="${decision==='allow'?'c-ok':'c-bad'}">${decision==='allow'?'SEALED · EXECUTED':'SEALED · '+decision.toUpperCase()}</span></div>
+      <div><span class="k">action </span><span class="v">${short(ah)}</span></div>
+      <div><span class="k">prev   </span><span class="v">${short(prev)}</span></div>
+      <div><span class="k">hash   </span><span class="v c-acc">${short(rh)}</span></div>${note?`<div class="k">${note}</div>`:''}`;
+    ledger.prepend(d);
+  }
+  async function finish(action, ah, approved){
+    setNodes(3,'on'); say(`<span class="h c-ok">Executing…</span><br><span class="c-dim">Token re-validated at completion: action hash, expiry, mandate status.</span>`);
+    await sleep(700);
+    spent += action.amount_usd; setMeter();
+    setNodes(4,'on'); fill.style.width='80%'; nodes[4].classList.add('on');
+    await seal(action, ah, 'allow', approved ? 'approval statement included' : 'under ask line: no approval needed');
+    say(`<span class="h c-acc">■ Receipt sealed.</span><br><span class="c-dim">It cites the action hash and chains to the previous receipt. Editing any past entry breaks every hash after it.</span>`);
+    busy=false; proposeBtn.disabled=false;
+  }
+  proposeBtn.addEventListener('click', async () => {
+    if(busy) return; busy=true; proposeBtn.disabled=true; approval.classList.remove('show');
+    const action = {agent:'demo-agent', item:item.value, amount_usd:+amt.value, nonce:seq+1};
+    const ah = await sha256(canon(action));
+    setNodes(0,'on'); nodes[0].classList.add('on');
+    say(`<span class="h">Proposed:</span> ${action.item} · ${money(action.amount_usd)}<br><span class="c-dim">action_hash sha256:${short(ah)}</span>`);
+    await sleep(800);
+    setNodes(1,'on'); nodes[1].classList.add('on');
+    const fails = [];
+    if(action.amount_usd > CAP) fails.push(`per-purchase cap ${money(CAP)}`);
+    if(spent + action.amount_usd > PERIOD) fails.push(`period cap: ${money(PERIOD-spent)} left`);
+    if(fails.length){
+      nodes[1].classList.remove('on'); nodes[1].classList.add('fail');
+      say(`<span class="h c-bad">✗ Denied by rules in code</span>, before any human is asked.<br><span class="c-dim">Exceeds ${fails.join(' and ')}. No model was consulted.</span>`);
+      await seal(action, ah, 'deny', 'denied: '+fails.join(', '));
+      busy=false; proposeBtn.disabled=false; return;
+    }
+    say(`<span class="h c-ok">✓ Rules pass</span><br><span class="c-dim">identity · mandate active · scope · ${money(action.amount_usd)} ≤ ${money(CAP)} cap · period OK</span>`);
+    await sleep(800);
+    if(action.amount_usd <= ASK){
+      setNodes(2,'on'); nodes[2].classList.add('on');
+      say(`<span class="h c-ok">Under the ask line</span>: allowed automatically.<br><span class="c-dim">Decision sealed first, then a single-use token is minted.</span>`);
+      await sleep(800); return finish(action, ah, false);
+    }
+    setNodes(2,'wait');
+    say(`<span class="h c-warn">⏸ Waiting for the owner.</span><br><span class="c-dim">${money(action.amount_usd)} is over the ${money(ASK)} ask line.</span>`);
+    pending = {action, ah}; approval.classList.add('show');
+  });
+  $('#approve').addEventListener('click', async () => {
+    if(!pending) return; approval.classList.remove('show');
+    const {action, ah} = pending; pending=null;
+    nodes[2].classList.remove('wait'); nodes[2].classList.add('on');
+    say(`<span class="h c-ok">✓ Owner approved.</span><br><span class="c-dim">Token bound to sha256:${short(ah)}: single-use, 900s.</span>`);
+    await sleep(800); finish(action, ah, true);
+  });
+  $('#deny').addEventListener('click', async () => {
+    if(!pending) return; approval.classList.remove('show');
+    const {action, ah} = pending; pending=null;
+    nodes[2].classList.remove('wait'); nodes[2].classList.add('fail');
+    say(`<span class="h c-bad">✗ Owner denied.</span><br><span class="c-dim">No token minted. An identical re-proposal is denied again.</span>`);
+    await seal(action, ah, 'deny', 'owner denied');
+    busy=false; proposeBtn.disabled=false;
+  });
+  $('#tamper').addEventListener('click', async () => {
+    if(!pending) return; approval.classList.remove('show');
+    const {action, ah} = pending; pending=null;
+    const changed = {...action, amount_usd: action.amount_usd + 150};
+    const ch = await sha256(canon(changed));
+    nodes[2].classList.remove('wait'); nodes[3].classList.add('fail'); nodes[2].classList.add('on');
+    say(`<span class="h c-bad">✗ Rejected: the token does not cover this action.</span><br><span class="c-dim">approved ${short(ah)}<br>presented ${short(ch)} (${money(changed.amount_usd)})<br>Changing any term changes the hash, so the earlier approval no longer applies.</span>`);
+    await seal(changed, ch, 'reject', 'hash mismatch: changed after approval');
+    busy=false; proposeBtn.disabled=false;
+  });
+  $('#reset').addEventListener('click', () => {
+    if(pending){ pending=null; approval.classList.remove('show'); }
+    spent=0; chain='0'.repeat(64); seq=0; busy=false; proposeBtn.disabled=false; setMeter(); setNodes(-1);
+    ledger.innerHTML='<div class="empty">ledger is empty: no receipts sealed yet</div>';
+    say('<span class="c-dim">Waiting for the agent to propose a purchase…</span>');
+  });
+  setMeter();
+
+  /* ---------- case-study tabs ---------- */
+  const tabs = $$('.tab');
+  const showCase = (name, focus) => {
+    tabs.forEach(t => {
+      const on = t.id === 'tab-'+name;
+      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      if(on && focus) t.focus();
+    });
+  };
+  tabs.forEach((t,i) => {
+    t.addEventListener('click', () => { showCase(t.id.slice(4)); history.replaceState(null,'','#case-'+t.id.slice(4)); });
+    t.addEventListener('keydown', e => {
+      const k = {ArrowRight:1, ArrowLeft:-1}[e.key]; if(!k) return;
+      const n = tabs[(i+k+tabs.length)%tabs.length]; showCase(n.id.slice(4), true);
+    });
+  });
+  const fromHash = () => { const m = location.hash.match(/^#case-(\w+)/); if(m && document.getElementById('tab-'+m[1])){ showCase(m[1]); document.getElementById('cases').scrollIntoView(); } };
+  $$('[data-case]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault(); showCase(a.dataset.case); history.replaceState(null,'','#case-'+a.dataset.case);
+    document.getElementById('cases').scrollIntoView({behavior: reduce?'auto':'smooth'});
+  }));
+  addEventListener('hashchange', fromHash);
+  showCase('sealgraf'); fromHash();
+
+  /* ---------- copy email ---------- */
+  $('#copyEmail').addEventListener('click', async () => {
+    const em = 'saiarung27@gmail.com';
+    try{ await navigator.clipboard.writeText(em); $('#copied').textContent = '✓ copied '+em; }
+    catch(e){ $('#copied').textContent = em; }
+  });
+})();
+</script>
 </body>
 </html>
