@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sai Arun Labs — Guardrails for the Agent Era</title>
+<meta name="description" content="Sai Arun Gunuganti's product lab. Working agentic products built on one spine: rules in code, human approval at consequential steps, sealed receipts for everything.">
+<style>
+  :root{
+    --bg:#0b0e13; --panel:#12161f; --panel2:#171c28; --line:#232b3a;
+    --text:#e8ecf3; --muted:#9aa7ba; --accent:#f5c542; --accent2:#5eead4;
+    --chip:#1d2534; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1020px;margin:0 auto;padding:28px 20px 64px}
+  header.top{padding:38px 0 8px}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
+  h1{font-size:40px;line-height:1.12;margin:10px 0 6px}
+  .who{color:var(--muted);font-size:17px;margin:0 0 14px}
+  .thesis{font-size:20px;line-height:1.5;max-width:760px;margin:14px 0 18px}
+  .thesis b{color:var(--accent)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+  .links a{background:var(--chip);border:1px solid var(--line);color:var(--text);
+    padding:8px 14px;border-radius:999px;font-size:14px}
+  .links a:hover{border-color:var(--accent2);text-decoration:none}
+  h2{font-size:22px;margin:42px 0 6px}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:720px){.grid{grid-template-columns:1fr} h1{font-size:32px}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card.wide{grid-column:1/-1;background:var(--panel2)}
+  .card h3{margin:0 0 2px;font-size:19px}
+  .sector{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}
+  .card p{margin:8px 0;font-size:15px}
+  .prob{color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;
+    padding:4px 10px;font-size:12.5px;color:var(--text)}
+  .chip.live{border-color:#2f7d5c;color:#7ee2b8}
+  .chip.proto{border-color:#6b5a1e;color:var(--accent)}
+  .card a.cta{display:inline-block;margin-top:12px;font-weight:600}
+  .spine{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14.5px;margin:10px 0}
+  .flow .step{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  .flow .arr{color:var(--accent)}
+  footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">Sai Arun Labs</div>
+    <h1>Guardrails for the agent era.</h1>
+    <p class="who">Sai Arun Gunuganti — Lead Software Engineer. I design and build agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
+    <p class="thesis">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/saig-lead-frontend-dev">LinkedIn</a>
+      <a href="https://github.com/saiarung27">GitHub</a>
+      <a href="https://sealgraf.com">Sealgraf — live product</a>
+      <a href="mailto:saiarung27@gmail.com">saiarung27@gmail.com</a>
+    </div>
+  </header>
+
+  <h2>Live product</h2>
+  <p class="sub">In production, with real users and paying-customer discipline.</p>
+  <div class="grid">
+    <div class="card wide">
+      <h3>Sealgraf</h3>
+      <p class="sector">Spend authorization for AI agents</p>
+      <p class="prob">The problem: AI agents can spend money, but nothing checks the owner's limits before the spend — or proves afterwards what was approved, by whom, and why.</p>
+      <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction. Integration packages for six agent frameworks — Dify, CrewAI, LangChain, n8n, Composio, and the Vercel AI SDK — each live-tested end-to-end with server-verified approval loops.</p>
+      <div class="chips">
+        <span class="chip live">● Live at sealgraf.com</span>
+        <span class="chip">6 framework integrations</span>
+        <span class="chip">Technical paper published</span>
+      </div>
+      <a class="cta" href="https://sealgraf.com">Visit sealgraf.com →</a>
+    </div>
+  </div>
+
+  <h2>Sector products</h2>
+  <p class="sub">One product per sector, built from full-sector problem research — the company and all its competitors, not one company's complaint list. Working prototypes: complete journeys, rules enforced in code, approval gates on, synthetic data only.</p>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Doorway</h3>
+      <p class="sector">Workplace mental health · EAP access</p>
+      <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
+      <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger. Crisis signals route to humans (988) before anything else; employers see aggregates only, behind a cohort floor.</p>
+      <div class="chips"><span class="chip live">● Live demo</span><span class="chip">44/44 tests</span><span class="chip">Provisional name</span></div>
+      <a class="cta" href="https://doorway-jkfa.onrender.com">Try the working prototype →</a>
+    </div>
+
+    <div class="card">
+      <h3>Dossier</h3>
+      <p class="sector">Short-term rentals &amp; travel</p>
+      <p class="prob">After booking is where guests get hurt: support failures, hijacked-chat payment scams, host cancellations, and protection programs that are explicitly not insurance.</p>
+      <p>A guest-side recovery agent: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
+      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">31/31 tests</span><span class="chip">Working label</span></div>
+    </div>
+
+    <div class="card">
+      <h3>ListProof</h3>
+      <p class="sector">Real-estate portals &amp; rentals</p>
+      <p class="prob">Search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
+      <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
+      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
+    </div>
+
+    <div class="card">
+      <h3>JobProof</h3>
+      <p class="sector">Local-services marketplaces</p>
+      <p class="prob">Pros pay for leads, not jobs: ghost leads, shared-lead races, and charge triggers outside the pro's control — while consumers have no neutral record when work goes wrong.</p>
+      <p>A two-sided evidence layer. Pros: every lead charge audited against the platform's own rules as of the charge date, dispute packets assembled, filings made only with the pro's approval — and a filing only counts as filed with a confirmation artifact. Consumers: a signed scope record before work begins.</p>
+      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">46/46 tests</span><span class="chip">Working label</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Reclaim</h3>
+      <p class="sector">Consumer banking &amp; shopping rewards</p>
+      <p class="prob">Rewards flip from "pending" to "Ineligible $0.00" with no reason; disputes are decided against documented cardholders; deadlines hide in statement fine print.</p>
+      <p>A member-side recovery agent: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code from the correct anchor dates. No bank-credential vault exists anywhere in its data model.</p>
+      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">60/60 tests</span><span class="chip">Working label</span></div>
+    </div>
+
+    <div class="card">
+      <h3>The shared spine</h3>
+      <p class="sector">One platform, five products</p>
+      <div class="flow">
+        <span class="step">Goal held over time</span><span class="arr">→</span>
+        <span class="step">Rules in code</span><span class="arr">→</span>
+        <span class="step">Approval gate</span><span class="arr">→</span>
+        <span class="step">Execute</span><span class="arr">→</span>
+        <span class="step">Sealed receipt</span>
+      </div>
+      <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 239 tests across the five products, all passing.</p>
+    </div>
+
+  </div>
+
+  <h2>Open source &amp; earlier lab work</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Reify</h3>
+      <p class="sector">Memory engine for AI agents · Open source</p>
+      <p>A local-first memory engine: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
+      <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span></div>
+      <a class="cta" href="https://github.com/saiarung27/reify">github.com/saiarung27/reify →</a>
+    </div>
+    <div class="card">
+      <h3>AgentFoundry</h3>
+      <p class="sector">Agent assurance · Prototype</p>
+      <p>An assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</p>
+      <div class="chips"><span class="chip">~195 tests</span><span class="chip">Prototype</span></div>
+    </div>
+  </div>
+
+  <footer>
+    Sai Arun Labs is the product lab of Sai Arun Gunuganti — Lead Software Engineer (Lowe's Companies), Harrisburg, NC.
+    Sector products are working prototypes on synthetic data; names marked as working labels are provisional.
+    Doorway's interactive demo is live above; the remaining sector demos are being switched on — walkthroughs available on request.
+  </footer>
+
+</div>
+</body>
+</html>
