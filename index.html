@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://saiarunglabs.com/">
 <meta property="og:title" content="Sai Arun Labs — Guardrails for the Agent Era">
-<meta property="og:description" content="Lead Software Engineer (frontend platforms, micro-frontends) and builder of agentic products: rules in code, human approval at consequential steps, sealed receipts for everything.">
+<meta property="og:description" content="Senior Software Engineer at Lowe's (frontend platforms, micro-frontends), open to Lead, Staff and Principal roles, and builder of agentic products: rules in code, human approval at consequential steps, sealed receipts for everything.">
 <meta property="og:image" content="https://saiarunglabs.com/img/sealgraf.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://saiarunglabs.com/">
@@ -78,11 +78,13 @@
   /* hero */
   .hero{padding:72px 0 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
   @media (max-width:980px){.hero{grid-template-columns:1fr;padding-top:44px;gap:36px}}
-  .avail{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);
+  .avail{display:inline-flex;align-items:center;gap:0;font-size:13px;color:var(--muted);
     border:1px solid var(--line);background:rgba(18,22,31,.7);padding:6px 12px 6px 10px;border-radius:999px}
-  .pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(126,226,184,.6);animation:pulse 2s infinite}
+  .pulse{margin-right:10px;width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(126,226,184,.6);animation:pulse 2s infinite}
   @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(126,226,184,0)}100%{box-shadow:0 0 0 0 rgba(126,226,184,0)}}
   @media (max-width:480px){.avail .loc{display:none}}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .avail.open{color:var(--ok);border-color:rgba(47,125,92,.6);background:rgba(47,125,92,.1)}
   .kicker{color:var(--accent);font-weight:700;letter-spacing:.16em;font-size:12px;text-transform:uppercase;margin:22px 0 0}
   h1{font-size:clamp(40px,6.2vw,72px);line-height:1.02;letter-spacing:-.035em;margin:12px 0 18px;font-weight:800}
   h1 .grad{background:linear-gradient(100deg,var(--accent) 0%,#ffe08a 35%,var(--accent2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -318,10 +320,13 @@
 
   <header class="hero">
     <div>
-      <div class="avail"><span class="pulse" aria-hidden="true"></span>Lead Software Engineer · Lowe's<span class="loc"> · Harrisburg, NC</span></div>
+      <div class="pills">
+        <div class="avail">Senior Software Engineer · Lowe's<span class="loc"> · Harrisburg, NC</span></div>
+        <div class="avail open"><span class="pulse" aria-hidden="true"></span>Open to Lead · Staff · Principal roles</div>
+      </div>
       <p class="kicker">Sai Arun Labs</p>
       <h1>Guardrails for the <span class="grad">agent era.</span></h1>
-      <p class="who"><b>Sai Arun Gunuganti</b> — Lead Software Engineer: frontend platforms, micro-frontends, and production ownership at Lowe's — and a builder of agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
+      <p class="who"><b>Sai Arun Gunuganti</b> — Senior Software Engineer at Lowe's, leading a team on frontend platforms, micro-frontends, and production ownership — and a builder of agentic products that do real work in sectors where mistakes cost money, care, or trust.</p>
       <p class="thesis">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
       <div class="ctas">
         <a class="btn primary" href="resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download résumé (PDF)</a>
@@ -354,10 +359,10 @@
       <div class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
       <div>
         <h3>Frontend platforms &amp; micro-frontends at Lowe's</h3>
-        <p>At Lowe's I lead a team of five engineers (official title: Senior Software Engineer) and own the checkout-critical Customer Lookup micro-frontend, integrated by 20+ Lowe's teams into their own applications.</p>
+        <p>At Lowe's I'm a Senior Software Engineer serving as Lead Developer for a team of five engineers, and I own the checkout-critical Customer Lookup micro-frontend, integrated by 20+ Lowe's teams into their own applications.</p>
         <p class="ctx">Company context: Lowe's serves ~16M customer transactions a week across 1,700+ stores — that is the scale of the platform my team ships into, stated as context, not as a personal metric.</p>
         <p>The lab below applies the same discipline — rules in code, approval before consequences, receipts for everything — to agentic systems.</p>
-        <div class="tags"><span class="chip">Team lead · 5 engineers</span><span class="chip">Micro-frontends</span><span class="chip">Checkout-critical</span><span class="chip">Production ownership</span></div>
+        <div class="tags"><span class="chip">Lead Developer · 5 engineers</span><span class="chip">Micro-frontends</span><span class="chip">Checkout-critical</span><span class="chip">Production ownership</span></div>
       </div>
     </div>
   </section>
@@ -661,7 +666,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <div class="contact reveal">
     <p class="eyebrow">// get in touch</p>
     <h2>Let's talk.</h2>
-    <p>Frontend platforms, micro-frontends, and agentic systems where mistakes cost money, care, or trust.</p>
+    <p>I'm looking for my next step as a <b style="color:var(--text)">Lead, Staff, or Principal engineer</b>: frontend platforms, micro-frontends, and agentic systems where mistakes cost money, care, or trust.</p>
     <div class="ctas">
       <a class="btn primary" href="mailto:saiarung27@gmail.com">Email me</a>
       <button class="btn" id="copyEmail" type="button">Copy email</button>
@@ -672,7 +677,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   </div>
 
   <footer>
-    <p>Sai Arun Labs is the product lab of Sai Arun Gunuganti — Lead Software Engineer (Lowe's Companies), Harrisburg, NC.</p>
+    <p>Sai Arun Labs is the product lab of Sai Arun Gunuganti — Senior Software Engineer (Lowe's Companies), Harrisburg, NC. Open to Lead, Staff, and Principal engineering roles.</p>
     <p>Prototypes run on synthetic data; names marked as working labels are provisional.</p>
     <p>Doorway, Dossier, ListProof, JobProof, Reclaim, Refile, Destorm and ModSeal all run as live public demos; AgentFoundry is available as a walkthrough on request.</p>
   </footer>
