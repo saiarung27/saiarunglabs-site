@@ -89,7 +89,7 @@
   </header>
 
   <h2>Featured work</h2>
-  <p class="sub">Four featured projects — a live product, two live demos, and an open-source engine. Each was built from full-sector problem research: the company and all its competitors, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
+  <p class="sub">Four featured projects — a live product, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
   <div class="grid">
 
     <div class="card wide">
@@ -131,7 +131,7 @@
       <h3>Reify</h3>
       <p class="sector">Memory engine for AI agents · Open source</p>
       <p>A local-first memory engine built around its data model: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / OpenAI-compatible proxy / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
-      <p>The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer maintains its own inferences as new evidence arrives. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
+      <p>The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer keeps its facts current as new evidence arrives — a changed fact is stored as a transition, never overwritten. Deriving new claims across sessions is a roadmap item, labelled as such in the case study. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
       <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span><span class="chip">Open source</span></div>
       <img class="shot" src="img/reify.png" alt="Reify on GitHub — local-first memory engine for AI agents">
       <p class="demonote">No live demo — Reify is source-only. What to try: clone the repo and run <b>make demo</b>; it replays the promotion example from the case study end-to-end, with no LLM key. Open source, pre-alpha.</p>
@@ -144,7 +144,7 @@
     <div class="card wide">
       <h3>ListProof</h3>
       <p class="sector">Real-estate portals &amp; rentals</p>
-      <p class="prob">Search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
+      <p class="prob">The search is the easy part; what follows is where renters get hurt — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
       <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
       <p>The emphasis here is evidence handling, verification logic, uncertainty presentation, and approval invalidation: I built the verification pipeline, the fee ledger with its budget gate — any fee change invalidates the approval — and the correction tracker that closes only on independent re-verification. Live demo on synthetic data — 58/58 tests.</p>
       <div class="chips"><span class="chip live">● Live demo</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
@@ -169,7 +169,7 @@
       <span class="step">Execute</span><span class="arr">→</span>
       <span class="step">Sealed receipt</span>
     </div>
-    <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt. It is explained here once; the case studies focus on what differs in each product.</p>
+    <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt.</p>
     <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 378 tests across the eight sector products, all passing.</p>
   </div>
 
@@ -205,7 +205,7 @@
 <text x="872" y="65" text-anchor="middle" font-size="11" fill="#9aa7ba">hash-chained evidence</text>
 </svg></div>
     <p><b>Walkthrough</b> — the owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an ask line above which a human must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the ask line, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the ask line, the owner gets a doorbell (email or push carrying the facts and a link, never controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
-    <p><b>When things change</b> — the approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. A pause, revoke, or tightening of the mandate that lands between approval and spending stops the spend, because completion re-checks the mandate as it stands now. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
+    <p><b>When things change</b> — the approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. Enforcement sits before the money moves: the decision is sealed to the ledger before any token exists — if the seal fails, no token is issued and nothing can be spent against the check — and approval re-validates the current mandate version and reservation before anything is minted. Completion is re-validated under the same lock, so a pause, revoke, or tightening that lands between approval and spending means the spend cannot complete as authorized. Nor can the record be laundered: a completion is sealed even when it reports a charge above the authorized amount, and every read of that receipt derives the overcharge flag from the sealed bytes — a non-conforming spend becomes proof, not a quiet pass. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
     <p><b>What I built in the integrations</b> — I personally designed and implemented the six framework packages — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), and Composio (23) — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
     <p><b>Paper</b> — the design is written up in <a href="https://sealgraf.com/paper">&ldquo;Approval You Can Verify: Owner-Approved Agent Spending with Sealed Evidence&rdquo; (v1.1)</a> — full text and PDF at sealgraf.com/paper.</p>
     <p><b>Result</b> — live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p>
@@ -239,7 +239,7 @@ make demo      # runs the wedge end-to-end, no LLM key</pre>
 
   <div class="case" id="case-listproof">
     <h3>ListProof — case study</h3>
-    <p><b>Problem</b> — Rental search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p>
+    <p><b>Problem</b> — Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p>
     <p><b>My role</b> — I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p>
     <p><b>Hardest decision</b> — Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p>
     <p><b>Result</b> — live demo on synthetic data, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p>
