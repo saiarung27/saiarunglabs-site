@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sai Arun Gunuganti — Résumé</title>
+<meta name="description" content="Résumé of Sai Arun Gunuganti, Senior Software Engineer and Lead Developer at Lowe's: frontend platforms, micro-frontends, and agentic systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<!-- Source for resume.pdf. Regenerate the PDF after editing (Letter, print backgrounds off). -->
+<style>
+  @page{size:Letter;margin:0.42in 0.55in}
+  :root{--ink:#1a1a1a;--muted:#444;--head:#1f3a68;--rule:#c9d2e0}
+  *{box-sizing:border-box}
+  html{background:#e9ecf1}
+  body{margin:0;color:var(--ink);font-family:"Noto Sans",Arial,Helvetica,sans-serif;font-size:9.3pt;line-height:1.36;-webkit-font-smoothing:antialiased}
+  .page{max-width:8.5in;margin:24px auto;background:#fff;padding:0.5in 0.6in;box-shadow:0 4px 30px rgba(0,0,0,.12)}
+  @media print{html{background:#fff}.page{margin:0;padding:0;box-shadow:none;max-width:none}}
+  a{color:inherit;text-decoration:none}
+  header{text-align:center;margin-bottom:8px}
+  h1{font-size:19pt;letter-spacing:.06em;margin:0;font-weight:700}
+  .headline{font-weight:600;font-size:10.4pt;margin:3px 0 4px}
+  .contact{font-size:9.2pt;color:var(--muted)}
+  .contact span+span::before{content:"  |  ";white-space:pre;color:#999}
+  .contact a{color:var(--head)}
+  h2{color:var(--head);font-size:11pt;letter-spacing:.04em;text-transform:uppercase;margin:9px 0 4px;padding-bottom:1px;border-bottom:1px solid var(--rule)}
+  p{margin:0 0 4px}
+  ul{margin:2px 0 6px;padding-left:16px}
+  li{margin:0 0 1.5px;padding-left:2px}
+  li::marker{color:var(--head)}
+  .skills li b{font-weight:600}
+  .job{margin-top:5px}
+  .job .row{break-after:avoid}
+  .job .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .job .org{font-weight:700}
+  .job .role{font-weight:600}
+  .job .when{white-space:nowrap;color:var(--muted);font-size:9.2pt}
+  .proj b{font-weight:700}
+  .meta{color:var(--muted)}
+  li{break-inside:avoid}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>SAI ARUN GUNUGANTI</h1>
+  <div class="headline">Senior Software Engineer · Lead Developer &nbsp;|&nbsp; Frontend Platform, Micro-Frontends &amp; Agentic Systems</div>
+  <div class="contact">
+    <span>Harrisburg, NC</span><span>+1 (614) 684-8814</span><span><a href="mailto:saiarung27@gmail.com">saiarung27@gmail.com</a></span>
+  </div>
+  <div class="contact">
+    <span><a href="https://www.linkedin.com/in/saig-lead-frontend-dev">linkedin.com/in/saig-lead-frontend-dev</a></span><span><a href="https://github.com/saiarung27">github.com/saiarung27</a></span><span><a href="https://saiarunglabs.com">saiarunglabs.com</a></span>
+  </div>
+</header>
+
+<h2>Summary</h2>
+<p>Senior Software Engineer and Lead Developer with 10+ years building large-scale web platforms for retail, banking, and healthcare (Lowe's, Apple, Cisco, McKesson, M&amp;T Bank). At Lowe's I lead a team of 5 and own the checkout-critical Customer Lookup micro-frontend, built from scratch and integrated by 20+ teams, while contributing across 25 repositories spanning checkout, quality engineering, observability, and AI agents (Lowe's serves ~16M customer transactions a week across 1,700+ stores). Outside work I build agentic systems, including a live AI-agent authorization product with a published technical paper.</p>
+
+<h2>Core Skills</h2>
+<ul class="skills">
+  <li><b>Frontend &amp; Platform:</b> TypeScript, JavaScript, React, Redux / Redux-Saga, React Query, Vue.js, Angular, Webpack Module Federation (Micro-Frontends), Electron, design systems</li>
+  <li><b>Quality &amp; Automation:</b> Playwright (Electron), Cypress, Jest, React Testing Library, Mock Service Worker, contract assertions, Allure, CI quality gates</li>
+  <li><b>Backend, Identity &amp; Delivery:</b> Node.js, Python, FastAPI, BFF services (Micronaut / Spring Boot), REST, ForgeRock / Keycloak, GCP, Jenkins, Azure DevOps, GitOps</li>
+  <li><b>AI / Agentic:</b> Multi-agent architecture, LLM integration and chat routing, agent trace evaluation, MCP, Google agent SDK</li>
+  <li><b>Observability &amp; Leadership:</b> Telemetry SDKs, FullStory, ELK, Grafana · technical leadership, mentoring, code review, design docs, engineering standards</li>
+</ul>
+
+<h2>Professional Experience</h2>
+
+<div class="job">
+  <div class="row"><div><span class="org">Lowe's Companies Inc.</span> — <span class="role">Senior Software Engineer, Lead Developer (myRedVest Showroom POS)</span></div><div class="when">Apr 2022 – Present</div></div>
+  <ul>
+    <li><b>Customer Lookup Micro-Frontend:</b> built it from scratch (Webpack Module Federation, custom events, React Query); it is <b>integrated by 20+ teams</b> into their own applications. Developed customer-profile, quote/estimate recall, preferred-contact, and address-validation workflows, with ForgeRock/Keycloak authentication, continuation through API failures, and performance and error telemetry.</li>
+    <li><b>Technical leadership:</b> Lead Developer for a team of 5 (3 onshore, 2 offshore) and single point of contact for a core area of checkout. I mentor engineers, own code review, and wrote the design docs and integration conventions (event contracts, data requirements) that consuming teams follow; I onboarded those teams onto the MFE.</li>
+    <li><b>Cross-MFE checkout integration:</b> integrated customer lookup, cart, pre-tender, tender, and customer-facing display micro-frontends in the React/Redux POS shell, coordinating event contracts, checkout state, authentication, and fulfillment. Built synchronized associate/customer dual-monitor flows (protection plans, installation, product discovery) over bidirectional platform events.</li>
+    <li><b>Checkout features:</b> installation appointment scheduling, boom-truck delivery fees and eligibility, outlet-store rules, mixed-material and split-delivery carts, subscription-aware tender restrictions, and Home Care+ in the TypeScript POS shell. Improved Pro quoting reliability.</li>
+    <li><b>Test automation:</b> engineered the Playwright/Electron automation framework for retail selling flows, with reusable screen and business-flow abstractions, Stage/PROD runtime lanes, contract assertions, Linux and Windows runners, and Allure/email reporting. Run in UAT ahead of production deploys, it <b>caught critical failures in key POS transaction flows before release</b>; I escalated them to the owning teams so catastrophic checkout failures were fixed before reaching stores.</li>
+    <li><b>Change-driven quality platform:</b> built a platform that maps repository changes to business capabilities and flow specs, generates Playwright test candidates, validates them against policy and evidence, and supports governed CI authoring and promotion.</li>
+    <li><b>Observability:</b> built shared TypeScript telemetry utilities for micro-frontends, covering normalized events and action spans, privacy and sampling controls, bounded transport delivery, and cross-bundle action coordination.</li>
+    <li><b>AI / agentic systems:</b> designed an agentic architecture for POS guided selling and prototyped a Showroom assistant with domain-specialized agents, LLM integration, unified chat routing, and repository-grounded troubleshooting. Built a Python/FastAPI service that evaluates agent trace evidence against capability contracts, with separate Stage/PROD verdicts.</li>
+    <li><b>Production ownership:</b> first point of contact for production issues and change coordinator through release (CRQs, deployment validation, CAB approvals up to Director/CIO level). Maintained GitOps manifests for seven POS workloads and remediated dependency and payload-handling vulnerabilities across shared logging, POS, and checkout repositories.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="row"><div><span class="org">Atos Syntel Inc.</span> — <span class="role">Consultant</span></div><div class="when">Nov 2020 – Apr 2022</div></div>
+  <ul>
+    <li><b>McKesson:</b> Vue.js front-end (single-file components, Vuex, Element UI) and Okta Verify fixes. <b>Baylor Scott &amp; White Health:</b> React apps with React Query and Mock Service Worker, and reusable components for the bswhealth.com Sitecore migration.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="row"><div><span class="org">SLK America Inc.</span> — <span class="role">Senior Software Engineer</span></div><div class="when">Sep 2018 – Nov 2020</div></div>
+  <ul>
+    <li><b>M&amp;T Bank:</b> React digital banking (e-statements, EZ-Money P2P, Alexa banking, feature-flag dashboard), WCAG/ADA accessibility, and the Git flow for the TFS to Azure DevOps migration. <b>First Horizon Bank:</b> Angular 6 / TypeScript loan-operations BPM tool with reusable component libraries.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="row"><div><span class="org">Valley Soft Systems Inc.</span> — <span class="role">Software Engineer</span></div><div class="when">Sep 2017 – Aug 2018</div></div>
+  <ul>
+    <li><b>Apple (Talent Point):</b> full-stack Meteor / React / Node.js / MongoDB on the careers platform. <b>Cisco (DNA Center):</b> React/Redux product UI and the shared Cisco-DNA-react-components library.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="row"><div><span class="org">Alliance Information Technology Inc.</span> — <span class="role">Software Engineer / Front-End Developer</span></div><div class="when">Aug 2016 – Sep 2017</div></div>
+  <ul>
+    <li><b>Symantec (Rev-Pro):</b> React/TypeScript executive financial dashboard for C-level reporting; earlier JavaScript/jQuery vendor dashboards in India (Jun 2014 – Aug 2015).</li>
+  </ul>
+</div>
+
+<h2>Sai Arun Labs — Independent Product Work · <a href="https://saiarunglabs.com" style="color:var(--head)">saiarunglabs.com</a></h2>
+<ul class="proj">
+  <li><b>Sealgraf</b> (live product, <a href="https://sealgraf.com">sealgraf.com</a>): designed and built the authorization layer for AI-agent spending, with owner-set limits checked before money moves, approval on a surface the agent cannot fake, and sealed, verifiable receipts. Built integration packages for <b>6 agent frameworks</b> (Dify, CrewAI, LangChain, Vercel AI SDK, n8n, Composio; 302 tests) and authored the technical paper <i>"Approval You Can Verify"</i>.</li>
+  <li><b>Eight sector agents</b> (live public demos; 378 tests): Doorway, ListProof, Dossier, JobProof, Reclaim, Refile, Destorm, and ModSeal. All run on one spine: a state-machine orchestrator, rules in code, approval gates, and a hash-chained receipt ledger.</li>
+  <li><b>Reify</b> (open source, <a href="https://github.com/saiarung27/reify">github.com/saiarung27/reify</a>): a local-first memory engine for AI agents with a bitemporal graph, hybrid retrieval, and MCP / REST / CLI surfaces. <span class="meta">442 tests</span></li>
+</ul>
+
+<h2>Education</h2>
+<p>M.S., Computer Information Systems &amp; IT, University of Central Missouri (2016) &nbsp;·&nbsp; B.Tech, Mechanical Engineering, Anurag Engineering College (2014)</p>
+
+</div>
+</body>
+</html>
