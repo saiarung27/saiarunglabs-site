@@ -354,7 +354,7 @@
     <div class="stat"><div class="n" data-count="20" data-suffix="+">20+</div><div class="l">Lowe's teams integrate the Customer Lookup MFE I own</div></div>
     <div class="stat"><div class="n" data-count="378">378</div><div class="l">tests across eight sector products, all passing</div></div>
     <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
-    <div class="stat"><div class="n"><span data-count="1">1</span><small> + </small><span data-count="8">8</span></div><div class="l">live product + live public demos</div></div>
+    <div class="stat"><div class="n"><span data-count="2">2</span><small> + </small><span data-count="7">7</span></div><div class="l">live products + live public demos</div></div>
   </div>
 
   <section id="lowes" class="reveal">
@@ -627,17 +627,19 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <section id="archive">
     <p class="eyebrow reveal">// project archive</p>
     <h2 class="reveal">The rest of the lab.</h2>
-    <p class="sub reveal">The rest of the lab — working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
+    <p class="sub reveal">The rest of the lab: JobProof, now a live product in early access, and working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
     <div class="arch">
+      <article class="card reveal" style="grid-column:1/-1">
+        <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · early access</span></div>
+        <p class="sector">Home services · Angi lead credits</p>
+        <p>Credit tracker for contractors who buy Angi leads. Every lead is checked against Angi's published credit rules as they stood on the charge date (bad contact info, out of area, services not offered, duplicates), with the 24-hour call rule and the 30-day request deadline tracked in code. JobProof drafts each credit request for the pro to submit and tracks credits to their six-month expiry. It never logs in to Angi.</p>
+        <p>Grown from the sandbox prototype into a production app: FastAPI and SQLite, hashed sessions, a tamper-evident activity log, a free no-sign-up credit checker, reminder emails and Stripe billing. Its rules are labeled as not yet verified in a live Angi account.</p>
+        <div class="foot"><span><a href="https://jobproof-live.onrender.com">Live product →</a> · <a href="https://jobproof-live.onrender.com/check">Free checker →</a></span><span class="chip t">61 tests</span></div>
+      </article>
       <article class="card reveal">
         <h3>Dossier</h3><p class="sector">Short-term rentals &amp; travel</p>
         <p>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
         <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a><span class="chip t">33/33</span></div>
-      </article>
-      <article class="card reveal">
-        <h3>JobProof</h3><p class="sector">Local-services marketplaces</p>
-        <p>Two-sided evidence layer for local-services marketplaces: pros get every lead charge audited against the platform's own rules, with filings made only on approval and counted as filed only with a confirmation artifact; consumers get a signed scope record before work begins.</p>
-        <div class="foot"><a href="https://jobproof-live.onrender.com">Live demo →</a><span class="chip t">47/47</span></div>
       </article>
       <article class="card reveal">
         <h3>Reclaim</h3><p class="sector">Consumer banking &amp; rewards</p>
@@ -683,7 +685,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <footer>
     <p>Sai Arun Labs is the product lab of Sai Arun Gunuganti — Senior Software Engineer (Lowe's Companies), Harrisburg, NC. Open to Lead, Staff, and Principal engineering roles.</p>
     <p>Prototypes run on synthetic data; names marked as working labels are provisional.</p>
-    <p>Doorway, Dossier, ListProof, JobProof, Reclaim, Refile, Destorm and ModSeal all run as live public demos; AgentFoundry is available as a walkthrough on request.</p>
+    <p>Doorway, Dossier, ListProof, Reclaim, Refile, Destorm and ModSeal run as live public demos; JobProof is a live product in early access; AgentFoundry is available as a walkthrough on request.</p>
   </footer>
 
 </div>
