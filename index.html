@@ -44,10 +44,22 @@
   .chip.live{border-color:#2f7d5c;color:#7ee2b8}
   .chip.proto{border-color:#6b5a1e;color:var(--accent)}
   .card a.cta{display:inline-block;margin-top:12px;font-weight:600}
+  .proof{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px}
+  .proof a{font-weight:600}
   .spine{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
   .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14.5px;margin:10px 0}
   .flow .step{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
   .flow .arr{color:var(--accent)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin:0 0 16px}
+  .case h3{margin:0 0 8px;font-size:18px}
+  .case p{margin:6px 0;font-size:15px}
+  .case p b{color:var(--accent)}
+  table.archive{width:100%;border-collapse:collapse;background:var(--panel);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table.archive th,table.archive td{padding:11px 14px;text-align:left;font-size:14.5px;
+    border-bottom:1px solid var(--line);vertical-align:top}
+  table.archive th{color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.08em}
+  table.archive tr:last-child td{border-bottom:none}
   footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:14px}
 </style>
 </head>
@@ -67,104 +79,145 @@
     </div>
   </header>
 
-  <h2>Live product</h2>
-  <p class="sub">In production, with real users and paying-customer discipline.</p>
+  <h2>Featured work</h2>
+  <p class="sub">Four featured projects — a live product, a live demo, an open-source engine, and a prototype. Each was built from full-sector problem research: the company and all its competitors, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
   <div class="grid">
+
     <div class="card wide">
       <h3>Sealgraf</h3>
       <p class="sector">Spend authorization for AI agents</p>
       <p class="prob">The problem: AI agents can spend money, but nothing checks the owner's limits before the spend — or proves afterwards what was approved, by whom, and why.</p>
-      <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction. Integration packages for six agent frameworks — Dify, CrewAI, LangChain, n8n, Composio, and the Vercel AI SDK — each live-tested end-to-end with server-verified approval loops.</p>
+      <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction.</p>
+      <p>I designed and built the authorization layer and the integration packages for six agent frameworks — Dify, CrewAI, LangChain, n8n, Composio, and the Vercel AI SDK — each live-tested end-to-end with server-verified approval loops.</p>
       <div class="chips">
-        <span class="chip live">● Live at sealgraf.com</span>
+        <span class="chip live">● Live product</span>
         <span class="chip">6 framework integrations</span>
         <span class="chip">Technical paper published</span>
       </div>
-      <a class="cta" href="https://sealgraf.com">Visit sealgraf.com →</a>
+      <div class="proof">
+        <a href="https://sealgraf.com">Live product →</a>
+        <a href="#case-sealgraf">Case study</a>
+      </div>
     </div>
-  </div>
-
-  <h2>Sector products</h2>
-  <p class="sub">One product per sector, built from full-sector problem research — the company and all its competitors, not one company's complaint list. Working prototypes: complete journeys, rules enforced in code, approval gates on, synthetic data only.</p>
-  <div class="grid">
 
     <div class="card">
       <h3>Doorway</h3>
       <p class="sector">Workplace mental health · EAP access</p>
       <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
-      <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger. Crisis signals route to humans (988) before anything else; employers see aggregates only, behind a cohort floor.</p>
+      <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger.</p>
+      <p>I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
       <div class="chips"><span class="chip live">● Live demo</span><span class="chip">44/44 tests</span><span class="chip">Provisional name</span></div>
-      <a class="cta" href="https://doorway-live.onrender.com">Try the working prototype →</a>
-    </div>
-
-    <div class="card">
-      <h3>Dossier</h3>
-      <p class="sector">Short-term rentals &amp; travel</p>
-      <p class="prob">After booking is where guests get hurt: support failures, hijacked-chat payment scams, host cancellations, and protection programs that are explicitly not insurance.</p>
-      <p>A guest-side recovery agent: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
-      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">31/31 tests</span><span class="chip">Working label</span></div>
-    </div>
-
-    <div class="card">
-      <h3>ListProof</h3>
-      <p class="sector">Real-estate portals &amp; rentals</p>
-      <p class="prob">Search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
-      <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
-      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
-    </div>
-
-    <div class="card">
-      <h3>JobProof</h3>
-      <p class="sector">Local-services marketplaces</p>
-      <p class="prob">Pros pay for leads, not jobs: ghost leads, shared-lead races, and charge triggers outside the pro's control — while consumers have no neutral record when work goes wrong.</p>
-      <p>A two-sided evidence layer. Pros: every lead charge audited against the platform's own rules as of the charge date, dispute packets assembled, filings made only with the pro's approval — and a filing only counts as filed with a confirmation artifact. Consumers: a signed scope record before work begins.</p>
-      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">46/46 tests</span><span class="chip">Working label</span></div>
-    </div>
-
-    <div class="card">
-      <h3>Reclaim</h3>
-      <p class="sector">Consumer banking &amp; shopping rewards</p>
-      <p class="prob">Rewards flip from "pending" to "Ineligible $0.00" with no reason; disputes are decided against documented cardholders; deadlines hide in statement fine print.</p>
-      <p>A member-side recovery agent: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code from the correct anchor dates. No bank-credential vault exists anywhere in its data model.</p>
-      <div class="chips"><span class="chip proto">Working prototype</span><span class="chip">60/60 tests</span><span class="chip">Working label</span></div>
-    </div>
-
-    <div class="card">
-      <h3>The shared spine</h3>
-      <p class="sector">One platform, five products</p>
-      <div class="flow">
-        <span class="step">Goal held over time</span><span class="arr">→</span>
-        <span class="step">Rules in code</span><span class="arr">→</span>
-        <span class="step">Approval gate</span><span class="arr">→</span>
-        <span class="step">Execute</span><span class="arr">→</span>
-        <span class="step">Sealed receipt</span>
+      <div class="proof">
+        <a href="https://doorway-live.onrender.com">Live demo →</a>
+        <a href="#case-doorway">Case study</a>
       </div>
-      <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 239 tests across the five products, all passing.</p>
     </div>
 
-  </div>
-
-  <h2>Open source &amp; earlier lab work</h2>
-  <div class="grid">
     <div class="card">
       <h3>Reify</h3>
       <p class="sector">Memory engine for AI agents · Open source</p>
       <p>A local-first memory engine: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
-      <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span></div>
-      <a class="cta" href="https://github.com/saiarung27/reify">github.com/saiarung27/reify →</a>
+      <p>I built it local-first and model-portable: any AI model plugs in via MCP, REST, or CLI, and the memory layer maintains its own inferences as new evidence arrives.</p>
+      <div class="chips"><span class="chip">442 tests</span><span class="chip">Python</span><span class="chip">Open source</span></div>
+      <div class="proof">
+        <a href="https://github.com/saiarung27/reify">Source · 442 tests →</a>
+        <a href="#case-reify">Case study</a>
+      </div>
     </div>
-    <div class="card">
-      <h3>AgentFoundry</h3>
-      <p class="sector">Agent assurance · Prototype</p>
-      <p>An assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</p>
-      <div class="chips"><span class="chip">~195 tests</span><span class="chip">Prototype</span></div>
+
+    <div class="card wide">
+      <h3>ListProof</h3>
+      <p class="sector">Real-estate portals &amp; rentals</p>
+      <p class="prob">Search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
+      <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
+      <p>I built the verification pipeline, the fee ledger with its budget gate, and the correction tracker that closes only on independent re-verification. Working prototype on synthetic data — 58/58 tests.</p>
+      <div class="chips"><span class="chip proto">Prototype</span><span class="chip">58/58 tests</span><span class="chip">Working label</span></div>
+      <div class="proof">
+        <a href="#case-listproof">Case study</a>
+      </div>
     </div>
+
   </div>
+  <p><a href="#archive">View full project archive ↓</a></p>
+
+  <h2>The shared spine</h2>
+  <p class="sub">One platform, every product above.</p>
+  <div class="spine">
+    <div class="flow">
+      <span class="step">Goal held over time</span><span class="arr">→</span>
+      <span class="step">Rules in code</span><span class="arr">→</span>
+      <span class="step">Approval gate</span><span class="arr">→</span>
+      <span class="step">Execute</span><span class="arr">→</span>
+      <span class="step">Sealed receipt</span>
+    </div>
+    <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 239 tests across the five sector products, all passing.</p>
+  </div>
+
+  <h2>Case studies</h2>
+  <p class="sub">Problem, my role, the hardest decision, and the result — for each featured project.</p>
+
+  <div class="case" id="case-sealgraf">
+    <h3>Sealgraf — case study</h3>
+    <p><b>Problem</b> — AI agents can spend money, but nothing checks the owner's limits before the spend, or proves afterwards what was approved, by whom, and why.</p>
+    <p><b>My role</b> — I designed and built the authorization layer and the integration packages for six agent frameworks.</p>
+    <p><b>Hardest decision</b> — Approval has to happen on a surface the agent cannot fake: the owner approves out-of-band, and the agent only ever learns the outcome.</p>
+    <p><b>Result</b> — Live in production at sealgraf.com. All six integrations (Dify, CrewAI, LangChain, n8n, Composio, Vercel AI SDK) live-tested end-to-end with server-verified approval loops; technical paper published.</p>
+  </div>
+
+  <div class="case" id="case-doorway">
+    <h3>Doorway — case study</h3>
+    <p><b>Problem</b> — EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
+    <p><b>My role</b> — I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p>
+    <p><b>Hardest decision</b> — No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p>
+    <p><b>Result</b> — Live demo running the full journey end-to-end; 44/44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p>
+  </div>
+
+  <div class="case" id="case-reify">
+    <h3>Reify — case study</h3>
+    <p><b>Problem</b> — Agent memory systems hand the model top-k clues and make it re-synthesize on every query — and none can answer "what changed?", because changes are not stored as data.</p>
+    <p><b>My role</b> — I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p>
+    <p><b>Hardest decision</b> — Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p>
+    <p><b>Result</b> — Open source, 442 tests. Its wedge demo — recalling that a title changed, across sessions — runs end-to-end with no LLM key.</p>
+  </div>
+
+  <div class="case" id="case-listproof">
+    <h3>ListProof — case study</h3>
+    <p><b>Problem</b> — Rental search works; everything after fails — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p>
+    <p><b>My role</b> — I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p>
+    <p><b>Hardest decision</b> — Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p>
+    <p><b>Result</b> — Working prototype, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p>
+  </div>
+
+  <h2 id="archive">Project archive</h2>
+  <p class="sub">The rest of the lab — working prototypes on synthetic data, available as walkthroughs on request.</p>
+  <table class="archive">
+    <tr><th>Name</th><th>What it is</th><th>Tests</th></tr>
+    <tr>
+      <td><b>Dossier</b></td>
+      <td>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</td>
+      <td>31/31</td>
+    </tr>
+    <tr>
+      <td><b>JobProof</b></td>
+      <td>Two-sided evidence layer for local-services marketplaces: pros get every lead charge audited against the platform's own rules, with filings made only on approval and counted as filed only with a confirmation artifact; consumers get a signed scope record before work begins.</td>
+      <td>46/46</td>
+    </tr>
+    <tr>
+      <td><b>Reclaim</b></td>
+      <td>Member-side recovery agent for consumer banking &amp; shopping rewards: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code. No bank-credential vault exists anywhere in its data model.</td>
+      <td>60/60</td>
+    </tr>
+    <tr>
+      <td><b>AgentFoundry</b></td>
+      <td>Assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</td>
+      <td>~195</td>
+    </tr>
+  </table>
 
   <footer>
     Sai Arun Labs is the product lab of Sai Arun Gunuganti — Lead Software Engineer (Lowe's Companies), Harrisburg, NC.
-    Sector products are working prototypes on synthetic data; names marked as working labels are provisional.
-    Doorway's interactive demo is live above; the remaining sector demos are being switched on — walkthroughs available on request.
+    Prototypes run on synthetic data; names marked as working labels are provisional.
+    Doorway's interactive demo is live above; the remaining prototypes are available as walkthroughs on request.
   </footer>
 
 </div>
