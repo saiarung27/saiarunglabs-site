@@ -324,6 +324,15 @@
   .stats.small .n{font-size:30px}
   @media (max-width:760px){.stats.small{grid-template-columns:1fr}.stats.small .stat{border-right:none;border-bottom:1px solid var(--line)}.stats.small .stat:last-child{border-bottom:none}}
   .subhead{font-size:22px;margin:8px 0 6px;letter-spacing:-.01em}
+
+  .card.phonecard{grid-template-columns:.62fr 1.38fr}
+  .card.wide.phonecard .media{order:0;display:flex;justify-content:center}
+  .phone{width:100%;max-width:270px;border:8px solid #1d2534;border-radius:34px;overflow:hidden;background:#0d1119;
+    box-shadow:0 20px 50px -25px rgba(0,0,0,.9),0 0 0 1px var(--line2)}
+  .phone img{display:block;width:100%;height:auto;aspect-ratio:520/1125;object-fit:cover;object-position:top}
+  .chip.proto{border-color:rgba(245,197,66,.5);color:var(--accent);background:rgba(245,197,66,.08)}
+  .phonecard .chip.proto{white-space:normal}
+  @media (max-width:860px){.card.phonecard{grid-template-columns:1fr}.phone{max-width:240px;margin-bottom:12px}}
 </style>
 </head>
 <body>
@@ -461,8 +470,8 @@
       <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
       <div class="stat"><div class="n" data-count="378">378</div><div class="l">tests across eight sector products, all passing</div></div>
     </div>
-    <h3 class="subhead reveal">Five products. One spine.</h3>
-    <p class="sub reveal">Five featured projects — two live products, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest are in the <a href="#archive">project archive</a>.</p>
+    <h3 class="subhead reveal">Six products. One spine.</h3>
+    <p class="sub reveal">Six featured projects — two live products, a mobile app in development, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest are in the <a href="#archive">project archive</a>.</p>
     <div class="grid">
 
       <article class="card wide reveal">
@@ -505,6 +514,24 @@
           <div class="proof">
             <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
             <a class="btn" href="https://jobproof-live.onrender.com/check">Free credit checker</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card wide phonecard reveal">
+        <div class="media">
+          <div class="phone"><img src="img/givetake.webp" width="520" height="1125" loading="lazy" alt="GiveTake mobile app: nearby listings marked lister-declared, with Explore, Agent, Requests, List and You tabs"></div>
+        </div>
+        <div>
+          <div class="cardhead"><h3>GiveTake</h3><span class="chip proto">In development · iOS · Android · web</span></div>
+          <p class="sector">Peer-to-peer barter · consumer mobile</p>
+          <p class="prob">The problem: people want to swap things instead of buying new, but barter apps overpromise, with "verified" badges that prove nothing, escrow they don't really hold, and no safe way to ship between strangers.</p>
+          <p>A mobile barter app for exact, person-to-person swaps: list what you have, discover nearby items, propose a swap, and ship both sides with tracked USPS labels and a sender-paid Stripe authorization. Every listing says what it is, "lister-declared" facts, never an authenticity or safety guarantee.</p>
+          <p class="focus">Built end to end: React and Capacitor apps for iOS and Android; an Express and PostgreSQL backend with 51 migrations and rotated sessions; human-reviewed safety reports and appeals; product-recall screening; detection of photos reused across accounts; background workers and database restore drills. Shipping and payments stay switched off until the providers are configured.</p>
+          <div class="chips"><span class="chip t">1,427 test assertions</span><span class="chip">React · Capacitor</span><span class="chip">Node · PostgreSQL</span></div>
+          <p class="demonote">No public demo yet. The screenshot is from a local build with sample listings. Walkthrough and source on request.</p>
+          <div class="proof">
+            <a class="btn" href="mailto:saiarung27@gmail.com?subject=GiveTake%20walkthrough">Ask for a walkthrough</a>
           </div>
         </div>
       </article>
