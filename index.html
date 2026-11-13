@@ -361,7 +361,7 @@
       </div>
       <p class="kicker">Senior Software Engineer · Lead Developer</p>
       <h1>I build the frontend platforms <span class="grad">checkout runs on.</span></h1>
-      <p class="who"><b>Sai Arun Gunuganti</b> — Lead Developer for a team of five at Lowe's. I built the checkout-critical Customer Lookup micro-frontend that 20+ teams integrate into their own applications, and the end-to-end test automation that protects it.</p>
+      <p class="who"><b>Sai Arun Gunuganti</b> — Lead Developer for a team of five at Lowe's. I built the checkout-critical Customer Lookup micro-frontend that 20+ teams integrate into their own applications, and the end-to-end test automation that tests changes in Stage, then UAT, before they ship to production.</p>
       <p class="thesis">Outside work I build agentic products with the same discipline: <b>rules in code</b>, <b>human approval</b> at consequential steps, and a <b>sealed receipt</b> for everything. <a href="#work">See the products</a>.</p>
       <div class="ctas">
         <a class="btn primary" href="resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download résumé (PDF)</a>
@@ -374,9 +374,9 @@
       </div>
     </div>
 
-    <figure class="mfe" aria-label="Simplified diagram: a Customer Lookup micro-frontend I built from scratch is used by 20+ team applications and protected by end-to-end test automation.">
+    <figure class="mfe" aria-label="Simplified diagram: a Customer Lookup micro-frontend I built from scratch is used by 20+ team applications. End-to-end test automation tests changes in Stage, then UAT, before they deploy to production.">
       <div class="termbar"><i></i><i></i><i></i><span>my platform work — simplified</span></div>
-      <svg viewBox="0 0 520 330" role="img" aria-hidden="true" font-family="Inter,system-ui,sans-serif">
+      <svg viewBox="0 0 520 372" role="img" aria-hidden="true" font-family="Inter,system-ui,sans-serif">
         <defs><marker id="mfa" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#5eead4"/></marker></defs>
         <rect x="20" y="16" width="480" height="70" rx="12" fill="#121722" stroke="#2e384b"/>
         <rect x="36" y="32" width="62" height="38" rx="7" fill="#1d2534" stroke="#2e384b"/><text x="67" y="55" text-anchor="middle" font-size="11" fill="#9aa7ba">Team app</text>
@@ -390,9 +390,16 @@
         <text x="40" y="184" font-size="12.5" fill="#e8ecf3">built from scratch · owned and run by my team</text>
         <text x="40" y="205" font-size="12" fill="#9aa7ba">checkout-critical · used in Lowe's stores every day</text>
         <line x1="260" y1="256" x2="260" y2="228" stroke="#5eead4" stroke-width="2" marker-end="url(#mfa)"/>
-        <rect x="20" y="260" width="480" height="58" rx="12" fill="#0f2a26" stroke="#5eead4" stroke-opacity=".6"/>
+        <rect x="20" y="260" width="480" height="100" rx="12" fill="#0f2a26" stroke="#5eead4" stroke-opacity=".6"/>
         <text x="40" y="285" font-size="15" font-weight="700" fill="#5eead4">End-to-end test automation</text>
-        <text x="40" y="304" font-size="12" fill="#cfd6e2">catches critical checkout failures before they reach stores</text>
+        <text x="40" y="303" font-size="12" fill="#cfd6e2">changes are tested before they reach stores</text>
+        <g font-size="12.5" font-weight="600">
+          <rect x="40" y="318" width="112" height="30" rx="8" fill="#14352f" stroke="#5eead4" stroke-opacity=".7"/><text x="96" y="338" text-anchor="middle" fill="#e8ecf3">Stage ✓</text>
+          <line x1="156" y1="333" x2="180" y2="333" stroke="#5eead4" stroke-width="2" marker-end="url(#mfa)"/>
+          <rect x="184" y="318" width="112" height="30" rx="8" fill="#14352f" stroke="#5eead4" stroke-opacity=".7"/><text x="240" y="338" text-anchor="middle" fill="#e8ecf3">UAT ✓</text>
+          <line x1="300" y1="333" x2="324" y2="333" stroke="#5eead4" stroke-width="2" marker-end="url(#mfa)"/>
+          <rect x="328" y="318" width="152" height="30" rx="8" fill="#2a2412" stroke="#f5c542"/><text x="404" y="338" text-anchor="middle" fill="#f5c542">Production</text>
+        </g>
       </svg>
       <figcaption>Simplified, public view.</figcaption>
     </figure>
@@ -413,7 +420,7 @@
       <article class="card jobcard reveal hl"><h3>Customer Lookup micro-frontend</h3><p>Built from scratch and integrated by 20+ teams into their own applications. It handles customer profiles, saved quotes and address checks, keeps working when backend services fail, and reports its own performance and errors.</p></article>
       <article class="card jobcard reveal"><h3>Technical leadership</h3><p>Lead Developer for a team of 5 engineers across two locations and single point of contact for a core area of checkout. I mentor engineers, own code review, and wrote the design docs and integration conventions other teams follow when adopting our work.</p></article>
       <article class="card jobcard reveal"><h3>Checkout integration</h3><p>Brought several checkout micro-frontends together into one in-store selling experience through shared event contracts, including screens that stay in sync between the store associate and the customer.</p></article>
-      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>Built the end-to-end test automation framework for in-store selling flows, with reusable business-flow building blocks, runs across environments and clear reporting. It catches critical checkout failures before they reach stores.</p></article>
+      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>Built the end-to-end test automation framework for in-store selling flows, with reusable business-flow building blocks and clear reporting. Changes are tested in Stage, then UAT, before they deploy to production, catching critical checkout failures before they reach stores.</p></article>
       <article class="card jobcard reveal"><h3>Quality platform</h3><p>Built a platform that looks at each code change, works out which business flows it affects, and proposes the end-to-end tests to run or write, with reviewed promotion into the build pipeline.</p></article>
       <article class="card jobcard reveal"><h3>Checkout features</h3><p>Delivered customer-facing checkout features across scheduling, delivery options and pricing rules, payment rules and protection plans, working with product and design.</p></article>
       <article class="card jobcard reveal"><h3>Observability</h3><p>Built shared telemetry tooling for micro-frontends, with privacy and sampling controls built in, so teams can follow a customer journey end to end and spot problems early.</p></article>
