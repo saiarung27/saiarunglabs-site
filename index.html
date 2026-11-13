@@ -373,8 +373,8 @@
 
   <section id="work">
     <p class="eyebrow reveal">// featured work</p>
-    <h2 class="reveal">Four products. One spine.</h2>
-    <p class="sub reveal">Four featured projects — a live product, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
+    <h2 class="reveal">Five products. One spine.</h2>
+    <p class="sub reveal">Five featured projects — two live products, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest of the lab is in the <a href="#archive">project archive</a>.</p>
     <div class="grid">
 
       <article class="card wide reveal">
@@ -397,6 +397,26 @@
             <a class="btn primary" href="https://sealgraf.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
             <a class="btn" href="https://sealgraf.com/paper">Technical paper</a>
             <a class="btn ghost" href="#case-sealgraf" data-case="sealgraf">Case study</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card wide flip reveal">
+        <div class="media">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>jobproof-live.onrender.com</span></div>
+            <div class="imgwrap"><img src="img/jobproof.webp" width="1120" height="700" loading="lazy" alt="JobProof live product — Stop paying for bad Angi leads"></div></div>
+          <p class="demonote">What you'll see: a free credit checker that needs no sign-up (paste a lead, tap what happened, get the verdict, the deadline and a ready-to-paste request), then the full tracker behind a 14-day free trial. This is the live product, not a synthetic demo.</p>
+        </div>
+        <div>
+          <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · early access</span></div>
+          <p class="sector">Home services · Angi lead credits</p>
+          <p class="prob">The problem: contractors pay for Angi leads that turn out to be disconnected numbers, out-of-area jobs or duplicates. Many qualify for a credit, but only with a call inside 24 hours, a request inside 30 days, and the right reason.</p>
+          <p>Credit tracker for contractors who buy Angi leads. Every lead is checked against Angi's published credit rules as they stood on the charge date, with the 24-hour call rule and the 30-day request deadline tracked in code. JobProof drafts each credit request for the pro to submit and tracks credits to their six-month expiry. It never logs in to Angi.</p>
+          <p class="focus">Grown from the sandbox prototype into a production app: FastAPI and SQLite, hashed sessions, a tamper-evident activity log, a free no-sign-up credit checker, reminder emails and Stripe billing. Its rules are labeled as not yet verified in a live Angi account.</p>
+          <div class="chips"><span class="chip t">61 tests</span><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
+          <div class="proof">
+            <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn" href="https://jobproof-live.onrender.com/check">Free credit checker</a>
           </div>
         </div>
       </article>
@@ -627,15 +647,8 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <section id="archive">
     <p class="eyebrow reveal">// project archive</p>
     <h2 class="reveal">The rest of the lab.</h2>
-    <p class="sub reveal">The rest of the lab: JobProof, now a live product in early access, and working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
+    <p class="sub reveal">The rest of the lab — working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
     <div class="arch">
-      <article class="card reveal" style="grid-column:1/-1">
-        <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · early access</span></div>
-        <p class="sector">Home services · Angi lead credits</p>
-        <p>Credit tracker for contractors who buy Angi leads. Every lead is checked against Angi's published credit rules as they stood on the charge date (bad contact info, out of area, services not offered, duplicates), with the 24-hour call rule and the 30-day request deadline tracked in code. JobProof drafts each credit request for the pro to submit and tracks credits to their six-month expiry. It never logs in to Angi.</p>
-        <p>Grown from the sandbox prototype into a production app: FastAPI and SQLite, hashed sessions, a tamper-evident activity log, a free no-sign-up credit checker, reminder emails and Stripe billing. Its rules are labeled as not yet verified in a live Angi account.</p>
-        <div class="foot"><span><a href="https://jobproof-live.onrender.com">Live product →</a> · <a href="https://jobproof-live.onrender.com/check">Free checker →</a></span><span class="chip t">61 tests</span></div>
-      </article>
       <article class="card reveal">
         <h3>Dossier</h3><p class="sector">Short-term rentals &amp; travel</p>
         <p>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
