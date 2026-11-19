@@ -257,6 +257,11 @@
   details.more[open] summary::before{content:"−"}
   details.more .in{padding:0 18px 6px}
   .diagram{margin:6px 0 18px;overflow-x:auto}
+  .mailtoast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:60;max-width:calc(100% - 32px);width:420px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 40px 14px 16px;box-shadow:0 10px 40px rgba(0,0,0,.45);font-size:14.5px;display:none}
+  .mailtoast.show{display:block}
+  .mailtoast b{display:block;margin-bottom:4px}
+  .mailtoast .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .mailtoast .x{position:absolute;top:6px;right:8px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1;padding:4px}
   .swipe{display:none;color:var(--muted);font-size:13px;margin:0 0 6px}
   @media (max-width:760px){.swipe{display:block}}
   .diagram svg{width:100%;min-width:640px;height:auto;display:block}
@@ -819,6 +824,12 @@ make demo      <span class="c"># runs the core example end to end, no AI key</sp
 </div>
 </main>
 
+<div class="mailtoast" id="mailtoast" role="dialog" aria-live="polite" aria-label="Email address">
+  <button class="x" type="button" aria-label="Close">×</button>
+  <b>No email app opened?</b>
+  <span id="mailtext">My address is saiarung27@gmail.com.</span>
+  <div class="row"><a class="btn primary" id="gmailLink" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=saiarung27@gmail.com" target="_blank" rel="noopener">Open in Gmail</a><button class="btn" type="button" id="toastCopy">Copy address</button></div>
+</div>
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1050,6 +1061,25 @@ make demo      <span class="c"># runs the core example end to end, no AI key</sp
     try{ await navigator.clipboard.writeText(em); $('#copied').textContent = '✓ copied '+em; }
     catch(e){ $('#copied').textContent = em; }
   });
+  /* ---------- mailto fallback ---------- */
+  const toast = $('#mailtoast');
+  const EM = 'saiarung27@gmail.com';
+  async function copyEm(){ try{ await navigator.clipboard.writeText(EM); return true; }catch(e){ return false; } }
+  $$('a[href^="mailto:"]').forEach(a => a.addEventListener('click', () => {
+    let left = false;
+    const mark = () => { left = true; };
+    window.addEventListener('blur', mark, { once: true });
+    document.addEventListener('visibilitychange', mark, { once: true });
+    const subj = new URL(a.href.replace('mailto:', 'https://x/')).searchParams.get('subject');
+    $('#gmailLink').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + EM + (subj ? '&su=' + encodeURIComponent(subj) : '');
+    setTimeout(() => {
+      window.removeEventListener('blur', mark); document.removeEventListener('visibilitychange', mark);
+      if (!left) { $('#mailtext').textContent = 'My address is ' + EM + '.'; toast.classList.add('show'); }
+    }, 900);
+  }));
+  $('#toastCopy').addEventListener('click', async () => { $('#mailtext').textContent = (await copyEm()) ? '✓ Copied ' + EM : 'My address is ' + EM + '.'; });
+  toast.querySelector('.x').addEventListener('click', () => toast.classList.toggle('show', false));
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') toast.classList.toggle('show', false); });
 })();
 </script>
 </body>
