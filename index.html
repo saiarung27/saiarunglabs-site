@@ -433,15 +433,15 @@
     <h2 class="reveal">Checkout platforms for Lowe's stores.</h2>
     <p class="sub reveal">I'm a Senior Software Engineer and Lead Developer on in-store checkout. <span class="ctx">For scale: Lowe's handles about 16 million customer transactions a week across 1,700+ stores.</span></p>
     <div class="jobgrid">
-      <article class="card jobcard reveal hl"><h3>Customer Lookup micro-frontend</h3><p>I built it from scratch; 20+ teams now use it in their own apps. It handles customer profiles, saved quotes and address checks, keeps working when backend services fail, and reports its own performance and errors.</p></article>
-      <article class="card jobcard reveal"><h3>Technical leadership</h3><p>I lead 5 engineers across two locations and am the point of contact for a core area of checkout. I mentor, own code review, and wrote the design docs and conventions other teams follow when adopting our work.</p></article>
-      <article class="card jobcard reveal"><h3>Checkout integration</h3><p>I brought several checkout micro-frontends together into one in-store selling experience through shared event contracts, including screens that stay in sync between the store associate and the customer.</p></article>
-      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>I built the end-to-end test automation framework for in-store selling flows, with reusable business-flow building blocks and clear reporting. Changes are tested in Stage, then UAT, before they deploy to production, catching critical checkout failures before they reach stores.</p></article>
-      <article class="card jobcard reveal"><h3>Quality platform</h3><p>I built a platform that looks at each code change, works out which business flows it affects, and proposes the end-to-end tests to run or write, with reviewed promotion into the build pipeline.</p></article>
-      <article class="card jobcard reveal"><h3>Checkout features</h3><p>I delivered customer-facing checkout features across scheduling, delivery options and pricing rules, payment rules and protection plans, working with product and design.</p></article>
-      <article class="card jobcard reveal"><h3>Observability</h3><p>I built shared telemetry tooling for micro-frontends, with privacy and sampling controls built in, so teams can follow a customer journey end to end and spot problems early.</p></article>
-      <article class="card jobcard reveal"><h3>AI and agentic systems</h3><p>I designed an agentic architecture for in-store guided selling, prototyped an AI assistant for store associates, and built a service that checks AI agents' behavior against expected outcomes.</p></article>
-      <article class="card jobcard reveal"><h3>Production ownership</h3><p>I'm the first point of contact for production issues and coordinate releases through change approval, from deployment checks to sign-off. I also keep our dependencies patched and secure.</p></article>
+      <article class="card jobcard reveal hl"><h3>Customer Lookup micro-frontend</h3><p>The customer screen inside Lowe's checkout: look up a customer, see their saved quotes and check their address. I built it from scratch as a plug-in piece, and 20+ teams now drop it into their own apps. It keeps working even when the systems behind it go down.</p></article>
+      <article class="card jobcard reveal"><h3>Technical leadership</h3><p>I lead a team of 5 engineers in two locations and I'm the go-to person for a key part of checkout. I coach the team, review their code, and wrote the guides other teams follow when they use our work.</p></article>
+      <article class="card jobcard reveal"><h3>Checkout integration</h3><p>Checkout is made of several separate pieces. I made them work together as one smooth experience, including the two in-store screens (one for the associate, one facing the customer) that stay in sync.</p></article>
+      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>I built automated tests that act like a store associate ringing up a sale. Changes are tried in two test environments (Stage, then UAT) before they reach stores, so serious checkout problems get caught early.</p></article>
+      <article class="card jobcard reveal"><h3>Quality platform</h3><p>A tool that looks at each code change, works out which parts of the sale it could break, and suggests which tests to run or write. Engineers review its suggestions before they're used.</p></article>
+      <article class="card jobcard reveal"><h3>Checkout features</h3><p>Features customers see at checkout: booking an installation, delivery options and fees, payment rules and protection plans. I build them with product managers and designers.</p></article>
+      <article class="card jobcard reveal"><h3>Observability</h3><p>Shared tools that show how the checkout screens are working for customers, so teams can spot and fix problems quickly, without collecting more customer data than they need.</p></article>
+      <article class="card jobcard reveal"><h3>AI and agentic systems</h3><p>I designed how an AI assistant could guide store associates through a sale, built a working prototype, and built a checker that tests whether AI assistants behave the way they should.</p></article>
+      <article class="card jobcard reveal"><h3>Production ownership</h3><p>When something breaks in the live system, I'm the first person called. I also run our releases, from preparing the change to checking the rollout and getting sign-off, and keep our software patched and secure.</p></article>
     </div>
     <div class="tags reveal"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Micro-frontends</span><span class="chip">End-to-end testing</span><span class="chip">Observability</span><span class="chip">Python</span><span class="chip">AI agents</span></div>
     <div class="midcta reveal"><p><b>Hiring for a Lead, Staff or Principal frontend role?</b> I'd like to hear about it.</p><div class="ctas"><a class="btn primary" href="mailto:saiarung27@gmail.com">Email me</a><a class="btn" href="resume.pdf" download>Résumé (PDF)</a></div></div>
@@ -476,7 +476,7 @@
     <div class="stats small reveal" aria-label="Products at a glance">
       <div class="stat"><div class="n"><span data-count="2">2</span><small> + </small><span data-count="7">7</span></div><div class="l">live products + live public demos</div></div>
       <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
-      <div class="stat"><div class="n" data-count="2000" data-suffix="+">2,000+</div><div class="l">tests passing in Sealgraf's core engine</div></div>
+      <div class="stat"><div class="n" data-count="1">1</div><div class="l">technical paper published on Sealgraf's design</div></div>
     </div>
     <h3 class="subhead reveal">Six featured products.</h3>
     <p class="sub reveal">Two live products, a mobile app in development, two live demos and an open-source engine. More in the <a href="#archive">archive</a>.</p>
@@ -486,16 +486,16 @@
         <div class="media">
           <div class="browser"><div class="bar"><i></i><i></i><i></i><span>sealgraf.com</span></div>
             <div class="imgwrap"><img src="img/sealgraf.webp" width="1120" height="700" alt="Sealgraf live product — Your agents spend. You set the limits."></div></div>
-          <p class="demonote">Set limits for an agent, watch a purchase get checked, approve or deny it, and open the tamper-proof record. This is the live product.</p>
+          <p class="demonote">Try it: set a limit, watch a purchase get checked, approve or deny it, and see the receipt. This is the live product.</p>
         </div>
         <div>
           <div class="cardhead"><h3>Sealgraf</h3><span class="chip live">Live product</span></div>
-          <p class="sector">Spend authorization for AI agents</p>
-          <p class="prob">The problem: AI agents with payment access can spend first and explain later, with no limits checked up front and no proof of who approved what.</p>
-          <p>Sealgraf checks every agent purchase against limits the owner sets, gets the owner's approval on a screen the agent can't fake, and keeps a verifiable record of each transaction.</p>
-          <p class="focus">I designed and built the authorization layer and integrations for six agent frameworks, each tested end to end against the live service.</p>
+          <p class="sector">Spending limits for AI assistants</p>
+          <p class="prob">The problem: AI assistants can now buy things for you. Without a safety check, one could overspend, and there'd be no proof of who approved what.</p>
+          <p>Sealgraf is that safety check. You set spending limits, the assistant has to ask you before going over them, and every purchase gets a receipt nobody can change.</p>
+          <p class="focus">I designed and built it, plus ready-made connectors for six popular AI-assistant tools, each tested against the live service.</p>
           <div class="chips">
-            <span class="chip t">Dify · 77</span><span class="chip t">CrewAI · 64</span><span class="chip t">LangChain · 55</span><span class="chip t">Vercel AI SDK · 49</span><span class="chip t">n8n · 34</span><span class="chip t">Composio · 23</span>
+            <span class="chip t">Dify</span><span class="chip t">CrewAI</span><span class="chip t">LangChain</span><span class="chip t">Vercel AI SDK</span><span class="chip t">n8n</span><span class="chip t">Composio</span>
             <span class="chip">Technical paper published</span>
           </div>
           <div class="proof">
@@ -575,15 +575,15 @@
         <div class="media">
           <div class="browser"><div class="bar"><i></i><i></i><i></i><span>jobproof-live.onrender.com</span></div>
             <div class="imgwrap"><img src="img/jobproof.webp" width="1120" height="700" loading="lazy" alt="JobProof live product — Stop paying for bad Angi leads"></div></div>
-          <p class="demonote">Paste a lead, tap what happened, and get the verdict, the deadline and a ready-to-paste request, with no sign-up. The full tracker is free during early access.</p>
+          <p class="demonote">Try it free with no sign-up: paste a lead, tap what happened, and get the answer, the deadline and a ready-to-send request. The full tracker is free during early access.</p>
         </div>
         <div>
           <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · free early access</span></div>
-          <p class="sector">Home services · Angi lead credits</p>
-          <p class="prob">The problem: contractors pay for Angi leads that turn out to be wrong numbers, out-of-area jobs or duplicates. Many qualify for a credit, but only if they call within 24 hours and ask within 30 days.</p>
-          <p>JobProof checks each lead against Angi's published credit rules, tracks both deadlines, drafts the credit request for the pro to submit, and tracks credits until they expire. It never logs in to Angi.</p>
-          <p class="focus">I took it from prototype to production app: FastAPI, a tamper-evident activity log, a free checker and reminder emails. Rules follow Angi's published terms; validation with early users is underway.</p>
-          <div class="chips"><span class="chip t">61 tests</span><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
+          <p class="sector">Home services · refunds for bad leads</p>
+          <p class="prob">The problem: contractors pay Angi for customer leads, and many turn out to be junk: wrong numbers, wrong area, duplicates. Angi refunds many of them as credit, but only if you ask in time and in the right way.</p>
+          <p>JobProof keeps track of every lead, tells the contractor which ones qualify for a refund and by when, and writes the refund request for them to send.</p>
+          <p class="focus">I took it from an early prototype to a working product people can sign up for. It follows Angi's published refund rules, which we're confirming with early users.</p>
+          <div class="chips"><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
           <div class="proof">
             <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
             <a class="btn" href="https://jobproof-live.onrender.com/check">Free credit checker</a>
@@ -597,11 +597,11 @@
         </div>
         <div>
           <div class="cardhead"><h3>GiveTake</h3><span class="chip proto">In development · iOS · Android · web</span></div>
-          <p class="sector">Peer-to-peer barter · consumer mobile</p>
-          <p class="prob">The problem: barter apps overpromise, with "verified" badges that prove nothing and no safe way to ship between strangers.</p>
-          <p>GiveTake lets people list what they have, find nearby items, propose a swap and ship both sides with tracked USPS labels. Every listing is honest about what's checked and what isn't.</p>
-          <p class="focus">I built it end to end: iOS and Android apps (React, Capacitor), an Express and PostgreSQL backend, human-reviewed safety reports, product-recall screening and detection of reused photos. Shipping and payments switch on once the providers are set up.</p>
-          <div class="chips"><span class="chip t">1,427 test assertions</span><span class="chip">React · Capacitor</span><span class="chip">Node · PostgreSQL</span></div>
+          <p class="sector">Swap items instead of buying · mobile app</p>
+          <p class="prob">The problem: swapping things with strangers is hard to trust. Apps promise "verified" items they can't really check, and shipping to a stranger is risky.</p>
+          <p>GiveTake is a phone app for trading items instead of buying new. List what you have, find things nearby, agree on a swap and ship it with tracked labels. The app is honest about what it has and hasn't checked.</p>
+          <p class="focus">I built the whole thing myself: the iPhone and Android apps, the server behind them, and safety tools like reports reviewed by people and product-recall checks. Shipping and payments switch on at launch.</p>
+          <div class="chips"><span class="chip">React · Capacitor</span><span class="chip">Node · PostgreSQL</span></div>
           <p class="demonote">No public demo yet. The screenshot is from a local build with sample listings.</p>
           <div class="proof">
             <a class="btn" href="mailto:saiarung27@gmail.com?subject=GiveTake%20walkthrough">Ask for a walkthrough</a>
@@ -611,14 +611,13 @@
 
       <article class="card reveal">
         <div class="cardhead"><h3>Doorway</h3><span class="chip live">Live demo</span></div>
-        <p class="sector">Workplace mental health · Employee Assistance Programs</p>
+        <p class="sector">Workplace mental-health benefits</p>
         <div class="browser"><div class="bar"><i></i><i></i><i></i><span>doorway-live.onrender.com</span></div>
           <div class="imgwrap"><img src="img/doorway.webp" width="1120" height="700" loading="lazy" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view"></div></div>
-        <p class="prob">The problem: only 3–8% of employees use their Employee Assistance Program (EAP), because people get lost before reaching care: hard-to-find benefits, confusing eligibility and opaque matching.</p>
-        <p>Doorway guides people through the whole journey: it checks eligibility, explains the benefit with sources, matches them with a counselor and shows why, and books only with their approval. Employers only ever see totals.</p>
-        <p class="focus">I built the full journey (state machine, rules engine and tamper-evident ledger) with no AI model deciding eligibility, cost or safety.</p>
-        <div class="chips"><span class="chip t">44 tests</span></div>
-        <p class="demonote">Runs on sample data: sign in as a test member, get matched, approve a booking, then see the employer's totals-only view.</p>
+        <p class="prob">The problem: many companies offer free counseling through an Employee Assistance Program (EAP), but only 3–8% of employees use it, because finding and booking help is confusing.</p>
+        <p>Doorway takes an employee from "I need help" to a booked appointment: it checks they're covered, explains the benefit, suggests a counselor and books only when they say yes. Employers only ever see totals, never individuals.</p>
+        <p class="focus">I built the whole journey. Who's covered, what it costs and safety are decided by fixed rules, never by AI.</p>
+        <p class="demonote">Runs on sample data: sign in as a test employee, get matched, book, then see what the employer sees (totals only).</p>
         <div class="proof">
           <a class="btn primary" href="https://doorway-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn ghost" href="#case-doorway" data-case="doorway">Case study</a>
@@ -630,12 +629,12 @@
         <p class="sector">Memory for AI agents · Open source</p>
         <div class="browser"><div class="bar"><i></i><i></i><i></i><span>github.com/saiarung27/reify</span></div>
           <div class="imgwrap"><img src="img/reify.webp" width="1120" height="700" loading="lazy" alt="Reify on GitHub — local-first memory engine for AI agents"></div></div>
-        <p>Reify gives AI agents a memory that knows what changed and when, not just the latest facts, so "what changed recently?" has a direct answer. It runs locally in one SQLite file and works with any AI model.</p>
-        <p class="focus">I designed the data model and retrieval, and built MCP, REST and command-line interfaces, with an open evaluation harness running in CI.</p>
-        <div class="chips"><span class="chip t">442 tests</span><span class="chip">Python</span><span class="chip">Pre-alpha</span></div>
-        <p class="demonote">Source only, no live demo. Clone it and run <b>make demo</b> to replay the example from the case study; no AI key needed.</p>
+        <p>AI assistants forget, or only remember the latest facts. Reify gives them a memory that also knows what changed and when, so they can answer "what's different since last month?"</p>
+        <p class="focus">I designed and built it as free, open-source software that runs on your own computer and works with any AI model.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Pre-alpha</span></div>
+        <p class="demonote">Code only, no live demo. Developers can download it and run one command to see an example; no AI account needed.</p>
         <div class="proof">
-          <a class="btn primary" href="https://github.com/saiarung27/reify">Source · 442 tests <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn primary" href="https://github.com/saiarung27/reify">Source code <span class="arrow" aria-hidden="true">→</span></a>
           <a class="btn ghost" href="#case-reify" data-case="reify">Case study</a>
         </div>
       </article>
@@ -644,15 +643,14 @@
         <div class="media">
           <div class="browser"><div class="bar"><i></i><i></i><i></i><span>listproof-live.onrender.com</span></div>
             <div class="imgwrap"><img src="img/listproof.webp" width="1120" height="700" loading="lazy" alt="ListProof live demo — verify a listing before you pay anything"></div></div>
-          <p class="demonote">Runs on sample listings: pick one and watch it get checked, with the evidence shown.</p>
+          <p class="demonote">Runs on sample listings: pick one and watch it get checked.</p>
         </div>
         <div>
           <div class="cardhead"><h3>ListProof</h3><span class="chip live">Live demo</span></div>
-          <p class="sector">Real-estate portals &amp; rentals</p>
-          <p class="prob">The problem: renters get hurt after the search, by scam listings, wrong data and hidden fees.</p>
-          <p>ListProof checks a listing before you pay: ownership, photo history and price against the market, with the evidence shown and a verdict of Verified, Unverifiable or Red flags. It never calls a listing "safe".</p>
-          <p class="focus">I built the verification pipeline, a fee ledger that stops spending at your budget (any fee change needs re-approval), and correction tracking that closes only after an independent re-check.</p>
-          <div class="chips"><span class="chip t">58 tests</span></div>
+          <p class="sector">Renting a home</p>
+          <p class="prob">The problem: renters get scammed by fake listings, misled by wrong information and surprised by hidden fees.</p>
+          <p>ListProof checks a rental listing before you pay anything: does the owner match public records, are the photos stolen, is the price realistic? It shows the evidence and says Verified, Can't verify or Red flags. It never just says "safe".</p>
+          <p class="focus">I built the checks, a fee tracker that stops you going over budget, and correction tracking that only closes once a fresh check confirms the fix.</p>
           <div class="proof">
             <a class="btn primary" href="https://listproof-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
             <a class="btn ghost" href="#case-listproof" data-case="listproof">Case study</a>
@@ -714,7 +712,7 @@
         <p>The approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. Enforcement sits before the money moves: the decision is sealed to the ledger before any token exists — if the seal fails, no token is issued and nothing can be spent against the check — and approval re-validates the current mandate version and reservation before anything is minted. Completion is re-validated under the same lock, so a pause, revoke, or tightening that lands between approval and spending means the spend cannot complete as authorized. Nor can the record be laundered: a completion is sealed even when it reports a charge above the authorized amount, and every read of that receipt derives the overcharge flag from the sealed bytes — a non-conforming spend becomes proof, not a quiet pass. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
       </div></details>
       <details class="more"><summary>What I built in the integrations</summary><div class="in">
-        <p>I personally designed and implemented the six framework packages — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), and Composio (23) — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
+        <p>I personally designed and implemented the six framework packages — Dify, CrewAI, LangChain, Vercel AI SDK, n8n and Composio — each live-tested end-to-end against the production service, with the approval loop verified on the server side, not just in the client.</p>
       </div></details>
       <p style="margin-top:16px"><b>Paper</b> — the design is written up in <a href="https://sealgraf.com/paper">&ldquo;Approval You Can Verify: Owner-Approved Agent Spending with Sealed Evidence&rdquo; (v1.1)</a> — full text and PDF at sealgraf.com/paper.</p>
     </div>
@@ -725,7 +723,7 @@
         <div class="fact"><div class="lbl">Problem</div><p>EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end; 44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
       </div>
       <a class="btn" href="https://doorway-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -736,7 +734,7 @@
         <div class="fact"><div class="lbl">Problem</div><p>Agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the core example — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the core example — the title change recalled across sessions, with the change itself directly answerable — and automated tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
       </div>
       <p><b>The core example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
       <pre class="snippet">git clone https://github.com/saiarung27/reify.git
@@ -760,7 +758,7 @@ make demo      <span class="c"># runs the core example end to end, no AI key</sp
         <div class="fact"><div class="lbl">Problem</div><p>Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo on sample data, 58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo on sample data; in the test set, no labeled scam listing ever reaches VERIFIED.</p></div>
       </div>
       <a class="btn" href="https://listproof-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -773,33 +771,33 @@ make demo      <span class="c"># runs the core example end to end, no AI key</sp
     <div class="arch">
       <article class="card reveal">
         <h3>Dossier</h3><p class="sector">Short-term rentals &amp; travel</p>
-        <p>Helps travelers recover money when a short-term rental goes wrong: saves booking evidence, flags suspicious payment requests, and files claims on time with the guest's approval.</p>
-        <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a><span class="chip t">33 tests</span></div>
+        <p>For travelers when a vacation rental goes wrong: keeps proof of the booking, warns about payment scams, and files refund claims on time, only with your OK.</p>
+        <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a></div>
       </article>
       <article class="card reveal">
         <h3>Reclaim</h3><p class="sector">Consumer banking &amp; rewards</p>
-        <p>Explains why a bank or rewards claim was denied, citing the rule behind it, and tracks consumer-protection dispute deadlines in code. It never stores bank passwords.</p>
-        <div class="foot"><a href="https://reclaim-live.onrender.com">Live demo →</a><span class="chip t">60 tests</span></div>
+        <p>Explains why a bank or rewards claim was turned down, shows the rule behind it, and keeps track of your dispute deadlines. It never asks for your bank password.</p>
+        <div class="foot"><a href="https://reclaim-live.onrender.com">Live demo →</a></div>
       </article>
       <article class="card reveal">
         <h3>Refile</h3><p class="sector">Health plans</p>
-        <p>Explains health-insurance claim denials, calculates appeal deadlines, and files appeals only with the member's approval, tracking each to its outcome.</p>
-        <div class="foot"><a href="https://refile-live.onrender.com">Live demo →</a><span class="chip t">60 tests</span></div>
+        <p>Explains why a health-insurance claim was denied, works out the appeal deadlines, and files the appeal only with your approval.</p>
+        <div class="foot"><a href="https://refile-live.onrender.com">Live demo →</a></div>
       </article>
       <article class="card reveal">
-        <h3>Destorm</h3><p class="sector">Observability &amp; on-call</p>
-        <p>Groups a flood of monitoring alerts into one incident, suggests fixes only from cited runbooks, and acts only with the on-call engineer's approval.</p>
-        <div class="foot"><a href="https://destorm-live.onrender.com">Live demo →</a><span class="chip t">48 tests</span></div>
+        <h3>Destorm</h3><p class="sector">On-call engineering</p>
+        <p>For engineers on call: turns a flood of system alerts into one clear problem, suggests fixes from the team's own guides, and acts only with the engineer's approval.</p>
+        <div class="foot"><a href="https://destorm-live.onrender.com">Live demo →</a></div>
       </article>
       <article class="card reveal">
         <h3>ModSeal</h3><p class="sector">Online communities</p>
-        <p>Suggests moderation actions that cite the exact community rule, flags cases no rule covers for a person to decide, and keeps a record the affected author can appeal.</p>
-        <div class="foot"><a href="https://modseal-live.onrender.com">Live demo →</a><span class="chip t">28 tests</span></div>
+        <p>For online community moderators: suggests what to do with each flagged post and which rule applies, leaves unclear cases to a person, and keeps a record the poster can appeal.</p>
+        <div class="foot"><a href="https://modseal-live.onrender.com">Live demo →</a></div>
       </article>
       <article class="card reveal" style="grid-column:1/-1">
-        <h3>AgentFoundry</h3><p class="sector">Assurance for AI agents</p>
-        <p>Tests and monitors AI agents before they act: financial guardrails, compliance and behavior checks, and a proxy that can allow, warn or block an agent's action.</p>
-        <div class="foot"><span class="na">Walkthrough on request</span><span class="chip t">~195 tests</span></div>
+        <h3>AgentFoundry</h3><p class="sector">Safety testing for AI assistants</p>
+        <p>Tests AI assistants before they're trusted with real work: checks their spending, rule-following and behavior, and can block an action before it happens.</p>
+        <div class="foot"><span class="na">Walkthrough on request</span></div>
       </article>
     </div>
   </section>
