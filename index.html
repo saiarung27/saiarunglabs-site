@@ -257,6 +257,8 @@
   details.more[open] summary::before{content:"−"}
   details.more .in{padding:0 18px 6px}
   .diagram{margin:6px 0 18px;overflow-x:auto}
+  .swipe{display:none;color:var(--muted);font-size:13px;margin:0 0 6px}
+  @media (max-width:760px){.swipe{display:block}}
   .diagram svg{width:100%;min-width:640px;height:auto;display:block}
   pre.snippet{background:#080a0f;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--mono);font-size:13px;overflow-x:auto;margin:10px 0 16px;color:var(--text)}
   pre.snippet .c{color:var(--dim)}
@@ -376,9 +378,8 @@
         <div class="avail">Senior Software Engineer · Lowe's<span class="loc"> · Harrisburg, NC</span></div>
         <div class="avail open"><span class="pulse" aria-hidden="true"></span>Open to Lead · Staff · Principal roles</div>
       </div>
-      <p class="kicker">Senior Software Engineer · Lead Developer</p>
       <h1>I build the frontend platforms <span class="grad">checkout runs on.</span></h1>
-      <p class="who"><b>Sai Arun Gunuganti</b>, Lead Developer at Lowe's. I built the checkout micro-frontend 20+ teams use, and the test automation that checks releases in Stage and UAT before production.</p>
+      <p class="who"><b>I'm Sai Arun Gunuganti.</b> At Lowe's, I built the checkout micro-frontend 20+ teams use, and the test automation that checks releases in Stage and UAT before production.</p>
       <p class="thesis">Outside work, I build AI-agent products where <b>the rules live in code</b> and <b>a person approves</b> anything that matters. <a href="#work">See the products</a>.</p>
       <div class="ctas">
         <a class="btn primary" href="resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download résumé (PDF)</a>
@@ -466,17 +467,12 @@
       <div>
         <p class="eyebrow reveal">// what I build outside work</p>
         <h2 class="reveal">Guardrails for the <span class="grad">agent era.</span></h2>
-        <p class="thesis reveal">My AI-agent products share one design: <b>rules in code</b> decide money, eligibility, deadlines and safety, never a model; <b>a person approves</b> every consequential step; and every action leaves a <b>tamper-proof record</b>. JobProof and GiveTake bring the same discipline to products without an agent: rules in code, and no claims the product can't back up.</p>
+        <p class="thesis reveal">In my AI products, <b>fixed rules</b> decide anything involving money, deadlines or safety, not the AI. <b>A person approves</b> every important step, and every action leaves a <b>record nobody can change</b>. JobProof and GiveTake follow the same idea without an AI: clear rules, and no promises the product can't keep.</p>
       </div>
     <div class="term" role="img" aria-label="Animated illustration: an agent proposes a purchase, rules in code check it, a person approves when it goes over the approval limit, it executes, and a tamper-proof record is saved.">
       <div class="termbar"><i></i><i></i><i></i><span>agent loop — record</span><em>illustrative · runs in your browser</em></div>
       <div class="termbody" id="termbody" aria-hidden="true"></div>
     </div>
-    </div>
-    <div class="stats small reveal" aria-label="Products at a glance">
-      <div class="stat"><div class="n"><span data-count="2">2</span><small> + </small><span data-count="7">7</span></div><div class="l">live products + live public demos</div></div>
-      <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
-      <div class="stat"><div class="n" data-count="1">1</div><div class="l">technical paper published on Sealgraf's design</div></div>
     </div>
     <h3 class="subhead reveal">Six featured products.</h3>
     <p class="sub reveal">Two live products, a mobile app in development, two live demos and an open-source engine. More in the <a href="#archive">archive</a>.</p>
@@ -513,7 +509,7 @@
 
     <div class="play reveal">
       <div class="panel">
-        <h3>1 · The owner's mandate</h3>
+        <h3>1 · The owner's limits</h3>
         <p class="hint">Set in advance by the human, enforced in code: never decided by a model.</p>
         <div class="mandate">
           <div><b>$100</b><span>needs approval above</span></div>
@@ -567,7 +563,7 @@
     </div>
 
     <div class="spinecopy reveal">
-      <p>The same loop runs in each of my agent products: an agent proposes, rules in code check it, a person approves anything consequential, it executes, and a tamper-proof record keeps what happened. Shared building blocks: a state machine that limits which tools an agent can use at each step, an append-only hash-chained ledger, and answers that must cite a source or decline.</p>
+      <p>Every one of my AI products works this way: the AI suggests, fixed rules check it, a person approves anything important, and a record that can't be changed keeps what happened. The AI only gets the tools it needs for each step, and it has to show its source or say it doesn't know.</p>
     </div>
   </section>
 
@@ -582,7 +578,7 @@
           <p class="sector">Home services · refunds for bad leads</p>
           <p class="prob">The problem: contractors pay Angi for customer leads, and many turn out to be junk: wrong numbers, wrong area, duplicates. Angi refunds many of them as credit, but only if you ask in time and in the right way.</p>
           <p>JobProof keeps track of every lead, tells the contractor which ones qualify for a refund and by when, and writes the refund request for them to send.</p>
-          <p class="focus">I took it from an early prototype to a working product people can sign up for. It follows Angi's published refund rules, which we're confirming with early users.</p>
+          <p class="focus">I took it from an early prototype to a working product people can sign up for. It follows Angi's published refund rules, which I'm confirming with early users.</p>
           <div class="chips"><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
           <div class="proof">
             <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
@@ -676,12 +672,13 @@
     <div class="case" id="case-sealgraf" role="tabpanel" aria-labelledby="tab-sealgraf">
       <h3>Sealgraf — case study</h3>
       <div class="facts">
-        <div class="fact"><div class="lbl">Problem</div><p>An agent holding connected payment tools can spend first and explain later: no pre-spend check runs against limits the owner set, any approval happens on a surface the agent controls, and afterwards nothing proves what was approved, by whom, and why.</p></div>
-        <div class="fact"><div class="lbl">My role</div><p>I designed and built the authorization layer and the integration packages for six agent frameworks.</p></div>
-        <div class="fact"><div class="lbl">Hardest decision</div><p>Approval has to happen on a surface the agent cannot fake: the owner approves on a separate channel, and the agent only ever learns the outcome.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p></div>
+        <div class="fact"><div class="lbl">Problem</div><p>An AI assistant that can pay for things can spend first and explain later. Nothing checks the owner's limits before it spends, the approval screen is one the AI controls, and afterwards there's no proof of who approved what.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I designed and built the checking service and the connectors for six popular AI-assistant tools.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>The AI must not be able to fake an approval, so the owner approves somewhere the AI can't reach, and the AI only hears yes or no.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live product at sealgraf.com. Automated tests against the live service check that a changed purchase is never covered by an earlier approval, an expired or used approval can't be reused, and one approval can't produce two receipts.</p></div>
       </div>
-      <p><b>Architecture</b> — five pieces, one direction of trust: the agent proposes, Sealgraf checks, the owner decides on their own surface, execution happens on any payment rail, and the receipt store seals the evidence.</p>
+      <p><b>How it fits together</b>: the AI asks, Sealgraf checks the limits, the owner decides on their own device, the purchase goes through any payment method, and a locked receipt is saved.</p>
+      <p class="swipe" aria-hidden="true">Swipe to see the full flow →</p>
       <div class="diagram"><svg viewBox="0 0 960 96" role="img" aria-label="Sealgraf flow: an AI agent proposes a spend, Sealgraf checks it against the mandate and limits, the owner approves on their own surface, execution happens on any payment rail, and the receipt is sealed">
 <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#f5c542"/></marker></defs>
 <g font-family="Inter,system-ui,sans-serif">
@@ -720,10 +717,10 @@
     <div class="case" id="case-doorway" role="tabpanel" aria-labelledby="tab-doorway">
       <h3>Doorway — case study</h3>
       <div class="facts">
-        <div class="fact"><div class="lbl">Problem</div><p>EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p></div>
-        <div class="fact"><div class="lbl">My role</div><p>I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p></div>
-        <div class="fact"><div class="lbl">Hardest decision</div><p>No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
+        <div class="fact"><div class="lbl">Problem</div><p>Only 3–8% of employees use their free counseling benefit. People drop off before they get help: they can't find the benefit, aren't sure they're covered, don't know why they were matched with a counselor, and hit session limits nobody told them about.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built the whole journey: checking coverage, explaining the benefit with links to the source, counselor matching the employee can adjust, booking only after they confirm, and an accurate count of sessions left.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>The app never gives medical advice. Anyone in crisis is sent to a person (the 988 hotline) first, and coverage, cost and safety are decided by fixed rules. Employers only see totals for groups of 25 or more; there is no way to look up one employee.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>A live demo of the full journey, from "I need help" to a booked session, with the employer view showing totals only.</p></div>
       </div>
       <a class="btn" href="https://doorway-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -731,12 +728,12 @@
     <div class="case" id="case-reify" role="tabpanel" aria-labelledby="tab-reify">
       <h3>Reify — case study</h3>
       <div class="facts">
-        <div class="fact"><div class="lbl">Problem</div><p>Agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p></div>
-        <div class="fact"><div class="lbl">My role</div><p>I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p></div>
-        <div class="fact"><div class="lbl">Hardest decision</div><p>Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the core example — the title change recalled across sessions, with the change itself directly answerable — and automated tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
+        <div class="fact"><div class="lbl">Problem</div><p>Most AI memory tools only keep the latest facts and make the AI piece things together every time you ask. None of them store the change itself, so "what changed?" has no direct answer.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built a memory engine that runs on your own computer. It saves each change as its own record, with when it happened, and works with AI tools through standard connectors.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Let the memory do the thinking when something is saved, not every time it's asked, and let old memories expire by default, so it can explain what it knows and forget what it should.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Open source at github.com/saiarung27/reify. One command runs the example below on your machine, and automated tests cover how changes are stored, found and served.</p></div>
       </div>
-      <p><b>The core example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
+      <p><b>The core example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the saved change instead of guessing.</p>
       <pre class="snippet">git clone https://github.com/saiarung27/reify.git
 cd reify
 make install   <span class="c"># creates .venv, installs reify + dev extras</span>
@@ -755,10 +752,10 @@ make demo      <span class="c"># runs the core example end to end, no AI key</sp
     <div class="case" id="case-listproof" role="tabpanel" aria-labelledby="tab-listproof">
       <h3>ListProof — case study</h3>
       <div class="facts">
-        <div class="fact"><div class="lbl">Problem</div><p>Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p></div>
-        <div class="fact"><div class="lbl">My role</div><p>I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p></div>
-        <div class="fact"><div class="lbl">Hardest decision</div><p>Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo on sample data; in the test set, no labeled scam listing ever reaches VERIFIED.</p></div>
+        <div class="fact"><div class="lbl">Problem</div><p>Finding rentals is easy. What goes wrong comes after: wrong details nobody can fix, copied scam listings, background-check mistakes and fees nobody lists up front.</p></div>
+        <div class="fact"><div class="lbl">My role</div><p>I built the listing checks (does the owner match public records, are the photos stolen, is the price realistic), a fee tracker that won't let you go over budget, and tracking for corrections.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Never call a listing "safe." If the owner doesn't match public records, it says "can't verify," not "fraud," and a fix only counts once a new check confirms it.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>A live demo on sample listings. In testing, no known scam listing was ever marked Verified.</p></div>
       </div>
       <a class="btn" href="https://listproof-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
