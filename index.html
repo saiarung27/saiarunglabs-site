@@ -333,6 +333,14 @@
   .chip.proto{border-color:rgba(245,197,66,.5);color:var(--accent);background:rgba(245,197,66,.08)}
   .phonecard .chip.proto{white-space:normal}
   @media (max-width:860px){.card.phonecard{grid-template-columns:1fr}.phone{max-width:240px;margin-bottom:12px}}
+
+  .stats.three{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:760px){.stats.three{grid-template-columns:1fr}.stats.three .stat{border-right:none;border-bottom:1px solid var(--line)}.stats.three .stat:last-child{border-bottom:none}}
+  .midcta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:22px;padding:18px 22px;
+    border:1px solid rgba(245,197,66,.4);border-radius:var(--radius);background:linear-gradient(90deg,rgba(245,197,66,.08),transparent)}
+  .midcta p{margin:0;font-size:16px}
+  .grid > #spine{grid-column:1/-1;padding:6px 0 10px}
+  .grid > #spine .subhead{margin-top:0}
 </style>
 </head>
 <body>
@@ -370,8 +378,8 @@
       </div>
       <p class="kicker">Senior Software Engineer · Lead Developer</p>
       <h1>I build the frontend platforms <span class="grad">checkout runs on.</span></h1>
-      <p class="who"><b>Sai Arun Gunuganti</b> — Lead Developer for a team of five at Lowe's. I built the checkout-critical Customer Lookup micro-frontend that 20+ teams integrate into their own applications, and the end-to-end test automation that tests changes in Stage, then UAT, before they ship to production.</p>
-      <p class="thesis">Outside work I build agentic products with the same discipline: <b>rules in code</b>, <b>human approval</b> at consequential steps, and a <b>sealed receipt</b> for everything. <a href="#work">See the products</a>.</p>
+      <p class="who"><b>Sai Arun Gunuganti</b>, Lead Developer at Lowe's. I built the checkout micro-frontend 20+ teams use, and the test automation that checks releases in Stage and UAT before production.</p>
+      <p class="thesis">Outside work, I build AI-agent products where <b>the rules live in code</b> and <b>a person approves</b> anything that matters. <a href="#work">See the products</a>.</p>
       <div class="ctas">
         <a class="btn primary" href="resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download résumé (PDF)</a>
         <a class="btn" href="#lowes">My work at Lowe's <span class="arrow" aria-hidden="true">→</span></a>
@@ -414,29 +422,29 @@
     </figure>
   </header>
 
-  <div class="stats reveal" aria-label="At a glance">
+  <div class="stats three reveal" aria-label="At a glance">
     <div class="stat"><div class="n" data-count="20" data-suffix="+">20+</div><div class="l">Lowe's teams integrate the Customer Lookup micro-frontend I built</div></div>
-    <div class="stat"><div class="n" data-count="5">5</div><div class="l">engineers I lead as Lead Developer (3 onshore, 2 offshore)</div></div>
+    <div class="stat"><div class="n" data-count="5">5</div><div class="l">engineers I lead across two locations</div></div>
     <div class="stat"><div class="n" data-count="10" data-suffix="+">10+</div><div class="l">years building large-scale web platforms</div></div>
-    <div class="stat"><div class="n" data-count="25">25</div><div class="l">repositories I've contributed to at Lowe's since 2022</div></div>
   </div>
 
   <section id="lowes">
     <p class="eyebrow reveal">// work at Lowe's</p>
     <h2 class="reveal">Checkout platforms for Lowe's stores.</h2>
-    <p class="sub reveal">At Lowe's I'm a Senior Software Engineer serving as Lead Developer for a team of five engineers, and I own the checkout-critical Customer Lookup micro-frontend, integrated by 20+ Lowe's teams into their own applications. <span class="ctx">Company context: Lowe's serves ~16M customer transactions a week across 1,700+ stores — that is the scale of the platform my team ships into, stated as context, not as a personal metric.</span></p>
+    <p class="sub reveal">I'm a Senior Software Engineer and Lead Developer on in-store checkout. <span class="ctx">For scale: Lowe's handles about 16 million customer transactions a week across 1,700+ stores.</span></p>
     <div class="jobgrid">
-      <article class="card jobcard reveal hl"><h3>Customer Lookup micro-frontend</h3><p>Built from scratch and integrated by 20+ teams into their own applications. It handles customer profiles, saved quotes and address checks, keeps working when backend services fail, and reports its own performance and errors.</p></article>
-      <article class="card jobcard reveal"><h3>Technical leadership</h3><p>Lead Developer for a team of 5 engineers across two locations and single point of contact for a core area of checkout. I mentor engineers, own code review, and wrote the design docs and integration conventions other teams follow when adopting our work.</p></article>
-      <article class="card jobcard reveal"><h3>Checkout integration</h3><p>Brought several checkout micro-frontends together into one in-store selling experience through shared event contracts, including screens that stay in sync between the store associate and the customer.</p></article>
-      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>Built the end-to-end test automation framework for in-store selling flows, with reusable business-flow building blocks and clear reporting. Changes are tested in Stage, then UAT, before they deploy to production, catching critical checkout failures before they reach stores.</p></article>
-      <article class="card jobcard reveal"><h3>Quality platform</h3><p>Built a platform that looks at each code change, works out which business flows it affects, and proposes the end-to-end tests to run or write, with reviewed promotion into the build pipeline.</p></article>
-      <article class="card jobcard reveal"><h3>Checkout features</h3><p>Delivered customer-facing checkout features across scheduling, delivery options and pricing rules, payment rules and protection plans, working with product and design.</p></article>
-      <article class="card jobcard reveal"><h3>Observability</h3><p>Built shared telemetry tooling for micro-frontends, with privacy and sampling controls built in, so teams can follow a customer journey end to end and spot problems early.</p></article>
-      <article class="card jobcard reveal"><h3>AI and agentic systems</h3><p>Designed an agentic architecture for in-store guided selling, prototyped an AI assistant for store associates, and built a service that checks AI agents' behavior against expected outcomes.</p></article>
-      <article class="card jobcard reveal"><h3>Production ownership</h3><p>First point of contact for production issues and coordinator for releases through change approval, from deployment checks to sign-off. I also keep our dependencies patched and secure.</p></article>
+      <article class="card jobcard reveal hl"><h3>Customer Lookup micro-frontend</h3><p>I built it from scratch; 20+ teams now use it in their own apps. It handles customer profiles, saved quotes and address checks, keeps working when backend services fail, and reports its own performance and errors.</p></article>
+      <article class="card jobcard reveal"><h3>Technical leadership</h3><p>I lead 5 engineers across two locations and am the point of contact for a core area of checkout. I mentor, own code review, and wrote the design docs and conventions other teams follow when adopting our work.</p></article>
+      <article class="card jobcard reveal"><h3>Checkout integration</h3><p>I brought several checkout micro-frontends together into one in-store selling experience through shared event contracts, including screens that stay in sync between the store associate and the customer.</p></article>
+      <article class="card jobcard reveal hl"><h3>Test automation</h3><p>I built the end-to-end test automation framework for in-store selling flows, with reusable business-flow building blocks and clear reporting. Changes are tested in Stage, then UAT, before they deploy to production, catching critical checkout failures before they reach stores.</p></article>
+      <article class="card jobcard reveal"><h3>Quality platform</h3><p>I built a platform that looks at each code change, works out which business flows it affects, and proposes the end-to-end tests to run or write, with reviewed promotion into the build pipeline.</p></article>
+      <article class="card jobcard reveal"><h3>Checkout features</h3><p>I delivered customer-facing checkout features across scheduling, delivery options and pricing rules, payment rules and protection plans, working with product and design.</p></article>
+      <article class="card jobcard reveal"><h3>Observability</h3><p>I built shared telemetry tooling for micro-frontends, with privacy and sampling controls built in, so teams can follow a customer journey end to end and spot problems early.</p></article>
+      <article class="card jobcard reveal"><h3>AI and agentic systems</h3><p>I designed an agentic architecture for in-store guided selling, prototyped an AI assistant for store associates, and built a service that checks AI agents' behavior against expected outcomes.</p></article>
+      <article class="card jobcard reveal"><h3>Production ownership</h3><p>I'm the first point of contact for production issues and coordinate releases through change approval, from deployment checks to sign-off. I also keep our dependencies patched and secure.</p></article>
     </div>
     <div class="tags reveal"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Micro-frontends</span><span class="chip">End-to-end testing</span><span class="chip">Observability</span><span class="chip">Python</span><span class="chip">AI agents</span></div>
+    <div class="midcta reveal"><p><b>Hiring for a Lead, Staff or Principal frontend role?</b> I'd like to hear about it.</p><div class="ctas"><a class="btn primary" href="mailto:saiarung27@gmail.com">Email me</a><a class="btn" href="resume.pdf" download>Résumé (PDF)</a></div></div>
   </section>
 
   <section id="career">
@@ -458,34 +466,34 @@
       <div>
         <p class="eyebrow reveal">// what I build outside work</p>
         <h2 class="reveal">Guardrails for the <span class="grad">agent era.</span></h2>
-        <p class="thesis reveal">Every product here runs on one spine: <b>rules in code</b> for money, eligibility, deadlines and safety — never decided by a model; <b>human approval</b> at every consequential step; and a <b>sealed, verifiable receipt</b> for everything the agent did.</p>
+        <p class="thesis reveal">My AI-agent products share one design: <b>rules in code</b> decide money, eligibility, deadlines and safety, never a model; <b>a person approves</b> every consequential step; and every action leaves a <b>tamper-proof record</b>. JobProof and GiveTake bring the same discipline to products without an agent: rules in code, and no claims the product can't back up.</p>
       </div>
-    <div class="term" role="img" aria-label="Animated illustration of the spine: an agent proposes a purchase, rules in code check it, a human approves when it crosses the ask line, it executes, and a hash-chained receipt is sealed.">
-      <div class="termbar"><i></i><i></i><i></i><span>spine — ledger</span><em>illustrative · runs in your browser</em></div>
+    <div class="term" role="img" aria-label="Animated illustration: an agent proposes a purchase, rules in code check it, a person approves when it goes over the approval limit, it executes, and a tamper-proof record is saved.">
+      <div class="termbar"><i></i><i></i><i></i><span>agent loop — record</span><em>illustrative · runs in your browser</em></div>
       <div class="termbody" id="termbody" aria-hidden="true"></div>
     </div>
     </div>
     <div class="stats small reveal" aria-label="Products at a glance">
       <div class="stat"><div class="n"><span data-count="2">2</span><small> + </small><span data-count="7">7</span></div><div class="l">live products + live public demos</div></div>
       <div class="stat"><div class="n" data-count="6">6</div><div class="l">agent-framework integrations for Sealgraf, live-tested end-to-end</div></div>
-      <div class="stat"><div class="n" data-count="378">378</div><div class="l">tests across eight sector products, all passing</div></div>
+      <div class="stat"><div class="n" data-count="2000" data-suffix="+">2,000+</div><div class="l">tests passing in Sealgraf's core engine</div></div>
     </div>
-    <h3 class="subhead reveal">Six products. One spine.</h3>
-    <p class="sub reveal">Six featured projects — two live products, a mobile app in development, two live demos, and an open-source engine. Each was built from full-sector problem research: the sector's major providers, not one company's complaint list. The rest are in the <a href="#archive">project archive</a>.</p>
+    <h3 class="subhead reveal">Six featured products.</h3>
+    <p class="sub reveal">Two live products, a mobile app in development, two live demos and an open-source engine. More in the <a href="#archive">archive</a>.</p>
     <div class="grid">
 
       <article class="card wide reveal">
         <div class="media">
           <div class="browser"><div class="bar"><i></i><i></i><i></i><span>sealgraf.com</span></div>
             <div class="imgwrap"><img src="img/sealgraf.webp" width="1120" height="700" alt="Sealgraf live product — Your agents spend. You set the limits."></div></div>
-          <p class="demonote">What you'll see in the product: set limits for an agent, watch a proposed purchase get checked against them, approve or deny it from your own surface, and open the sealed receipt. This is the live product, not a synthetic demo.</p>
+          <p class="demonote">Set limits for an agent, watch a purchase get checked, approve or deny it, and open the tamper-proof record. This is the live product.</p>
         </div>
         <div>
           <div class="cardhead"><h3>Sealgraf</h3><span class="chip live">Live product</span></div>
           <p class="sector">Spend authorization for AI agents</p>
-          <p class="prob">The problem: an agent holding connected payment tools can spend first and explain later. No pre-spend check runs against limits the owner set, any approval happens on a surface the agent itself controls, and afterwards nothing proves what was approved, by whom, and why.</p>
-          <p>Sealgraf is the authorization layer: the agent checks owner-set limits before spending, obtains the owner's approval on a surface the agent cannot fake, and seals a verifiable receipt for every transaction.</p>
-          <p class="focus">My focus here: authorization design, approval enforcement, and failure handling. I designed and built the authorization layer and the integration packages for six agent frameworks — Dify (77 tests), CrewAI (64), LangChain (55), Vercel AI SDK (49), n8n (34), Composio (23) — each live-tested end-to-end with server-verified approval loops.</p>
+          <p class="prob">The problem: AI agents with payment access can spend first and explain later, with no limits checked up front and no proof of who approved what.</p>
+          <p>Sealgraf checks every agent purchase against limits the owner sets, gets the owner's approval on a screen the agent can't fake, and keeps a verifiable record of each transaction.</p>
+          <p class="focus">I designed and built the authorization layer and integrations for six agent frameworks, each tested end to end against the live service.</p>
           <div class="chips">
             <span class="chip t">Dify · 77</span><span class="chip t">CrewAI · 64</span><span class="chip t">LangChain · 55</span><span class="chip t">Vercel AI SDK · 49</span><span class="chip t">n8n · 34</span><span class="chip t">Composio · 23</span>
             <span class="chip">Technical paper published</span>
@@ -498,109 +506,17 @@
         </div>
       </article>
 
-      <article class="card wide flip reveal">
-        <div class="media">
-          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>jobproof-live.onrender.com</span></div>
-            <div class="imgwrap"><img src="img/jobproof.webp" width="1120" height="700" loading="lazy" alt="JobProof live product — Stop paying for bad Angi leads"></div></div>
-          <p class="demonote">What you'll see: a free credit checker that needs no sign-up (paste a lead, tap what happened, get the verdict, the deadline and a ready-to-paste request), then the full tracker, free during early access. This is the live product, not a synthetic demo.</p>
-        </div>
-        <div>
-          <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · free early access</span></div>
-          <p class="sector">Home services · Angi lead credits</p>
-          <p class="prob">The problem: contractors pay for Angi leads that turn out to be disconnected numbers, out-of-area jobs or duplicates. Many qualify for a credit, but only with a call inside 24 hours, a request inside 30 days, and the right reason.</p>
-          <p>Credit tracker for contractors who buy Angi leads. Every lead is checked against Angi's published credit rules as they stood on the charge date, with the 24-hour call rule and the 30-day request deadline tracked in code. JobProof drafts each credit request for the pro to submit and tracks credits to their six-month expiry. It never logs in to Angi.</p>
-          <p class="focus">Grown from the sandbox prototype into a production app: FastAPI and SQLite, hashed sessions, a tamper-evident activity log, a free no-sign-up credit checker and reminder emails. Its rules are labeled as not yet verified in a live Angi account.</p>
-          <div class="chips"><span class="chip t">61 tests</span><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
-          <div class="proof">
-            <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn" href="https://jobproof-live.onrender.com/check">Free credit checker</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card wide phonecard reveal">
-        <div class="media">
-          <div class="phone"><img src="img/givetake.webp" width="520" height="1125" loading="lazy" alt="GiveTake mobile app: nearby listings marked lister-declared, with Explore, Agent, Requests, List and You tabs"></div>
-        </div>
-        <div>
-          <div class="cardhead"><h3>GiveTake</h3><span class="chip proto">In development · iOS · Android · web</span></div>
-          <p class="sector">Peer-to-peer barter · consumer mobile</p>
-          <p class="prob">The problem: people want to swap things instead of buying new, but barter apps overpromise, with "verified" badges that prove nothing, escrow they don't really hold, and no safe way to ship between strangers.</p>
-          <p>A mobile barter app for exact, person-to-person swaps: list what you have, discover nearby items, propose a swap, and ship both sides with tracked USPS labels and a sender-paid Stripe authorization. Every listing says what it is, "lister-declared" facts, never an authenticity or safety guarantee.</p>
-          <p class="focus">Built end to end: React and Capacitor apps for iOS and Android; an Express and PostgreSQL backend with 51 migrations and rotated sessions; human-reviewed safety reports and appeals; product-recall screening; detection of photos reused across accounts; background workers and database restore drills. Shipping and payments stay switched off until the providers are configured.</p>
-          <div class="chips"><span class="chip t">1,427 test assertions</span><span class="chip">React · Capacitor</span><span class="chip">Node · PostgreSQL</span></div>
-          <p class="demonote">No public demo yet. The screenshot is from a local build with sample listings. Walkthrough and source on request.</p>
-          <div class="proof">
-            <a class="btn" href="mailto:saiarung27@gmail.com?subject=GiveTake%20walkthrough">Ask for a walkthrough</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <div class="cardhead"><h3>Doorway</h3><span class="chip live">Live demo</span></div>
-        <p class="sector">Workplace mental health · EAP access</p>
-        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>doorway-live.onrender.com</span></div>
-          <div class="imgwrap"><img src="img/doorway.webp" width="1120" height="700" loading="lazy" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view"></div></div>
-        <p class="prob">EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p>
-        <p>An agentic front door that completes the journey — eligibility verified without hard denials, the benefit explained with citations, steerable matching with shown reasoning, booking behind approval gates, session balance tracked from a ledger, and a member-visible privacy ledger.</p>
-        <p class="focus">The emphasis here is workflow orchestration, product experience, and privacy boundaries enforced as rules. I built the full journey — state-machine orchestrator, rules engine, and hash-chained ledger — with no model anywhere near eligibility, cost, or safety decisions.</p>
-        <div class="chips"><span class="chip t">44/44 tests</span><span class="chip">Provisional name</span></div>
-        <p class="demonote">What you'll do in the demo: sign in as a synthetic member, check eligibility, read a benefit answer with its citation, get matched with the reasoning shown, and approve a booking — then see the employer view, which shows aggregates only. Runs on synthetic data: no real members, benefits, or bookings.</p>
-        <div class="proof">
-          <a class="btn primary" href="https://doorway-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="#case-doorway" data-case="doorway">Case study</a>
-        </div>
-      </article>
-
-      <article class="card reveal">
-        <div class="cardhead"><h3>Reify</h3><span class="chip">Open source</span></div>
-        <p class="sector">Memory engine for AI agents · Open source</p>
-        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>github.com/saiarung27/reify</span></div>
-          <div class="imgwrap"><img src="img/reify.webp" width="1120" height="700" loading="lazy" alt="Reify on GitHub — local-first memory engine for AI agents"></div></div>
-        <p>A local-first memory engine built around its data model: SQLite + sqlite-vec storage, a bitemporal graph of events with transitions as first-class data, hybrid retrieval, MCP / REST / OpenAI-compatible proxy / CLI surfaces, and forget-by-default TTLs — memory that can explain and expire itself.</p>
-        <p class="focus">The emphasis here is data modeling, retrieval architecture, developer interfaces, and evaluation. I built it local-first and model-portable: any AI model plugs in via MCP, REST, an OpenAI-compatible proxy, or the CLI, and the memory layer keeps its facts current as new evidence arrives — a changed fact is stored as a transition, never overwritten. Deriving new claims across sessions is a roadmap item, labelled as such in the case study. An open evaluation harness runs in CI; its results and stated limits live in the repo's Status section.</p>
-        <div class="chips"><span class="chip t">442 tests</span><span class="chip">Python</span><span class="chip">Pre-alpha</span></div>
-        <p class="demonote">No live demo — Reify is source-only. What to try: clone the repo and run <b>make demo</b>; it replays the promotion example from the case study end-to-end, with no LLM key. Open source, pre-alpha.</p>
-        <div class="proof">
-          <a class="btn primary" href="https://github.com/saiarung27/reify">Source · 442 tests <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="#case-reify" data-case="reify">Case study</a>
-        </div>
-      </article>
-
-      <article class="card wide flip reveal">
-        <div class="media">
-          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>listproof-live.onrender.com</span></div>
-            <div class="imgwrap"><img src="img/listproof.webp" width="1120" height="700" loading="lazy" alt="ListProof live demo — verify a listing before you pay anything"></div></div>
-          <p class="demonote">What you'll do in the demo: pick a listing and watch it get verified — ownership, photo provenance, price vs market — with the evidence shown and a VERIFIED / UNVERIFIABLE / RED FLAGS verdict. It never prints "safe." Runs on synthetic listings.</p>
-        </div>
-        <div>
-          <div class="cardhead"><h3>ListProof</h3><span class="chip live">Live demo</span></div>
-          <p class="sector">Real-estate portals &amp; rentals</p>
-          <p class="prob">The search is the easy part; what follows is where renters get hurt — wrong data with no correction path, scraped scam listings, screening errors, and fees on invisible rails.</p>
-          <p>The seeker's verification agent: any listing verified <i>with a receipt</i> — ownership cross-checks, photo provenance, price-vs-market — with verdicts of VERIFIED / UNVERIFIABLE / RED FLAGS and the evidence shown. It never prints "safe." Portable application profile, a fee ledger, and a hard budget gate where any change invalidates the approval.</p>
-          <p class="focus">The emphasis here is evidence handling, verification logic, uncertainty presentation, and approval invalidation: I built the verification pipeline, the fee ledger with its budget gate — any fee change invalidates the approval — and the correction tracker that closes only on independent re-verification. Live demo on synthetic data — 58/58 tests.</p>
-          <div class="chips"><span class="chip t">58/58 tests</span><span class="chip">Working label</span></div>
-          <div class="proof">
-            <a class="btn primary" href="https://listproof-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
-            <a class="btn ghost" href="#case-listproof" data-case="listproof">Case study</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
   <section id="spine">
-    <p class="eyebrow reveal">// the shared spine</p>
-    <h2 class="reveal">Try the loop yourself.</h2>
-    <p class="sub reveal">One platform, every product above. Propose a purchase below and watch it go through rules in code, an approval gate, execution, and a hash-chained receipt. Then try changing the amount after approval.</p>
+    <p class="eyebrow reveal">// try Sealgraf's idea</p>
+    <h3 class="subhead reveal">Try the approval loop yourself.</h3>
+    <p class="sub reveal">Propose a purchase and watch it go through the owner's limits, an approval step and a tamper-proof record. Then try changing the amount after it's approved.</p>
 
     <div class="play reveal">
       <div class="panel">
         <h3>1 · The owner's mandate</h3>
         <p class="hint">Set in advance by the human, enforced in code: never decided by a model.</p>
         <div class="mandate">
-          <div><b>$100</b><span>ask line</span></div>
+          <div><b>$100</b><span>needs approval above</span></div>
           <div><b>$500</b><span>per-purchase cap</span></div>
           <div><b>$1,000</b><span>period cap</span></div>
         </div>
@@ -627,8 +543,8 @@
       </div>
 
       <div class="panel" aria-live="polite">
-        <h3>3 · The spine</h3>
-        <p class="hint">propose → approve → execute → sealed receipt</p>
+        <h3>3 · What happens</h3>
+        <p class="hint">propose → check → approve → execute → record</p>
         <div class="pipe" id="pipe">
           <div class="fill" id="pfill"></div>
           <div class="node" data-n="0"><div class="dot">01</div>Propose</div>
@@ -639,7 +555,7 @@
         </div>
         <div class="status" id="status"><span class="c-dim">Waiting for the agent to propose a purchase…</span></div>
         <div class="approval" id="approval">
-          <p><b class="c-warn">Owner approval required.</b> This is over the ask line. In the real pattern, the owner approves on their own authenticated surface, and the agent only learns the outcome.</p>
+          <p><b class="c-warn">Owner approval required.</b> This is over the approval limit. In the real product the owner approves on their own device, and the agent only learns the result.</p>
           <div class="row" style="margin-top:0">
             <button class="btn primary" id="approve">Approve</button>
             <button class="btn" id="deny">Deny</button>
@@ -651,15 +567,106 @@
     </div>
 
     <div class="spinecopy reveal">
-      <p>The loop every product runs: an agent proposes an action, rules in code check it, a human approves the consequential step, the action executes, and a sealed receipt records what happened — propose → approve → execute → sealed receipt.</p>
-      <p>State-machine orchestrator with per-state tool allowlists enforced in code · append-only, hash-chained ledger · citation-or-refuse machinery · safety and honesty layers · sandbox-first adapters that degrade honestly where platforms offer no access. 378 tests across the eight sector products, all passing.</p>
+      <p>The same loop runs in each of my agent products: an agent proposes, rules in code check it, a person approves anything consequential, it executes, and a tamper-proof record keeps what happened. Shared building blocks: a state machine that limits which tools an agent can use at each step, an append-only hash-chained ledger, and answers that must cite a source or decline.</p>
+    </div>
+  </section>
+
+      <article class="card wide flip reveal">
+        <div class="media">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>jobproof-live.onrender.com</span></div>
+            <div class="imgwrap"><img src="img/jobproof.webp" width="1120" height="700" loading="lazy" alt="JobProof live product — Stop paying for bad Angi leads"></div></div>
+          <p class="demonote">Paste a lead, tap what happened, and get the verdict, the deadline and a ready-to-paste request, with no sign-up. The full tracker is free during early access.</p>
+        </div>
+        <div>
+          <div class="cardhead"><h3>JobProof</h3><span class="chip live">Live product · free early access</span></div>
+          <p class="sector">Home services · Angi lead credits</p>
+          <p class="prob">The problem: contractors pay for Angi leads that turn out to be wrong numbers, out-of-area jobs or duplicates. Many qualify for a credit, but only if they call within 24 hours and ask within 30 days.</p>
+          <p>JobProof checks each lead against Angi's published credit rules, tracks both deadlines, drafts the credit request for the pro to submit, and tracks credits until they expire. It never logs in to Angi.</p>
+          <p class="focus">I took it from prototype to production app: FastAPI, a tamper-evident activity log, a free checker and reminder emails. Rules follow Angi's published terms; validation with early users is underway.</p>
+          <div class="chips"><span class="chip t">61 tests</span><span class="chip">Python · FastAPI</span><span class="chip">Early access</span></div>
+          <div class="proof">
+            <a class="btn primary" href="https://jobproof-live.onrender.com">Live product <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn" href="https://jobproof-live.onrender.com/check">Free credit checker</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card wide phonecard reveal">
+        <div class="media">
+          <div class="phone"><img src="img/givetake.webp" width="520" height="1125" loading="lazy" alt="GiveTake mobile app: nearby listings marked lister-declared, with Explore, Agent, Requests, List and You tabs"></div>
+        </div>
+        <div>
+          <div class="cardhead"><h3>GiveTake</h3><span class="chip proto">In development · iOS · Android · web</span></div>
+          <p class="sector">Peer-to-peer barter · consumer mobile</p>
+          <p class="prob">The problem: barter apps overpromise, with "verified" badges that prove nothing and no safe way to ship between strangers.</p>
+          <p>GiveTake lets people list what they have, find nearby items, propose a swap and ship both sides with tracked USPS labels. Every listing is honest about what's checked and what isn't.</p>
+          <p class="focus">I built it end to end: iOS and Android apps (React, Capacitor), an Express and PostgreSQL backend, human-reviewed safety reports, product-recall screening and detection of reused photos. Shipping and payments switch on once the providers are set up.</p>
+          <div class="chips"><span class="chip t">1,427 test assertions</span><span class="chip">React · Capacitor</span><span class="chip">Node · PostgreSQL</span></div>
+          <p class="demonote">No public demo yet. The screenshot is from a local build with sample listings.</p>
+          <div class="proof">
+            <a class="btn" href="mailto:saiarung27@gmail.com?subject=GiveTake%20walkthrough">Ask for a walkthrough</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="cardhead"><h3>Doorway</h3><span class="chip live">Live demo</span></div>
+        <p class="sector">Workplace mental health · Employee Assistance Programs</p>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>doorway-live.onrender.com</span></div>
+          <div class="imgwrap"><img src="img/doorway.webp" width="1120" height="700" loading="lazy" alt="Doorway live demo — EAP sign-in and the aggregate-only employer view"></div></div>
+        <p class="prob">The problem: only 3–8% of employees use their Employee Assistance Program (EAP), because people get lost before reaching care: hard-to-find benefits, confusing eligibility and opaque matching.</p>
+        <p>Doorway guides people through the whole journey: it checks eligibility, explains the benefit with sources, matches them with a counselor and shows why, and books only with their approval. Employers only ever see totals.</p>
+        <p class="focus">I built the full journey (state machine, rules engine and tamper-evident ledger) with no AI model deciding eligibility, cost or safety.</p>
+        <div class="chips"><span class="chip t">44 tests</span></div>
+        <p class="demonote">Runs on sample data: sign in as a test member, get matched, approve a booking, then see the employer's totals-only view.</p>
+        <div class="proof">
+          <a class="btn primary" href="https://doorway-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#case-doorway" data-case="doorway">Case study</a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="cardhead"><h3>Reify</h3><span class="chip">Open source</span></div>
+        <p class="sector">Memory for AI agents · Open source</p>
+        <div class="browser"><div class="bar"><i></i><i></i><i></i><span>github.com/saiarung27/reify</span></div>
+          <div class="imgwrap"><img src="img/reify.webp" width="1120" height="700" loading="lazy" alt="Reify on GitHub — local-first memory engine for AI agents"></div></div>
+        <p>Reify gives AI agents a memory that knows what changed and when, not just the latest facts, so "what changed recently?" has a direct answer. It runs locally in one SQLite file and works with any AI model.</p>
+        <p class="focus">I designed the data model and retrieval, and built MCP, REST and command-line interfaces, with an open evaluation harness running in CI.</p>
+        <div class="chips"><span class="chip t">442 tests</span><span class="chip">Python</span><span class="chip">Pre-alpha</span></div>
+        <p class="demonote">Source only, no live demo. Clone it and run <b>make demo</b> to replay the example from the case study; no AI key needed.</p>
+        <div class="proof">
+          <a class="btn primary" href="https://github.com/saiarung27/reify">Source · 442 tests <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#case-reify" data-case="reify">Case study</a>
+        </div>
+      </article>
+
+      <article class="card wide flip reveal">
+        <div class="media">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i><span>listproof-live.onrender.com</span></div>
+            <div class="imgwrap"><img src="img/listproof.webp" width="1120" height="700" loading="lazy" alt="ListProof live demo — verify a listing before you pay anything"></div></div>
+          <p class="demonote">Runs on sample listings: pick one and watch it get checked, with the evidence shown.</p>
+        </div>
+        <div>
+          <div class="cardhead"><h3>ListProof</h3><span class="chip live">Live demo</span></div>
+          <p class="sector">Real-estate portals &amp; rentals</p>
+          <p class="prob">The problem: renters get hurt after the search, by scam listings, wrong data and hidden fees.</p>
+          <p>ListProof checks a listing before you pay: ownership, photo history and price against the market, with the evidence shown and a verdict of Verified, Unverifiable or Red flags. It never calls a listing "safe".</p>
+          <p class="focus">I built the verification pipeline, a fee ledger that stops spending at your budget (any fee change needs re-approval), and correction tracking that closes only after an independent re-check.</p>
+          <div class="chips"><span class="chip t">58 tests</span></div>
+          <div class="proof">
+            <a class="btn primary" href="https://listproof-live.onrender.com">Live demo <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn ghost" href="#case-listproof" data-case="listproof">Case study</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <section id="cases">
     <p class="eyebrow reveal">// case studies</p>
     <h2 class="reveal">How the hard parts got decided.</h2>
-    <p class="sub reveal">Problem, my role, the hardest decision, and the result — for each featured project.</p>
+    <p class="sub reveal">Problem, my role, the hardest decision and the result, for four of the products.</p>
 
     <div class="tabs reveal" role="tablist" aria-label="Case studies">
       <button class="tab" role="tab" id="tab-sealgraf" aria-controls="case-sealgraf" aria-selected="true">Sealgraf</button>
@@ -673,7 +680,7 @@
       <div class="facts">
         <div class="fact"><div class="lbl">Problem</div><p>An agent holding connected payment tools can spend first and explain later: no pre-spend check runs against limits the owner set, any approval happens on a surface the agent controls, and afterwards nothing proves what was approved, by whom, and why.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I designed and built the authorization layer and the integration packages for six agent frameworks.</p></div>
-        <div class="fact"><div class="lbl">Hardest decision</div><p>Approval has to happen on a surface the agent cannot fake: the owner approves out-of-band, and the agent only ever learns the outcome.</p></div>
+        <div class="fact"><div class="lbl">Hardest decision</div><p>Approval has to happen on a surface the agent cannot fake: the owner approves on a separate channel, and the agent only ever learns the outcome.</p></div>
         <div class="fact result"><div class="lbl">Result</div><p>Live product at sealgraf.com. The behaviors the suites and live loops validate: a changed action is not covered by an earlier approval, expired or already-used tokens fail at completion, and no second receipt can be sealed for one authorization.</p></div>
       </div>
       <p><b>Architecture</b> — five pieces, one direction of trust: the agent proposes, Sealgraf checks, the owner decides on their own surface, execution happens on any payment rail, and the receipt store seals the evidence.</p>
@@ -701,7 +708,7 @@
 <text x="872" y="65" text-anchor="middle" font-size="12" fill="#9aa7ba">hash-chained evidence</text>
 </g></svg></div>
       <details class="more"><summary>Walkthrough: from mandate to sealed receipt</summary><div class="in">
-        <p>The owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an ask line above which a human must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the ask line, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the ask line, the owner gets a doorbell (email or push carrying the facts and a link, never controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
+        <p>The owner sets a mandate in advance: scope, a per-purchase cap, a period cap, and an approval limit above which a person must approve. An agent proposes a purchase; Sealgraf canonicalizes the action and hashes it (SHA-256) — the decision, approval, token, and receipt all cite that action hash. A deterministic decide step fires rules in a fixed order: agent identity, mandate active and inside its validity window, scope and per-purchase cap, then period cap. Under the approval limit, the decision allows and a token is minted — and the decision itself is sealed to the ledger before any token exists. Over the approval limit, the owner gets a notification (email or push with the facts and a link, never the controls) and approves on their own authenticated surface; the approval is sealed, then the token is minted. The agent claims the token — claiming is not consumption — pays on any rail, and reports completion. At completion the engine re-validates the token, its expiry, and the mandate's current status and scope, then seals the receipt: one bundle holding the cited mandate version's terms, the action and its hash, the decision, the approval statement when one was needed, and the completion block.</p>
       </div></details>
       <details class="more"><summary>When things change: tampering, expiry, revocation</summary><div class="in">
         <p>The approval token is bound to the hash of the exact action approved, so changing any term of the purchase changes the action hash, and the minted token does not cover the new action. The token is single-use and valid for 15 minutes (900 seconds), and it is stored only as a hash. Enforcement sits before the money moves: the decision is sealed to the ledger before any token exists — if the seal fails, no token is issued and nothing can be spent against the check — and approval re-validates the current mandate version and reservation before anything is minted. Completion is re-validated under the same lock, so a pause, revoke, or tightening that lands between approval and spending means the spend cannot complete as authorized. Nor can the record be laundered: a completion is sealed even when it reports a charge above the authorized amount, and every read of that receipt derives the overcharge flag from the sealed bytes — a non-conforming spend becomes proof, not a quiet pass. A second receipt for one preauthorization cannot be created — a storage-level uniqueness constraint forbids it — and a purchase the owner already denied is denied again on an identical re-check.</p>
@@ -718,7 +725,7 @@
         <div class="fact"><div class="lbl">Problem</div><p>EAP utilization runs 3–8% because the access funnel leaks before care: undiscoverable benefits, eligibility traps, black-box matching, silent session caps.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built the complete journey: eligibility verification, benefit explanations with citations, steerable matching, approval-gated booking, and session balances derived from a sealed ledger.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>No clinical work, ever: crisis signals route to humans (988) before anything else, and eligibility, cost, and safety stay as rules in code. Employers see aggregates only, behind a cohort floor of 25 — a per-member employer view does not exist.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end; 44/44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo running the full journey end-to-end; 44 tests, including a person-path walk and the privacy wall (the per-member employer route returns 404).</p></div>
       </div>
       <a class="btn" href="https://doorway-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -729,20 +736,20 @@
         <div class="fact"><div class="lbl">Problem</div><p>Agent memory systems hand the model top-k clues and make it re-synthesize on every query. Most store only current state; even systems that keep validity windows don't surface the change itself as a queryable artifact — so "what changed?" has no direct answer.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built a local-first memory engine: a bitemporal graph where transitions are first-class data, hybrid retrieval, and MCP / REST / CLI surfaces.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>Make the memory layer itself the reasoner — reconsolidation on write and materialized inferences — instead of retrieval-time-only synthesis; and forget-by-default TTLs, so memory can explain and expire itself.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the wedge — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Open source, at github.com/saiarung27/reify. <i>make demo</i> reproduces the core example — the title change recalled across sessions, with the change itself directly answerable — and 442 tests cover the transition graph, the retrieval pipeline, and the MCP / REST / proxy surfaces.</p></div>
       </div>
-      <p><b>The wedge example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
+      <p><b>The core example</b> — Day 1: "I just got promoted from Senior to Staff Engineer." Day 30: "What's my title?" → "Staff Engineer." And: "Did anything change recently?" → "Yes — you were promoted from Senior to Staff Engineer 30 days ago." The second answer is the point: it reads the stored Transition; it isn't reconstructed.</p>
       <pre class="snippet">git clone https://github.com/saiarung27/reify.git
 cd reify
 make install   <span class="c"># creates .venv, installs reify + dev extras</span>
-make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></pre>
+make demo      <span class="c"># runs the core example end to end, no AI key</span></pre>
       <details class="more"><summary>Why SQLite · why a bitemporal graph · retrieval</summary><div class="in">
         <p><b>Why SQLite</b> — plain SQL is truth: the whole store is one local SQLite file that any user can open and read directly (<i>sqlite3 ~/.reify/store.db</i>), with sqlite-vec holding embeddings in the same file. No server to run; a Postgres adapter is a v1 roadmap item, not a hidden dependency.</p>
         <p><b>Why a bitemporal graph</b> — facts carry bitemporal validity, and every change is stored as a Transition event: the change itself is data, not just the before and after states. New facts supersede old ones without erasing them — which is what makes "what changed?" a first-class query instead of another synthesis job handed to the model.</p>
         <p><b>Retrieval</b> — a hybrid pipeline: semantic, BM25, graph, temporal, and causal signals run in parallel, RRF-fused and cross-encoder reranked, token-budget-aware. Recall is metadata-first — tag → time → entity → BM25 → embeddings — and must work with embeddings disabled entirely.</p>
       </div></details>
       <details class="more"><summary>Reproducible evaluation &amp; what is roadmap, not shipped</summary><div class="in">
-        <p><b>Reproducible evaluation</b> — <i>make demo</i> is the v0.1 acceptance bar: the first three steps of the wedge run end-to-end on a real MCP host with no LLM key, against a temp SQLite store with the deterministic extractor only — no API keys, no network. The repo's own stated limits: hosts other than the smoke-tested one are expected to work but have not been individually verified, and the project is pre-alpha and single-maintainer. An open evaluation harness also runs in CI against public memory benchmarks (LongMemEval, LoCoMo, BEAM); its numbers, and the matching caveats the repo attaches to them, are published in the README's Status section rather than quoted here.</p>
+        <p><b>Reproducible evaluation</b> — <i>make demo</i> is the v0.1 acceptance bar: the first three steps of the core example run end-to-end on a real MCP host with no LLM key, against a temp SQLite store with the deterministic extractor only — no API keys, no network. The repo's own stated limits: hosts other than the smoke-tested one are expected to work but have not been individually verified, and the project is pre-alpha and single-maintainer. An open evaluation harness also runs in CI against public memory benchmarks (LongMemEval, LoCoMo, BEAM); its numbers, and the matching caveats the repo attaches to them, are published in the README's Status section rather than quoted here.</p>
         <p><b>Roadmap, not shipped</b> — the Day-60 step, derived claims materialized across sessions ("What do I usually emphasize in promotion writeups?"), is a v0.4 item that requires the LLM-backed reconsolidator and sleep phase. The repo labels it roadmap; it is not claimed as working here.</p>
       </div></details>
     </div>
@@ -753,7 +760,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
         <div class="fact"><div class="lbl">Problem</div><p>Rental search works; the steps after the search are where it breaks — wrong data with no correction path, scraped scam listings, screening errors, and fees nobody itemizes.</p></div>
         <div class="fact"><div class="lbl">My role</div><p>I built the verification pipeline (ownership cross-checks, photo provenance, price-vs-market), the fee ledger with its hard budget gate, and correction tracking.</p></div>
         <div class="fact"><div class="lbl">Hardest decision</div><p>Verdict discipline: the product never prints "safe." A records mismatch is "unresolved authority," not fraud — and a correction counts as fixed only when a fresh check independently re-verifies it.</p></div>
-        <div class="fact result"><div class="lbl">Result</div><p>Live demo on synthetic data, 58/58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p></div>
+        <div class="fact result"><div class="lbl">Result</div><p>Live demo on sample data, 58 tests; in the test corpus, no labeled scam listing ever reaches VERIFIED.</p></div>
       </div>
       <a class="btn" href="https://listproof-live.onrender.com">Open the live demo <span class="arrow" aria-hidden="true">→</span></a>
     </div>
@@ -762,36 +769,36 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <section id="archive">
     <p class="eyebrow reveal">// project archive</p>
     <h2 class="reveal">More projects.</h2>
-    <p class="sub reveal">Working prototypes on synthetic data, each with a live demo. (AgentFoundry is available as a walkthrough on request.)</p>
+    <p class="sub reveal">Working prototypes on sample data, each with a live demo. AgentFoundry is available as a walkthrough on request.</p>
     <div class="arch">
       <article class="card reveal">
         <h3>Dossier</h3><p class="sector">Short-term rentals &amp; travel</p>
-        <p>Guest-side recovery agent for short-term rentals &amp; travel: booking verified, evidence sealed in a vault at booking time, payment messages authenticated against hard rules in code (it will never call an off-platform payment "safe"), claims filed inside platform windows behind approval, refunds tracked to recovered.</p>
-        <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a><span class="chip t">33/33</span></div>
+        <p>Helps travelers recover money when a short-term rental goes wrong: saves booking evidence, flags suspicious payment requests, and files claims on time with the guest's approval.</p>
+        <div class="foot"><a href="https://dossier-live.onrender.com">Live demo →</a><span class="chip t">33 tests</span></div>
       </article>
       <article class="card reveal">
         <h3>Reclaim</h3><p class="sector">Consumer banking &amp; rewards</p>
-        <p>Member-side recovery agent for consumer banking &amp; shopping rewards: a WHY-ledger where every denial carries an evidenced, rule-cited reason — or is honestly marked <i>reason unknown</i> — and a dispute copilot whose statutory clocks (FCBA, Reg E, FCRA) run in code. No bank-credential vault exists anywhere in its data model.</p>
-        <div class="foot"><a href="https://reclaim-live.onrender.com">Live demo →</a><span class="chip t">60/60</span></div>
+        <p>Explains why a bank or rewards claim was denied, citing the rule behind it, and tracks consumer-protection dispute deadlines in code. It never stores bank passwords.</p>
+        <div class="foot"><a href="https://reclaim-live.onrender.com">Live demo →</a><span class="chip t">60 tests</span></div>
       </article>
       <article class="card reveal">
         <h3>Refile</h3><p class="sector">Health plans</p>
-        <p>Member-side claim-denial explainer &amp; appeal-packet agent for health plans (provisional name): every denial carries a rule-cited reason — or is honestly marked <i>reason unknown</i> — appeal deadlines (internal appeal, external review, No Surprises Act) computed in code, and appeals filed only behind the member's recorded approval, tracked to outcome under a sealed receipt.</p>
-        <div class="foot"><a href="https://refile-live.onrender.com">Live demo →</a><span class="chip t">60/60</span></div>
+        <p>Explains health-insurance claim denials, calculates appeal deadlines, and files appeals only with the member's approval, tracking each to its outcome.</p>
+        <div class="foot"><a href="https://refile-live.onrender.com">Live demo →</a><span class="chip t">60 tests</span></div>
       </article>
       <article class="card reveal">
         <h3>Destorm</h3><p class="sector">Observability &amp; on-call</p>
-        <p>Alert-triage agent for observability &amp; on-call teams (provisional name): groups an alert storm into one incident with deterministic correlation rules in code, proposes runbook steps that each cite their runbook — no citation, no step — executes remediation only on the on-call human's recorded approval, and seals the incident timeline as a tamper-evident receipt.</p>
-        <div class="foot"><a href="https://destorm-live.onrender.com">Live demo →</a><span class="chip t">48/48</span></div>
+        <p>Groups a flood of monitoring alerts into one incident, suggests fixes only from cited runbooks, and acts only with the on-call engineer's approval.</p>
+        <div class="foot"><a href="https://destorm-live.onrender.com">Live demo →</a><span class="chip t">48 tests</span></div>
       </article>
       <article class="card reveal">
         <h3>ModSeal</h3><p class="sector">Online communities</p>
-        <p>Moderation-queue agent for online communities (provisional name): every proposed action cites the exact community rule behind it — or honestly flags that no rule covers the item and a human must decide — executes only behind a moderator's recorded approval, and seals an audit trail the affected author can appeal against.</p>
-        <div class="foot"><a href="https://modseal-live.onrender.com">Live demo →</a><span class="chip t">28/28</span></div>
+        <p>Suggests moderation actions that cite the exact community rule, flags cases no rule covers for a person to decide, and keeps a record the affected author can appeal.</p>
+        <div class="foot"><a href="https://modseal-live.onrender.com">Live demo →</a><span class="chip t">28 tests</span></div>
       </article>
       <article class="card reveal" style="grid-column:1/-1">
         <h3>AgentFoundry</h3><p class="sector">Assurance for AI agents</p>
-        <p>Assurance platform for AI agents: a detection engine with financial guardrails, compliance and agent-behavior checks, and an MCP trust-layer proxy that issues allow / warn / block verdicts before an agent's action lands.</p>
+        <p>Tests and monitors AI agents before they act: financial guardrails, compliance and behavior checks, and a proxy that can allow, warn or block an agent's action.</p>
         <div class="foot"><span class="na">Walkthrough on request</span><span class="chip t">~195 tests</span></div>
       </article>
     </div>
@@ -800,7 +807,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   <div class="contact reveal">
     <p class="eyebrow">// get in touch</p>
     <h2>Let's talk.</h2>
-    <p>I'm looking for my next step as a <b style="color:var(--text)">Lead, Staff, or Principal engineer</b>: frontend platforms, micro-frontends, and agentic systems where mistakes cost money, care, or trust.</p>
+    <p>I'm looking for my next step as a <b style="color:var(--text)">Lead, Staff, or Principal engineer</b>: frontend platforms, micro-frontends, and AI-agent systems where mistakes are costly.</p>
     <div class="ctas">
       <a class="btn primary" href="mailto:saiarung27@gmail.com">Email me</a>
       <button class="btn" id="copyEmail" type="button">Copy email</button>
@@ -811,9 +818,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   </div>
 
   <footer>
-    <p>Sai Arun Gunuganti — Senior Software Engineer (Lowe's Companies), Harrisburg, NC. Open to Lead, Staff, and Principal engineering roles.</p>
-    <p>Prototypes run on synthetic data; names marked as working labels are provisional.</p>
-    <p>Doorway, Dossier, ListProof, Reclaim, Refile, Destorm and ModSeal run as live public demos; JobProof is a live product in early access; AgentFoundry is available as a walkthrough on request.</p>
+    <p>Sai Arun Gunuganti · Senior Software Engineer at Lowe's · Harrisburg, NC. Demos run on sample data, and some product names may change.</p>
   </footer>
 
 </div>
@@ -867,10 +872,10 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
   /* ---------- reveal + counters ---------- */
   const countUp = el => {
     const end = +el.dataset.count, suf = el.dataset.suffix || '';
-    if(reduce){ el.textContent = end+suf; return; }
+    if(reduce){ el.textContent = end.toLocaleString('en-US')+suf; return; }
     const t0 = performance.now(), d = 1300;
     const step = t => { const p = Math.min(1,(t-t0)/d), e = 1-Math.pow(1-p,3);
-      el.textContent = Math.round(end*e)+suf; if(p<1) requestAnimationFrame(step); };
+      el.textContent = Math.round(end*e).toLocaleString('en-US')+suf; if(p<1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   };
   const io = new IntersectionObserver(es => es.forEach(en => {
@@ -908,7 +913,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
       add(`<span class="c-ok">  ✓ rules</span> <span class="c-dim">identity · mandate · scope · caps</span>`); await sleep(700);
       let decision = 'allow';
       if(s.amt > 100){
-        add(`<span class="c-warn">  ⏸ over ask line → owner notified out-of-band</span>`); await sleep(1300);
+        add(`<span class="c-warn">  ⏸ over approval limit → owner notified separately</span>`); await sleep(1300);
         if(s.deny){ add(`<span class="c-bad">  ✗ owner denied · no token minted</span>`); decision='deny'; }
         else add(`<span class="c-ok">  ✓ owner approved on own surface</span>`);
         await sleep(600);
@@ -954,7 +959,7 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
     await sleep(700);
     spent += action.amount_usd; setMeter();
     setNodes(4,'on'); fill.style.width='80%'; nodes[4].classList.add('on');
-    await seal(action, ah, 'allow', approved ? 'approval statement included' : 'under ask line: no approval needed');
+    await seal(action, ah, 'allow', approved ? 'approval statement included' : 'under approval limit: no approval needed');
     say(`<span class="h c-acc">■ Receipt sealed.</span><br><span class="c-dim">It cites the action hash and chains to the previous receipt. Editing any past entry breaks every hash after it.</span>`);
     busy=false; proposeBtn.disabled=false;
   }
@@ -979,11 +984,11 @@ make demo      <span class="c"># runs the wedge end-to-end, no LLM key</span></p
     await sleep(800);
     if(action.amount_usd <= ASK){
       setNodes(2,'on'); nodes[2].classList.add('on');
-      say(`<span class="h c-ok">Under the ask line</span>: allowed automatically.<br><span class="c-dim">Decision sealed first, then a single-use token is minted.</span>`);
+      say(`<span class="h c-ok">Under the approval limit</span>: allowed automatically.<br><span class="c-dim">Decision sealed first, then a single-use token is minted.</span>`);
       await sleep(800); return finish(action, ah, false);
     }
     setNodes(2,'wait');
-    say(`<span class="h c-warn">⏸ Waiting for the owner.</span><br><span class="c-dim">${money(action.amount_usd)} is over the ${money(ASK)} ask line.</span>`);
+    say(`<span class="h c-warn">⏸ Waiting for the owner.</span><br><span class="c-dim">${money(action.amount_usd)} is over the ${money(ASK)} approval limit.</span>`);
     pending = {action, ah}; approval.classList.add('show');
   });
   $('#approve').addEventListener('click', async () => {
